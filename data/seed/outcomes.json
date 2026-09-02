@@ -1,0 +1,111 @@
+[
+  {
+    "id": "protect-and-earn",
+    "name": "Protect & Earn",
+    "description": "Protect a Venus lending position while putting idle stablecoins to work.",
+    "goalType": "combine",
+    "requiredRoles": [
+      {
+        "role": "Health-factor monitoring",
+        "category": "health-factor-monitoring",
+        "requiredCapabilities": ["health-factor-monitoring"]
+      },
+      {
+        "role": "Yield optimization",
+        "category": "yield-optimization",
+        "requiredCapabilities": ["yield-optimization"]
+      }
+    ],
+    "supportedProtocols": ["Venus"],
+    "supportedAssets": ["USDT", "USDC"],
+    "riskLevel": "balanced",
+    "featured": true,
+    "evidence": {
+      "provenance": "demo",
+      "windowDays": 30,
+      "metrics": [
+        { "label": "Target success", "value": "94%", "provenance": "demo" },
+        { "label": "Violations", "value": "0", "provenance": "demo" },
+        { "label": "Observed net yield", "value": "+7.8%", "provenance": "demo" }
+      ],
+      "note": "Flagship demo outcome. Seeded evidence."
+    }
+  },
+  {
+    "id": "stay-in-range",
+    "name": "Stay In Range",
+    "description": "Keep a PancakeSwap LP position actively managed so it stays earning fees.",
+    "goalType": "manage-liquidity",
+    "requiredRoles": [
+      {
+        "role": "Rebalancing",
+        "category": "rebalancing",
+        "requiredCapabilities": ["rebalancing"]
+      }
+    ],
+    "supportedProtocols": ["PancakeSwap"],
+    "supportedAssets": ["BNB", "USDT", "CAKE"],
+    "riskLevel": "balanced",
+    "featured": true,
+    "evidence": {
+      "provenance": "demo",
+      "windowDays": 30,
+      "metrics": [
+        { "label": "Range uptime", "value": "92%", "provenance": "demo" },
+        { "label": "Fees earned", "value": "+3.1%", "provenance": "demo" }
+      ],
+      "note": "Seeded demo evidence."
+    }
+  },
+  {
+    "id": "trade-with-guardrails",
+    "name": "Trade With Guardrails",
+    "description": "Run a grid trading strategy under a defined risk profile.",
+    "goalType": "trade",
+    "requiredRoles": [
+      {
+        "role": "Grid trading",
+        "category": "grid-trading",
+        "requiredCapabilities": ["grid-trading"]
+      }
+    ],
+    "supportedProtocols": ["PancakeSwap"],
+    "supportedAssets": ["BNB", "USDT"],
+    "riskLevel": "aggressive",
+    "featured": false,
+    "evidence": {
+      "provenance": "demo",
+      "windowDays": 30,
+      "metrics": [
+        { "label": "Realized PnL", "value": "+5.2%", "provenance": "demo" },
+        { "label": "Max drawdown", "value": "-3.4%", "provenance": "demo" }
+      ],
+      "note": "Seeded demo evidence."
+    }
+  },
+  {
+    "id": "stablecoin-yield",
+    "name": "Stablecoin Yield",
+    "description": "Put idle stablecoins to work under conservative risk constraints.",
+    "goalType": "earn",
+    "requiredRoles": [
+      {
+        "role": "Yield optimization",
+        "category": "yield-optimization",
+        "requiredCapabilities": ["yield-optimization"]
+      }
+    ],
+    "supportedProtocols": ["Venus"],
+    "supportedAssets": ["USDT", "USDC"],
+    "riskLevel": "conservative",
+    "featured": true,
+    "evidence": {
+      "provenance": "demo",
+      "windowDays": 30,
+      "metrics": [
+        { "label": "Observed net yield", "value": "+4.9%", "provenance": "demo" }
+      ],
+      "note": "Seeded demo evidence."
+    }
+  }
+]

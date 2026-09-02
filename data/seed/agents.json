@@ -1,0 +1,173 @@
+[
+  {
+    "id": "guardian",
+    "name": "Guardian",
+    "description": "Watches a lending position's health factor and steps in before it drifts toward liquidation.",
+    "owner": "0xGuardianLabs",
+    "category": "health-factor-monitoring",
+    "capabilities": ["health-factor-monitoring", "auto-repay", "alerting"],
+    "protocols": ["Venus"],
+    "assets": ["USDT", "USDC", "BNB"],
+    "networks": ["BNB Smart Chain"],
+    "reputation": 91,
+    "metrics": [
+      { "label": "Interventions", "value": "37", "provenance": "demo" },
+      { "label": "Liquidations", "value": "0", "provenance": "demo" }
+    ],
+    "status": "available",
+    "pricing": "0.10% of protected capital / mo",
+    "source": "seed",
+    "supportedControlModes": ["monitor", "ask", "autopilot"],
+    "evidence": {
+      "provenance": "demo",
+      "windowDays": 30,
+      "metrics": [
+        { "label": "Min observed HF", "value": "1.78", "provenance": "demo" },
+        { "label": "Violations", "value": "0", "provenance": "demo" }
+      ],
+      "note": "Seeded demo evidence for hackathon."
+    }
+  },
+  {
+    "id": "atlas-yield",
+    "name": "Atlas Yield",
+    "description": "Routes idle stablecoins to the best available yield within a chosen risk band.",
+    "owner": "0xAtlas",
+    "category": "yield-optimization",
+    "capabilities": ["yield-optimization", "auto-compound", "risk-banding"],
+    "protocols": ["Venus", "PancakeSwap"],
+    "assets": ["USDT", "USDC"],
+    "networks": ["BNB Smart Chain"],
+    "reputation": 88,
+    "metrics": [
+      { "label": "Net yield (30d)", "value": "+7.8%", "provenance": "demo" }
+    ],
+    "status": "available",
+    "pricing": "10% performance fee",
+    "source": "seed",
+    "supportedControlModes": ["ask", "autopilot"],
+    "evidence": {
+      "provenance": "demo",
+      "windowDays": 30,
+      "metrics": [
+        { "label": "Observed net yield", "value": "+7.8%", "provenance": "demo" },
+        { "label": "Gas + fees", "value": "0.4%", "provenance": "demo" }
+      ],
+      "note": "Seeded demo evidence for hackathon."
+    }
+  },
+  {
+    "id": "atlas-yield-conservative",
+    "name": "Atlas Yield Stable",
+    "description": "Conservative variant of Atlas: single-protocol stablecoin yield, no LP exposure.",
+    "owner": "0xAtlas",
+    "category": "yield-optimization",
+    "capabilities": ["yield-optimization", "auto-compound"],
+    "protocols": ["Venus"],
+    "assets": ["USDT", "USDC"],
+    "networks": ["BNB Smart Chain"],
+    "reputation": 85,
+    "metrics": [
+      { "label": "Net yield (30d)", "value": "+4.9%", "provenance": "demo" }
+    ],
+    "status": "available",
+    "pricing": "8% performance fee",
+    "source": "seed",
+    "supportedControlModes": ["monitor", "ask", "autopilot"],
+    "evidence": {
+      "provenance": "demo",
+      "windowDays": 30,
+      "metrics": [
+        { "label": "Observed net yield", "value": "+4.9%", "provenance": "demo" },
+        { "label": "Volatility", "value": "low", "provenance": "demo" }
+      ],
+      "note": "Seeded demo evidence for hackathon."
+    }
+  },
+  {
+    "id": "meridian-lp",
+    "name": "Meridian",
+    "description": "Keeps a PancakeSwap LP position inside its active range by rebalancing as price moves.",
+    "owner": "0xMeridian",
+    "category": "rebalancing",
+    "capabilities": ["rebalancing", "range-management"],
+    "protocols": ["PancakeSwap"],
+    "assets": ["BNB", "USDT", "CAKE"],
+    "networks": ["BNB Smart Chain"],
+    "reputation": 86,
+    "metrics": [
+      { "label": "Range uptime", "value": "92%", "provenance": "demo" }
+    ],
+    "status": "available",
+    "pricing": "0.15% of managed liquidity / mo",
+    "source": "seed",
+    "supportedControlModes": ["ask", "autopilot"],
+    "evidence": {
+      "provenance": "demo",
+      "windowDays": 30,
+      "metrics": [
+        { "label": "Range uptime", "value": "92%", "provenance": "demo" },
+        { "label": "Rebalances", "value": "14", "provenance": "demo" },
+        { "label": "Fees earned", "value": "+3.1%", "provenance": "demo" }
+      ],
+      "note": "Seeded demo evidence for hackathon."
+    }
+  },
+  {
+    "id": "lattice-grid",
+    "name": "Lattice",
+    "description": "Runs a grid trading strategy between defined bounds with a capped risk budget.",
+    "owner": "0xLattice",
+    "category": "grid-trading",
+    "capabilities": ["grid-trading", "risk-cap"],
+    "protocols": ["PancakeSwap"],
+    "assets": ["BNB", "USDT"],
+    "networks": ["BNB Smart Chain"],
+    "reputation": 79,
+    "metrics": [
+      { "label": "Realized PnL (30d)", "value": "+5.2%", "provenance": "demo" }
+    ],
+    "status": "available",
+    "pricing": "12% performance fee",
+    "source": "seed",
+    "supportedControlModes": ["ask", "autopilot"],
+    "evidence": {
+      "provenance": "demo",
+      "windowDays": 30,
+      "metrics": [
+        { "label": "Realized PnL", "value": "+5.2%", "provenance": "demo" },
+        { "label": "Max drawdown", "value": "-3.4%", "provenance": "demo" },
+        { "label": "Fills", "value": "212", "provenance": "demo" }
+      ],
+      "note": "Seeded demo evidence for hackathon."
+    }
+  },
+  {
+    "id": "lattice-grid-tight",
+    "name": "Lattice Tight",
+    "description": "Lower-variance grid: narrower bounds, smaller size, fewer fills.",
+    "owner": "0xLattice",
+    "category": "grid-trading",
+    "capabilities": ["grid-trading", "risk-cap"],
+    "protocols": ["PancakeSwap"],
+    "assets": ["BNB", "USDT"],
+    "networks": ["BNB Smart Chain"],
+    "reputation": 81,
+    "metrics": [
+      { "label": "Realized PnL (30d)", "value": "+2.7%", "provenance": "demo" }
+    ],
+    "status": "limited",
+    "pricing": "10% performance fee",
+    "source": "seed",
+    "supportedControlModes": ["monitor", "ask", "autopilot"],
+    "evidence": {
+      "provenance": "demo",
+      "windowDays": 30,
+      "metrics": [
+        { "label": "Realized PnL", "value": "+2.7%", "provenance": "demo" },
+        { "label": "Max drawdown", "value": "-1.2%", "provenance": "demo" }
+      ],
+      "note": "Seeded demo evidence for hackathon."
+    }
+  }
+]
