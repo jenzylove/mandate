@@ -14,7 +14,7 @@ export function ConnectWallet() {
           onClick={() => disconnect()}
           title="Disconnect wallet"
         >
-          {address.slice(0, 6)}…{address.slice(-4)} · Disconnect
+          Account · {address.slice(0, 6)}…{address.slice(-4)}
         </button>
       ) : (
         <button
@@ -31,7 +31,7 @@ export function ConnectWallet() {
             connect({ connector });
           }}
         >
-          {isPending ? "Connecting…" : "Connect wallet"} <span>↗</span>
+          {isPending ? "Signing in…" : "Sign in"} <span>↗</span>
         </button>
       )}
       {(missing || error) && (

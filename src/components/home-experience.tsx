@@ -99,12 +99,12 @@ export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agen
         <div className="mh-hero-copy">
           <div className="mh-eyebrow"><span className="mh-yellow-dot" />YOUR MONEY. YOUR MANDATE.</div>
           <h1>Put your money<br />on a <em>mission.</em></h1>
-          <p>Find an outcome you want. Meet the BNB agents to help you get there. You set the boundaries.</p>
+          <p>Browse outcomes. Compare the BNB agents that can help you get there. You set the boundaries.</p>
           <div className="mh-actions">
-            <Link className="mh-button mh-purple" href="/find/goal">Find my outcome <span>↗</span></Link>
+            <Link className="mh-button mh-purple" href="#marketplace">Explore marketplace <span>↓</span></Link>
             <Link className="mh-text-link" href="/agents">Meet the agents →</Link>
           </div>
-          <small>Browse freely. Connect when you’re ready.</small>
+          <small>Browse freely. Sign in when you’re ready to save.</small>
         </div>
         <div className="mh-hero-visual">
           <div className="mh-orbit" />
@@ -124,7 +124,7 @@ export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agen
         <button className="mh-stream-toggle" aria-label={paused ? "Resume market strip" : "Pause market strip"} onClick={() => setPaused((value) => !value)}>{paused ? "▷" : "Ⅱ"}</button>
       </section>
 
-      <section className="mh-section">
+      <section className="mh-section" id="marketplace">
         <div className="mh-section-title"><h2>What do you want your money to do?</h2><span>Start with you.</span></div>
         <div className="mh-goals">{goalCopy.map(([icon, label, id]) => <Link key={id} className="mh-goal" href={`/outcomes?goal=${id}`}><span>{icon}</span><b>{label}</b></Link>)}</div>
       </section>
@@ -141,7 +141,7 @@ export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agen
         <div className="mh-carousel-caption"><span>Swipe or scroll to meet more specialists →</span><span>Seeded inventory · Availability is illustrative</span></div>
       </section>
 
-      <section className="mh-guidance"><span>✳</span><div><h2>A little guidance. A better fit.</h2><p>Your goal, assets, risk and control preferences — matched to compatible agents.</p></div><Link className="mh-button mh-yellow" href="/find/goal">Find my outcome ↗</Link></section>
+      <section className="mh-guidance"><span>✳</span><div><h2>Not sure what fits?</h2><p>Tell us your goal, assets, risk and control preferences. We’ll help narrow the marketplace.</p></div><Link className="mh-button mh-yellow" href="/find/goal">Find my setup ↗</Link></section>
 
       <section className="mh-build"><div><h2>Have a specialist of your own?</h2><p>Build with BNB Agent Studio.</p></div><Link href="/build-agent">Build your own agent ↗</Link></section>
 
