@@ -143,14 +143,17 @@ export function ActivateAgent({ target }: { target: HireTarget }) {
         <p className="eyebrow">SIGN IN TO ACTIVATE</p>
         <h2>Ready when you are.</h2>
         <p>
-          Hiring {target.agentName} opens an escrow job on {target.settlementLabel}.
-          Connect your wallet to continue. Browsing and matching stay open to
-          everyone.
+          {pre
+            ? pre.mode === "free"
+              ? `${target.agentName} charges nothing for this. Connect your wallet so the result is filed against your account.`
+              : `Hiring ${target.agentName} opens an escrow job on ${pre.networkLabel ?? "BNB Smart Chain"}, against the agent's own payout address. Connect your wallet to continue.`
+            : `Connect your wallet to hire ${target.agentName}. Browsing and matching stay open to everyone.`}
         </p>
         <ConnectWallet />
         <p className="flow-note">
-          Connecting does not move your funds. Escrow for this job is funded by
-          Mandate&apos;s settlement account on {target.settlementLabel}.
+          Connecting does not move your funds. Escrow is funded by Mandate&apos;s
+          settlement account
+          {pre?.escrow ? ` (${pre.escrow.address.slice(0, 6)}…${pre.escrow.address.slice(-4)})` : ""}.
         </p>
       </section>
     );
