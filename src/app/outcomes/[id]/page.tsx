@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { data } from "@/lib/data/json-adapter";
+import { data } from "@/lib/data/live-adapter";
 import {
   SymbolArt,
   EvidencePanel,

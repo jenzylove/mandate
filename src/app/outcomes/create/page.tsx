@@ -1,16 +1,23 @@
 import Link from "next/link";
-import { data } from "@/lib/data/json-adapter";
+import { data } from "@/lib/data/live-adapter";
 import { recommend } from "@/lib/engine/recommend";
 import { SaveSetup, WalletGate } from "@/components/connected";
+import { ActivateAgent } from "@/components/activate";
+import { liveAgents } from "@/lib/live/snapshot";
+import { SETTLEMENT_NETWORK } from "@/lib/live/chain";
 import type { OutcomeQuery, RiskLevel, ControlMode } from "@/lib/domain/types";
+
+export const dynamic = "force-dynamic";
+
 export default async function CreateOutcome({
   searchParams: p,
 }: {
   searchParams: Record<string, string | undefined>;
 }) {
-  const [outcomes, agents] = await Promise.all([
+  const [outcomes, agents, live] = await Promise.all([
     data.listOutcomes(),
     data.listAgents(),
+    liveAgents(),
   ]);
   const outcome = outcomes.find((o) => o.id === p.outcome);
   const agent = agents.find((a) => a.id === p.agent);
@@ -47,20 +54,28 @@ export default async function CreateOutcome({
       rec &&
       (!p.asset || outcome.supportedAssets.includes(p.asset)) &&
       (!p.protocol || outcome.supportedProtocols.includes(p.protocol)));
+
+  const liveIds = new Set(live.map((a) => a.id));
+  const liveSelected = selected.filter((a) => a && liveIds.has(a.id));
+  const seededSelected = selected.filter((a) => a && !liveIds.has(a.id));
+  const settlementLabel =
+    SETTLEMENT_NETWORK === "bsc-testnet" ? "BNB Smart Chain testnet" : "BNB Smart Chain";
+
   return (
     <main className="flow-shell">
       <div className="flow-heading">
         <p className="eyebrow">YOUR NEXT MOVE</p>
         <h1>Review your setup.</h1>
         <p>
-          Make sure the purpose, agents and example costs fit what you have in
-          mind.
+          Make sure the purpose, agents and costs fit what you have in mind.
         </p>
       </div>
       {valid ? (
         <>
           <section className="panel">
-            <p className="eyebrow">DEMO SETUP · NOT ACTIVE</p>
+            <p className="eyebrow">
+              {liveSelected.length ? "READY TO ACTIVATE" : "DEMO SETUP · NOT ACTIVE"}
+            </p>
             <h2>{outcome?.name ?? agent?.name}</h2>
             <p>{outcome?.description ?? agent?.description}</p>
             <div className="review-summary">
@@ -78,15 +93,42 @@ export default async function CreateOutcome({
             {selected.map((a) => (
               <div className="role-row" key={a.id}>
                 <Link href={`/agents/${a.id}`}>{a.name} ↗</Link>
-                <p>Example cost: {a.pricing}</p>
+                <p>
+                  {liveIds.has(a.id)
+                    ? `${a.pricing} · live onchain agent`
+                    : `Example cost: ${a.pricing} · seeded listing`}
+                </p>
               </div>
             ))}
-            <div className="notice">
-              Live activation is not available. These listings, availability and
-              evidence are seeded examples.
-            </div>
+            {seededSelected.length > 0 && (
+              <div className="notice">
+                {seededSelected.length} of these listings are seeded examples with no
+                onchain identity. They cannot be activated.
+              </div>
+            )}
           </section>
+
           <div style={{ height: 24 }} />
+
+          {liveSelected.map((a) => (
+            <div key={a.id} style={{ marginBottom: 24 }}>
+              <ActivateAgent
+                target={{
+                  agentId: a.id,
+                  agentName: a.name,
+                  category: a.category,
+                  pricing: a.pricing,
+                  request:
+                    outcome?.description ??
+                    `${a.category.replaceAll("-", " ")} for a position on BNB Smart Chain`,
+                  outcomeId: outcome?.id,
+                  settlementLabel,
+                  live: true,
+                }}
+              />
+            </div>
+          ))}
+
           <SaveSetup
             setup={{
               id: agent

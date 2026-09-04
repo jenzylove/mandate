@@ -1,7 +1,10 @@
 import { notFound } from "next/navigation";
-import { data } from "@/lib/data/json-adapter";
+import { data } from "@/lib/data/live-adapter";
 import { Catalog } from "@/components/catalog";
 import { categoryNames } from "@/components/market-ui";
+
+// Availability is read live, so this page must not be baked at build time.
+export const dynamic = "force-dynamic";
 export default async function CategoryPage({
   params,
 }: {

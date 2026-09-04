@@ -1,5 +1,5 @@
 import { FindFlow } from "@/components/find-flow";
-import { data } from "@/lib/data/json-adapter";
+import { data } from "@/lib/data/live-adapter";
 export default async function Page({
   searchParams,
 }: {

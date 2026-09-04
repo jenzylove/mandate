@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { data } from "@/lib/data/json-adapter";
+import { data } from "@/lib/data/live-adapter";
 import { Catalog } from "@/components/catalog";
 export default async function OutcomesPage({
   searchParams,

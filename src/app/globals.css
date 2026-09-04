@@ -1618,3 +1618,19 @@ dd {
 @media(max-width:700px){.mh-outcome-foot{font-size:9px}.mh-outcome-foot a{font-size:9px;padding:8px}.mh-carousel-caption{font-size:7px;gap:15px}.mh-carousel-caption span:last-child{text-align:right}.mh-build{display:block}.mh-build>a{display:block;margin-top:15px}.mh-agent-modal{padding:22px}.mh-agent-modal dl{grid-template-columns:1fr}.mh-modal-title{align-items:flex-start}}
 .mh-site-header{background:#fff;border-bottom:1px solid #ebe8f1}.mh-nav-shell{height:90px;display:flex;align-items:center;justify-content:space-between;gap:30px;max-width:1200px;width:calc(100% - 96px);margin:auto}.mh-brand{font-size:28px;font-weight:700;letter-spacing:-1px;display:flex;align-items:center;color:#252232}.mh-brand-mark{width:35px;height:35px;margin-right:10px;overflow:visible}.mh-mark-frame{fill:#6850bb}.mh-mark-m{fill:#fff}.mh-mark-node{fill:#f2d76b}.mh-brand>span{color:#7860b7}.mh-nav-shell nav{display:flex;gap:30px;font-size:12px}.mh-nav-shell nav a{color:#8c8698}.mh-nav-shell nav a.active{color:#6850bb;font-weight:600}.mh-nav-shell .wallet-wrap>.button{background:#6850bb;color:#fff;border:0;border-radius:10px;padding:12px 19px;min-height:auto;font-size:12px}.mh-nav-shell .wallet-wrap>.button span{display:none}.mh-bottom-nav{display:none}
 @media(max-width:700px){body{padding-bottom:67px}.mh-nav-shell{height:76px;width:calc(100% - 36px);gap:16px}.mh-brand{font-size:26px}.mh-brand-mark{width:31px;height:31px;margin-right:8px}.mh-nav-shell nav{display:none}.mh-nav-shell .wallet-wrap>.button{font-size:9px;padding:10px 13px}.mh-bottom-nav{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:space-around;background:#fffefef5;backdrop-filter:blur(12px);border-top:1px solid #eae4f2;z-index:50;padding:9px 0 12px}.mh-bottom-nav a{display:flex;flex-direction:column;align-items:center;font-size:8px;color:#b1a3bf;gap:3px;min-width:66px}.mh-bottom-nav a>span{font-size:23px;line-height:1.15}.mh-bottom-nav a.active{color:#8d6eaf;font-weight:600}.mh-bottom-nav a.active>span{background:#f4e3a8;color:#977a34;border-radius:8px;padding:2px 10px}}
+
+/* Agent deliverable payload: preformatted JSON or text returned by a hired
+   agent, shown verbatim so the user can audit what they paid for. */
+.deliverable {
+  margin: 14px 0 0;
+  padding: 14px 16px;
+  max-height: 320px;
+  overflow: auto;
+  background: #faf8fc;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #6d6379;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

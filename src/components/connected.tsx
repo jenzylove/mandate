@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import Link from "next/link";
 import { ConnectWallet } from "./connect-wallet";
+import { ReceiptList, ReceiptDetail, useReceipts } from "./receipts";
 export interface SavedSetup {
   id: string;
   name: string;
@@ -120,11 +121,21 @@ export function MyActivity({ id }: { id?: string }) {
   const [items, setItems] = useState<SavedSetup[]>([]);
   useEffect(() => setItems(address ? read(address) : []), [address]);
   const selected = id ? items.find((s) => s.id === id) : undefined;
+  const { receipts, loading } = useReceipts(address);
+  const jobId = id?.startsWith("job-") ? id.slice(4) : undefined;
+
+  if (jobId)
+    return (
+      <WalletGate>
+        <ReceiptDetail jobId={jobId} />
+      </WalletGate>
+    );
+
   return (
     <WalletGate>
       <div className="notice">
-        Wallet connected · Saved drafts on this device. Live positions and
-        execution are not integrated.
+        Wallet connected · Hired agents settle onchain and their receipts are kept
+        against your address. Saved setups are drafts stored in this browser.
       </div>
       {id ? (
         selected ? (
@@ -159,6 +170,7 @@ export function MyActivity({ id }: { id?: string }) {
         )
       ) : (
         <>
+          <ReceiptList receipts={receipts} />
           <div className="section-heading">
             <h2>Your saved setups</h2>
             <Link className="text-link" href="/find/goal">
@@ -184,7 +196,7 @@ export function MyActivity({ id }: { id?: string }) {
                 </Link>
               ))}
             </div>
-          ) : (
+          ) : receipts.length || loading ? null : (
             <div className="empty-state">
               <h2>Your next chapter starts here.</h2>
               <p>
