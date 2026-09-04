@@ -2,6 +2,7 @@ import { createWalletClient, http, encodeFunctionData, decodeEventLog, parseAbi,
 import { privateKeyToAccount } from "viem/accounts";
 import {
   publicClientFor,
+  primaryRpc,
   net,
   commerceAbi,
   routerAbi,
@@ -120,7 +121,7 @@ export class Erc8183Settlement {
         { from: acct.address, to, value: "0x0", data },
       ]).catch(() => null)) as { sponsorable?: boolean } | null;
       if (spon?.sponsorable) {
-        const wallet = createWalletClient({ account: acct, chain: this.n.chain, transport: http(this.n.rpc) });
+        const wallet = createWalletClient({ account: acct, chain: this.n.chain, transport: http(primaryRpc(this.network)) });
         const raw = await wallet.signTransaction({
           to: to as Hex,
           data,
@@ -164,7 +165,7 @@ export class Erc8183Settlement {
     gas: bigint,
     nonce: number,
   ): Promise<Hex> {
-    const wallet = createWalletClient({ account: acct, chain: this.n.chain, transport: http(this.n.rpc) });
+    const wallet = createWalletClient({ account: acct, chain: this.n.chain, transport: http(primaryRpc(this.network)) });
     return wallet.sendTransaction({ to: to as Hex, data, gas: (gas * 12n) / 10n, nonce });
   }
 
@@ -223,8 +224,19 @@ export class Erc8183Settlement {
     );
   }
 
-  /** The buyer's half: escrow value against a named provider. Never submits. */
-  async open(opts: { provider: string; budgetRaw: bigint; description: string }): Promise<OpenResult> {
+  /**
+   * The buyer's half: escrow value against a named provider. Never submits.
+   *
+   * Every step is conditional on the job's current on-chain state, so a run
+   * interrupted by a flaky RPC can be resumed with `resumeJobId` instead of
+   * stranding a created job and minting another.
+   */
+  async open(opts: {
+    provider: string;
+    budgetRaw: bigint;
+    description: string;
+    resumeJobId?: bigint;
+  }): Promise<OpenResult> {
     const buyer = clientAccount();
     const steps: StepRecord[] = [];
     const tok = await this.token();
@@ -250,46 +262,57 @@ export class Erc8183Settlement {
     // ever allowed to settle. Mainnet's window is a week, not fifteen minutes.
     const expiredAt = BigInt(Math.floor(Date.now() / 1000) + window + 3 * 24 * 3600);
 
-    const r1 = await this.send(
-      buyer,
-      this.n.commerce,
-      encodeFunctionData({
-        abi: commerceAbi,
-        functionName: "createJob",
-        args: [opts.provider as Hex, this.n.router, expiredAt, opts.description, this.n.router],
-      }),
-      "createJob",
-      steps,
-    );
+    let jobId: bigint | null = opts.resumeJobId ?? null;
 
-    let jobId: bigint | null = null;
-    for (const log of r1.logs) {
-      try {
-        const d = decodeEventLog({ abi: commerceAbi, data: log.data, topics: log.topics });
-        if (d.eventName === "JobCreated") jobId = (d.args as { jobId: bigint }).jobId;
-      } catch {
-        /* logs from the router and policy contracts */
+    if (jobId === null) {
+      const r1 = await this.send(
+        buyer,
+        this.n.commerce,
+        encodeFunctionData({
+          abi: commerceAbi,
+          functionName: "createJob",
+          args: [opts.provider as Hex, this.n.router, expiredAt, opts.description, this.n.router],
+        }),
+        "createJob",
+        steps,
+      );
+      for (const log of r1.logs) {
+        try {
+          const d = decodeEventLog({ abi: commerceAbi, data: log.data, topics: log.topics });
+          if (d.eventName === "JobCreated") jobId = (d.args as { jobId: bigint }).jobId;
+        } catch {
+          /* logs from the router and policy contracts */
+        }
       }
+      if (jobId === null) throw new Error("createJob succeeded but emitted no JobCreated");
     }
-    if (jobId === null) throw new Error("createJob succeeded but emitted no JobCreated");
 
-    await this.send(
-      buyer,
-      this.n.router,
-      encodeFunctionData({ abi: routerAbi, functionName: "registerJob", args: [jobId, this.n.policy] }),
-      "registerJob",
-      steps,
-    );
+    // Bind the policy only if it is not already bound.
+    const boundPolicy = await this.pub
+      .readContract({ address: this.n.router, abi: routerAbi, functionName: "jobPolicy", args: [jobId] })
+      .catch(() => "0x0000000000000000000000000000000000000000" as Hex);
+    if (BigInt(boundPolicy) === 0n) {
+      await this.send(
+        buyer,
+        this.n.router,
+        encodeFunctionData({ abi: routerAbi, functionName: "registerJob", args: [jobId, this.n.policy] }),
+        "registerJob",
+        steps,
+      );
+    }
 
-    await this.send(
-      buyer,
-      this.n.commerce,
-      encodeFunctionData({ abi: commerceAbi, functionName: "setBudget", args: [jobId, opts.budgetRaw, "0x"] }),
-      "setBudget",
-      steps,
-    );
+    const current = await this.jobState(jobId);
+    if (BigInt(current.budgetRaw) !== opts.budgetRaw && current.status === "OPEN") {
+      await this.send(
+        buyer,
+        this.n.commerce,
+        encodeFunctionData({ abi: commerceAbi, functionName: "setBudget", args: [jobId, opts.budgetRaw, "0x"] }),
+        "setBudget",
+        steps,
+      );
+    }
 
-    if (opts.budgetRaw > 0n) {
+    if (opts.budgetRaw > 0n && (await this.jobState(jobId)).status === "OPEN") {
       const allowance = await this.pub.readContract({
         address: tok.address,
         abi: erc20Abi,
@@ -311,13 +334,15 @@ export class Erc8183Settlement {
       }
     }
 
-    await this.send(
-      buyer,
-      this.n.commerce,
-      encodeFunctionData({ abi: commerceAbi, functionName: "fund", args: [jobId, opts.budgetRaw, "0x"] }),
-      "fund",
-      steps,
-    );
+    if ((await this.jobState(jobId)).status === "OPEN") {
+      await this.send(
+        buyer,
+        this.n.commerce,
+        encodeFunctionData({ abi: commerceAbi, functionName: "fund", args: [jobId, opts.budgetRaw, "0x"] }),
+        "fund",
+        steps,
+      );
+    }
 
     return this.describe(jobId, steps, window);
   }

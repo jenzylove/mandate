@@ -1,4 +1,4 @@
-import { createPublicClient, http, parseAbi } from "viem";
+import { createPublicClient, http, fallback, parseAbi } from "viem";
 import { bsc, bscTestnet } from "viem/chains";
 
 // Addresses come from bnb-chain/bnbagent-sdk's own network registry and were
@@ -8,19 +8,30 @@ export const NETWORKS = {
   "bsc-mainnet": {
     chainId: 56,
     chain: bsc,
-    rpc: "https://bsc-rpc.publicnode.com",
+    // Several endpoints, because providers differ on what they will serve:
+    // publicnode refuses receipt lookups as "archive requests", which strands a
+    // broadcast transaction mid-lifecycle.
+    rpc: [
+      "https://bsc-dataseed1.defibit.io",
+      "https://bsc-dataseed1.ninicoin.io",
+      "https://bsc-rpc.publicnode.com",
+      "https://1rpc.io/bnb",
+    ],
     registry: "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432" as const,
     commerce: "0xea4daa3100a767e86fded867729ae7446476eba6" as const,
     router: "0x51895229e12f9876011789b04f8698af06ccd6da" as const,
     policy: "0x9c01845705b3078aa2e8cff7520a6376fd766de5" as const,
     paymentToken: "0xcE24439F2D9C6a2289F741120FE202248B666666" as const,
     explorer: "https://bscscan.com",
-    paymaster: null as string | null,
+    // Mainnet buyer-side calls are sponsored too (sponsor: Pieverse), so a
+    // buyer needs no BNB on either network. Only `submit` is unsponsored, and
+    // that is the provider's own transaction.
+    paymaster: "https://bsc-megafuel.nodereal.io" as string | null,
   },
   "bsc-testnet": {
     chainId: 97,
     chain: bscTestnet,
-    rpc: "https://bsc-testnet-rpc.publicnode.com",
+    rpc: ["https://bsc-testnet-rpc.publicnode.com", "https://bsc-testnet.public.blastapi.io"],
     registry: "0x8004A818BFB912233c491871b3d84c89A494BD9e" as const,
     commerce: "0xa206c0517b6371c6638cd9e4a42cc9f02a33b0de" as const,
     router: "0xd7d36d66d2f1b608a0f943f722d27e3744f66f25" as const,
@@ -99,8 +110,14 @@ export function publicClientFor(net: NetworkName) {
   const n = NETWORKS[net];
   return createPublicClient({
     chain: n.chain,
-    transport: http(n.rpc, { timeout: 20_000, retryCount: 2 }),
+    transport: fallback(
+      n.rpc.map((url) => http(url, { timeout: 20_000, retryCount: 1 })),
+      { rank: false },
+    ),
   });
 }
+
+/** The endpoint used for signing and broadcasting. */
+export const primaryRpc = (net: NetworkName) => NETWORKS[net].rpc[0];
 
 export const net = (n: NetworkName) => NETWORKS[n];

@@ -87,6 +87,8 @@ export interface HireInput {
   outcomeId?: string;
   request?: string;
   params?: Record<string, unknown>;
+  /** Continue a job already created on chain rather than minting another. */
+  resumeJobId?: string;
 }
 
 /** A free read from an agent that exposes read-only tools. No escrow. */
@@ -186,7 +188,12 @@ async function hirePaid(
   });
 
   // 1. Escrow against the agent's own payout address, on its own chain.
-  const chain = await settlement.open({ provider, budgetRaw, description });
+  const chain = await settlement.open({
+    provider,
+    budgetRaw,
+    description,
+    resumeJobId: input.resumeJobId ? BigInt(input.resumeJobId) : undefined,
+  });
 
   // 2. Tell the seller. It reads the job from the same chain, sees itself named
   //    as provider, does the work, and submits.

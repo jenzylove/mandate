@@ -12,6 +12,7 @@ export async function POST(req: Request) {
       outcomeId?: string;
       request?: string;
       params?: Record<string, unknown>;
+      resumeJobId?: string;
     };
     if (!body.agentId) return NextResponse.json({ ok: false, error: "agentId is required" }, { status: 400 });
     const receipt = await hire({
@@ -20,6 +21,7 @@ export async function POST(req: Request) {
       outcomeId: body.outcomeId,
       request: body.request,
       params: body.params,
+      resumeJobId: body.resumeJobId,
     });
     return NextResponse.json({ ok: true, receipt });
   } catch (e) {
