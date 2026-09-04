@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Nav } from "@/components/nav";
-
 export const metadata: Metadata = {
-  title: "mandate",
+  title: "Mandate — Your money. Your mandate.",
   description:
-    "Start from what you want your money to do. mandate turns BNB Chain agents into understandable, evidence-backed outcomes.",
+    "Discover BNB agents and outcomes for what you want your money to achieve.",
 };
-
 export default function RootLayout({
   children,
 }: {
@@ -16,10 +14,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen antialiased">
+      <body>
         <Providers>
           <Nav />
           {children}
+          <footer className="footer">
+            <div className="shell">
+              <span>mandate. · Your money. Your mandate.</span>
+              <span>
+                Demo marketplace on BNB Chain · Seeded evidence, not live
+                performance.
+              </span>
+            </div>
+          </footer>
         </Providers>
       </body>
     </html>

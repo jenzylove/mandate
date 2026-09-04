@@ -1,46 +1,85 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { data } from "@/lib/data/json-adapter";
-
-// Outcome detail (PRD §12): goal, roles, proof, risk, activate.
+import {
+  SymbolArt,
+  EvidencePanel,
+  categoryNames,
+} from "@/components/market-ui";
 export default async function OutcomeDetail({
   params,
 }: {
   params: { id: string };
 }) {
-  const outcome = await data.getOutcome(params.id);
-  if (!outcome) notFound();
-
+  const o = await data.getOutcome(params.id);
+  if (!o) notFound();
   return (
-    <main className="mx-auto max-w-3xl px-6 py-12">
-      <h1 className="text-2xl font-semibold">{outcome.name}</h1>
-      <p className="mt-2 text-muted">{outcome.description}</p>
-
-      <h2 className="mt-8 text-lg font-semibold">Agents powering this outcome</h2>
-      <ul className="mt-3 space-y-2">
-        {outcome.requiredRoles.map((r) => (
-          <li key={r.role} className="rounded-md border border-line p-3 text-sm">
-            <span className="font-medium">{r.role}</span>
-            <span className="text-muted"> · {r.category}</span>
-          </li>
-        ))}
-      </ul>
-
-      <h2 className="mt-8 text-lg font-semibold">Proof</h2>
-      <p className="text-xs text-muted">
-        Source: {outcome.evidence.provenance} · window {outcome.evidence.windowDays}d
-      </p>
-      <div className="mt-2 flex flex-wrap gap-2">
-        {outcome.evidence.metrics.map((m) => (
-          <span key={m.label} className="rounded-md bg-line/50 px-2 py-1 text-xs">
-            {m.label}: {m.value}
-          </span>
-        ))}
+    <main className="shell">
+      <div className="page-top">
+        <div className="breadcrumbs">
+          <Link href="/outcomes">Outcomes</Link> / {o.name}
+        </div>
+        <p className="eyebrow">A CLEAR GOAL. A MATCHED TEAM.</p>
+        <h1>{o.name}</h1>
+        <p>{o.description}</p>
       </div>
-
-      <div className="mt-8">
-        <button className="rounded-md bg-action px-4 py-2 text-sm font-medium text-white">
-          Activate
-        </button>
+      <div className="detail-grid">
+        <div className="detail-stack">
+          <div className="detail-visual">
+            <SymbolArt goal={o.goalType} large />
+          </div>
+          <section className="panel">
+            <h2>A team with a purpose</h2>
+            <p>
+              These are the roles your setup needs. The guided flow matches
+              compatible agents to each one.
+            </p>
+            {o.requiredRoles.map((r) => (
+              <div className="role-row" key={r.role}>
+                <Link href={`/agents/category/${r.category}`}>
+                  {categoryNames[r.category]} ↗
+                </Link>
+                <p>{r.role}</p>
+              </div>
+            ))}
+          </section>
+          <EvidencePanel evidence={o.evidence} />
+        </div>
+        <aside className="panel detail-side">
+          <p className="eyebrow">OUTCOME OVERVIEW · DEMO</p>
+          <h3>Make it fit your life.</h3>
+          <dl>
+            <div>
+              <dt>Risk preference</dt>
+              <dd className="capitalize">{o.riskLevel}</dd>
+            </div>
+            <div>
+              <dt>Supported assets</dt>
+              <dd>{o.supportedAssets.join(" · ")}</dd>
+            </div>
+            <div>
+              <dt>Works with</dt>
+              <dd>{o.supportedProtocols.join(" · ")}</dd>
+            </div>
+            <div>
+              <dt>Agent roles</dt>
+              <dd>
+                {o.requiredRoles.length} complementary{" "}
+                {o.requiredRoles.length === 1 ? "role" : "roles"}
+              </dd>
+            </div>
+          </dl>
+          <Link
+            className="button primary"
+            href={`/find/context?goal=${o.goalType}&outcome=${o.id}&risk=${o.riskLevel}`}
+          >
+            Find my setup ↗
+          </Link>
+          <p>
+            Browse and compare without a wallet. Connect only when you want to
+            save your setup. Live execution is not available yet.
+          </p>
+        </aside>
       </div>
     </main>
   );

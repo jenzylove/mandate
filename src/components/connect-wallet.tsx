@@ -1,31 +1,55 @@
 "use client";
-
+import { useState } from "react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { injected } from "wagmi/connectors";
-
-// A wallet is optional context (PRD: fields prefill "where practical"), never a
-// gate on browsing. This component reflects connection state and nothing more.
 export function ConnectWallet() {
   const { address, isConnected } = useAccount();
-  const { connect } = useConnect();
+  const { connect, connectors, isPending, error, reset } = useConnect();
   const { disconnect } = useDisconnect();
-
-  if (isConnected && address) {
-    return (
-      <button
-        onClick={() => disconnect()}
-        className="rounded-md border border-line px-3 py-1.5 text-sm"
-      >
-        {address.slice(0, 6)}…{address.slice(-4)} · Disconnect
-      </button>
-    );
-  }
+  const [missing, setMissing] = useState(false);
   return (
-    <button
-      onClick={() => connect({ connector: injected() })}
-      className="rounded-md bg-ink px-3 py-1.5 text-sm text-paper"
-    >
-      Connect wallet
-    </button>
+    <div className="wallet-wrap">
+      {isConnected && address ? (
+        <button
+          className="button secondary"
+          onClick={() => disconnect()}
+          title="Disconnect wallet"
+        >
+          {address.slice(0, 6)}…{address.slice(-4)} · Disconnect
+        </button>
+      ) : (
+        <button
+          className="button primary"
+          disabled={isPending}
+          onClick={async () => {
+            setMissing(false);
+            reset();
+            const connector = connectors[0];
+            if (!connector || !(await connector.getProvider())) {
+              setMissing(true);
+              return;
+            }
+            connect({ connector });
+          }}
+        >
+          {isPending ? "Connecting…" : "Connect wallet"} <span>↗</span>
+        </button>
+      )}
+      {(missing || error) && (
+        <div className="wallet-error" role="alert">
+          <button
+            aria-label="Dismiss wallet message"
+            onClick={() => {
+              setMissing(false);
+              reset();
+            }}
+          >
+            ×
+          </button>
+          {missing
+            ? "No browser wallet detected. Open Mandate in your wallet’s browser or use a browser with an Ethereum-compatible wallet installed."
+            : "Connection was not completed. Check your wallet, then try again."}
+        </div>
+      )}
+    </div>
   );
 }

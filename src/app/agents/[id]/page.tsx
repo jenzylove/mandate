@@ -1,55 +1,102 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { data } from "@/lib/data/json-adapter";
-import { CATEGORY_LABELS } from "@/lib/domain/types";
-
-// Agent detail (PRD §11): what it does, where, evidence, cost, activate.
+import {
+  SymbolArt,
+  EvidencePanel,
+  categoryNames,
+  goalForCategory,
+} from "@/components/market-ui";
 export default async function AgentDetail({
   params,
 }: {
   params: { id: string };
 }) {
-  const agent = await data.getAgent(params.id);
-  if (!agent) notFound();
-
+  const a = await data.getAgent(params.id);
+  if (!a) notFound();
   return (
-    <main className="mx-auto max-w-3xl px-6 py-12">
-      <p className="text-sm text-muted">{CATEGORY_LABELS[agent.category]}</p>
-      <h1 className="mt-1 text-2xl font-semibold">{agent.name}</h1>
-      <p className="mt-2 text-muted">{agent.description}</p>
-
-      <dl className="mt-8 grid grid-cols-2 gap-4 text-sm">
-        <div>
-          <dt className="text-muted">Protocols</dt>
-          <dd>{agent.protocols.join(", ")}</dd>
+    <main className="shell">
+      <div className="page-top">
+        <div className="breadcrumbs">
+          <Link href="/agents">Agents</Link> / {a.name}
         </div>
-        <div>
-          <dt className="text-muted">Assets</dt>
-          <dd>{agent.assets.join(", ")}</dd>
-        </div>
-        <div>
-          <dt className="text-muted">Cost</dt>
-          <dd>{agent.pricing}</dd>
-        </div>
-        <div>
-          <dt className="text-muted">Status</dt>
-          <dd>{agent.status}</dd>
-        </div>
-      </dl>
-
-      <h2 className="mt-8 text-lg font-semibold">Evidence</h2>
-      <p className="text-xs text-muted">Source: {agent.evidence.provenance}</p>
-      <div className="mt-2 flex flex-wrap gap-2">
-        {agent.evidence.metrics.map((m) => (
-          <span key={m.label} className="rounded-md bg-line/50 px-2 py-1 text-xs">
-            {m.label}: {m.value}
-          </span>
-        ))}
+        <p className="eyebrow">{categoryNames[a.category]} · DEMO AGENT</p>
+        <h1>{a.name}</h1>
+        <p>{a.description}</p>
       </div>
-
-      <div className="mt-8">
-        <button className="rounded-md bg-action px-4 py-2 text-sm font-medium text-white">
-          Activate
-        </button>
+      <div className="detail-grid">
+        <div className="detail-stack">
+          <div className="detail-visual">
+            <SymbolArt goal={goalForCategory[a.category]} large />
+          </div>
+          <section className="panel">
+            <h2>What this agent can do</h2>
+            {a.capabilities.map((c) => (
+              <div className="role-row" key={c}>
+                {c.replaceAll("-", " ")}
+              </div>
+            ))}
+            <p>
+              Control options:{" "}
+              {a.supportedControlModes
+                .map((c) =>
+                  c === "ask"
+                    ? "Ask before acting"
+                    : c === "monitor"
+                      ? "Monitor only"
+                      : "Autopilot",
+                )
+                .join(" · ")}
+            </p>
+          </section>
+          <EvidencePanel evidence={a.evidence} />
+          <details className="panel onchain">
+            <summary>Onchain & source details</summary>
+            <p>Network: {a.networks.join(", ")}</p>
+            <p>
+              Source: {a.source} · Owner label: {a.owner}
+            </p>
+            <p>
+              {a.source === "seed"
+                ? "Owner labels and reputation are seeded examples, not verified identities."
+                : ""}
+            </p>
+          </details>
+        </div>
+        <aside className="panel detail-side">
+          <p className="eyebrow">AGENT OVERVIEW</p>
+          <h3>Your specialist, on your terms.</h3>
+          <dl>
+            <div>
+              <dt>Example pricing</dt>
+              <dd>{a.pricing}</dd>
+            </div>
+            <div>
+              <dt>Supported assets</dt>
+              <dd>{a.assets.join(" · ")}</dd>
+            </div>
+            <div>
+              <dt>Works with</dt>
+              <dd>{a.protocols.join(" · ")}</dd>
+            </div>
+            <div>
+              <dt>Seeded status / reputation</dt>
+              <dd>
+                {a.status} · {a.reputation}/100 (demo)
+              </dd>
+            </div>
+          </dl>
+          <Link
+            className="button primary"
+            href={`/outcomes/create?agent=${a.id}`}
+          >
+            Review this agent ↗
+          </Link>
+          <p>
+            This is a demo listing. Review and save your preferences; live
+            activation is not yet connected.
+          </p>
+        </aside>
       </div>
     </main>
   );

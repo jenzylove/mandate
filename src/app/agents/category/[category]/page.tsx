@@ -1,32 +1,28 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { data } from "@/lib/data/json-adapter";
-import {
-  CATEGORY_LABELS,
-  REQUIRED_CATEGORIES,
-  type Category,
-} from "@/lib/domain/types";
-
+import { Catalog } from "@/components/catalog";
+import { categoryNames } from "@/components/market-ui";
 export default async function CategoryPage({
   params,
 }: {
   params: { category: string };
 }) {
-  const category = params.category as Category;
-  if (!REQUIRED_CATEGORIES.includes(category)) notFound();
-
-  const agents = await data.listAgentsByCategory(category);
+  if (!Object.prototype.hasOwnProperty.call(categoryNames, params.category))
+    notFound();
   return (
-    <main className="mx-auto max-w-5xl px-6 py-12">
-      <h1 className="text-2xl font-semibold">{CATEGORY_LABELS[category]}</h1>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        {agents.map((a) => (
-          <Link key={a.id} href={`/agents/${a.id}`} className="rounded-lg border border-line p-4">
-            <div className="font-medium">{a.name}</div>
-            <p className="mt-1 text-sm text-muted">{a.description}</p>
-          </Link>
-        ))}
+    <main className="shell">
+      <div className="page-top">
+        <p className="eyebrow">BROWSE AGENTS</p>
+        <h1>{categoryNames[params.category]}</h1>
+        <p>
+          Find a specialist. Compare capabilities, pricing and demo evidence.
+        </p>
       </div>
+      <Catalog
+        kind="agents"
+        agents={await data.listAgents()}
+        initialFilter={params.category}
+      />
     </main>
   );
 }

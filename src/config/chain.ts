@@ -1,6 +1,6 @@
 import { http, createConfig } from "wagmi";
 import { bsc, bscTestnet } from "wagmi/chains";
-import { injected } from "wagmi/connectors";
+import { injected } from "@wagmi/core";
 
 // BNB Smart Chain (mainnet + testnet). Injected connector keeps the MVP
 // dependency-light; a richer connector set can be added without touching the

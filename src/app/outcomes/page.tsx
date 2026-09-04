@@ -1,20 +1,32 @@
 import Link from "next/link";
 import { data } from "@/lib/data/json-adapter";
-
-export default async function OutcomesPage() {
-  const outcomes = await data.listOutcomes();
+import { Catalog } from "@/components/catalog";
+export default async function OutcomesPage({
+  searchParams,
+}: {
+  searchParams: { q?: string; goal?: string };
+}) {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-12">
-      <h1 className="text-2xl font-semibold">Outcomes</h1>
-      <p className="mt-2 text-muted">Ready-made financial objectives.</p>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        {outcomes.map((o) => (
-          <Link key={o.id} href={`/outcomes/${o.id}`} className="rounded-lg border border-line p-4">
-            <div className="font-medium">{o.name}</div>
-            <p className="mt-1 text-sm text-muted">{o.description}</p>
+    <main className="shell">
+      <div className="page-top">
+        <p className="eyebrow">THE OUTCOME MARKETPLACE</p>
+        <h1>A purpose for every possibility.</h1>
+        <p>
+          Start with what you want your money to achieve. Explore ready-made
+          outcomes and the agents that can help.
+        </p>
+        <div className="page-actions">
+          <Link className="text-link" href="/find/goal">
+            Need a little guidance? Find your fit ↗
           </Link>
-        ))}
+        </div>
       </div>
+      <Catalog
+        kind="outcomes"
+        outcomes={await data.listOutcomes()}
+        initialQuery={searchParams.q}
+        initialFilter={searchParams.goal}
+      />
     </main>
   );
 }
