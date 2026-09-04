@@ -69,8 +69,15 @@ const a2aMessage = (parts: unknown[]) => ({
   message: { kind: "message", role: "user", messageId: crypto.randomUUID(), parts },
 });
 
+// Sellers disagree about where arguments live: some read them from `terms`,
+// some from the top level of the data part beside the skill. Sending both
+// satisfies either convention without hard-coding anything per agent.
 async function a2aSkill(url: string, skill: string, terms: Record<string, unknown>) {
-  return jsonRpc(url, "message/send", a2aMessage([{ kind: "data", data: { skill, terms } }]));
+  return jsonRpc(
+    url,
+    "message/send",
+    a2aMessage([{ kind: "data", data: { skill, ...terms, terms } }]),
+  );
 }
 
 // notify_funded takes job_id at the top level of the data part, beside the
@@ -79,6 +86,21 @@ async function a2aNotify(url: string, jobId: string, extra: Record<string, unkno
   return jsonRpc(url, "message/send", a2aMessage([
     { kind: "data", data: { skill: "notify_funded", job_id: jobId, terms: extra } },
   ]));
+}
+
+// Some sellers do not implement the negotiate/notify_funded pattern at all and
+// expose their work as a single named skill. They say so in the error, so read
+// it rather than writing the agent off.
+const SKILL_HINT = /this agent has one:\s*"([^"]+)"|available skills?:\s*([^.]+)/i;
+
+function skillsFromError(message: string): string[] {
+  const m = SKILL_HINT.exec(message);
+  if (!m) return [];
+  const raw = m[1] ?? m[2] ?? "";
+  return raw
+    .split(/[,\s]+/)
+    .map((s) => s.replace(/["'.]/g, "").trim())
+    .filter(Boolean);
 }
 
 function readQuote(result: Record<string, unknown> | undefined, raw: unknown): Quote {
@@ -163,7 +185,19 @@ export async function probe(route: Route): Promise<ProbeResult> {
         result?: Record<string, unknown>;
         error?: { code: number; message: string };
       };
-      if (res.error) return { ok: false, detail: `JSON-RPC ${res.error.code}`, checkedAt };
+      if (res.error) {
+        // An agent that names its own skill is answering, just in a different
+        // vocabulary. That is supply, not a failure.
+        const offered = skillsFromError(res.error.message);
+        if (offered.length)
+          return {
+            ok: true,
+            detail: `answered, serves ${offered.join(", ")}`,
+            skills: offered,
+            checkedAt,
+          };
+        return { ok: false, detail: `JSON-RPC ${res.error.code}`, checkedAt };
+      }
       const services = (res.result?.services as unknown[]) ?? [];
       const accepted = res.result?.accepted === true;
       return {
@@ -183,15 +217,45 @@ export async function probe(route: Route): Promise<ProbeResult> {
 }
 
 /** Ask the agent what it would charge for this work. */
-export async function quote(route: Route, deliverables: string, serviceId?: string): Promise<Quote> {
+export async function quote(
+  route: Route,
+  deliverables: string,
+  serviceId?: string,
+  params: Record<string, unknown> = {},
+): Promise<Quote> {
   const url = route.endpoint;
   if (!url || url.startsWith("onchain")) return { accepted: false, raw: null };
 
   if (route.kind === "A2A" && !url.endsWith(".json")) {
     const res = (await a2aSkill(url, "negotiate", {
       deliverables,
+      ...params,
       ...(serviceId ? { service_id: serviceId } : {}),
-    })) as { result?: Record<string, unknown> };
+    })) as { result?: Record<string, unknown>; error?: { message: string } };
+
+    // Retry under the agent's own skill name when it does not speak negotiate.
+    if (res.error) {
+      const offered = skillsFromError(res.error.message);
+      const pick = serviceId && offered.includes(serviceId) ? serviceId : offered[0];
+      if (pick) {
+        const direct = (await a2aSkill(url, pick, { deliverables, ...params })) as {
+          result?: Record<string, unknown>;
+          error?: { message: string };
+        };
+        // A direct skill that returns work rather than a price is free supply.
+        if (direct.result && direct.result.accepted === undefined)
+          return {
+            accepted: true,
+            priceRaw: "0",
+            priceDisplay: "No charge",
+            currency: "U",
+            service: pick,
+            deliverables: JSON.stringify(direct.result).slice(0, 4000),
+            raw: direct.result,
+          };
+        return readQuote(direct.result, direct);
+      }
+    }
     return readQuote(res.result, res);
   }
 

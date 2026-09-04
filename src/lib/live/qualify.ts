@@ -1,7 +1,9 @@
 import type { Agent, AgentStatus, Evidence, Metric, Provenance } from "@/lib/domain/types";
 import { discover, type DiscoveredAgent, type Route } from "@/lib/live/discover";
 import { probe, quote, type ProbeResult, type Quote } from "@/lib/live/agent-adapter";
-import { ROSTER, type RosterEntry } from "@/lib/live/roster";
+import { ROSTER, rosterFor, type RosterEntry } from "@/lib/live/roster";
+import { candidatesForCategory } from "@/lib/live/indexer";
+import { REQUIRED_CATEGORIES } from "@/lib/domain/types";
 import { DISCOVERY_NETWORK, net } from "@/lib/live/chain";
 
 // A live agent as the marketplace stores it: the domain Agent the UI already
@@ -90,12 +92,17 @@ function reputationFrom(d: DiscoveredAgent, p: ProbeResult, q?: Quote): number {
 }
 
 async function buildOne(entry: RosterEntry): Promise<LiveAgent | null> {
-  let d: DiscoveredAgent;
-  try {
-    d = await discover(DISCOVERY_NETWORK, entry.agentId);
-  } catch {
-    return null; // unresolvable on chain: not supply
+  let d: DiscoveredAgent | null = null;
+  // A flaky RPC or a slow card host must not silently delete supply, so try
+  // twice before concluding an agent cannot be resolved.
+  for (let attempt = 0; attempt < 2 && !d; attempt++) {
+    try {
+      d = await discover(DISCOVERY_NETWORK, entry.agentId);
+    } catch {
+      if (attempt === 0) await new Promise((r) => setTimeout(r, 1500));
+    }
   }
+  if (!d) return null; // unresolvable on chain: not supply
   const route = d.route;
   if (!route) return null;
 
@@ -118,6 +125,8 @@ async function buildOne(entry: RosterEntry): Promise<LiveAgent | null> {
       ? "Quoted on request"
       : "Unavailable";
 
+  const discovered = !ROSTER.some((r) => r.agentId === entry.agentId);
+
   return {
     id: `live-${entry.agentId}`,
     name: d.name ?? `Agent #${entry.agentId}`,
@@ -139,7 +148,7 @@ async function buildOne(entry: RosterEntry): Promise<LiveAgent | null> {
     status: statusFrom(p),
     pricing,
     endpoint: route.endpoint ?? undefined,
-    source: "erc8004",
+    source: discovered ? "erc8004+8004scan" : "erc8004",
     supportedControlModes:
       entry.category === "health-factor-monitoring" ? ["monitor", "ask"] : ["monitor", "ask"],
     evidence: evidenceFrom(d, p, q),
@@ -172,15 +181,59 @@ async function buildOne(entry: RosterEntry): Promise<LiveAgent | null> {
   };
 }
 
-/** Resolve and probe the whole roster. Slow (network bound); cache the result. */
+// How many agents we are willing to resolve and probe per category. Discovery
+// is unbounded; a refresh is not.
+const MAX_PER_CATEGORY = 8;
+
+/**
+ * Build the candidate list: the maintained roster first, so a category is never
+ * empty, then whatever the indexer surfaces that we do not already carry.
+ */
+export async function candidateEntries(): Promise<RosterEntry[]> {
+  const entries: RosterEntry[] = [];
+  const known = new Set(ROSTER.map((r) => r.agentId));
+
+  const discovered = await Promise.all(
+    REQUIRED_CATEGORIES.map(async (category) => {
+      const roster = rosterFor(category);
+      const room = MAX_PER_CATEGORY - roster.length;
+      if (room <= 0) return [] as RosterEntry[];
+      const found = await candidatesForCategory(category, room + 4);
+      return found
+        .filter((c) => !known.has(c.agentId))
+        .slice(0, room)
+        .map<RosterEntry>((c) => {
+          known.add(c.agentId);
+          // Protocols and assets are unknown for a discovered agent until it
+          // tells us; these are the defaults every BNB Chain agent shares.
+          return {
+            agentId: c.agentId,
+            category,
+            protocols: ["BNB Chain"],
+            assets: ["BNB", "USDT", "USDC"],
+          };
+        });
+    }),
+  );
+
+  for (const category of REQUIRED_CATEGORIES) entries.push(...rosterFor(category));
+  for (const batch of discovered) entries.push(...batch);
+  return entries;
+}
+
+/** Resolve and probe every candidate. Slow (network bound); cache the result. */
 export async function qualifyAll(): Promise<LiveAgent[]> {
+  const entries = await candidateEntries();
   const out: LiveAgent[] = [];
-  const CONC = 4;
-  for (let i = 0; i < ROSTER.length; i += CONC) {
-    const batch = await Promise.all(ROSTER.slice(i, i + CONC).map(buildOne));
+  const CONC = 6;
+  for (let i = 0; i < entries.length; i += CONC) {
+    const batch = await Promise.all(entries.slice(i, i + CONC).map(buildOne));
     out.push(...batch.filter((x): x is LiveAgent => x !== null));
   }
-  return out;
+  // An agent that does not answer is not supply. Rostered ones are kept even
+  // when offline so an outage is visible rather than silently hidden.
+  const rostered = new Set(ROSTER.map((r) => r.agentId));
+  return out.filter((a) => a.status !== "offline" || rostered.has(a.live.agentId));
 }
 
 export { buildOne };

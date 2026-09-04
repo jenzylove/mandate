@@ -103,3 +103,34 @@ describe("qualified roster", () => {
     }
   });
 });
+
+describe("agent skill vocabulary", () => {
+  // Not every seller speaks negotiate/notify_funded. Several answer a single
+  // named skill and say so in the error, which is supply, not a failure.
+  const parse = (message: string) => {
+    const m = /this agent has one:\s*"([^"]+)"|available skills?:\s*([^.]+)/i.exec(message);
+    if (!m) return [];
+    return (m[1] ?? m[2] ?? "")
+      .split(/[,\s]+/)
+      .map((s) => s.replace(/["'.]/g, "").trim())
+      .filter(Boolean);
+  };
+
+  it("reads a single offered skill out of a rejection", () => {
+    expect(parse('Unknown skill "negotiate". This agent has one: "health_factor".')).toEqual([
+      "health_factor",
+    ]);
+  });
+
+  it("reads a list of offered skills", () => {
+    expect(parse("Unknown skill. Available skills: grid_plan, yield_plan.")).toEqual([
+      "grid_plan",
+      "yield_plan",
+    ]);
+  });
+
+  it("returns nothing when the error names no skills", () => {
+    expect(parse("Internal error")).toEqual([]);
+    expect(parse("Unauthorized")).toEqual([]);
+  });
+});

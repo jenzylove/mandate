@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-09-04T16:18:45.274Z",
+  "refreshedAt": "2026-09-04T19:13:21.750Z",
   "network": "bsc-mainnet",
   "agents": [
     {
@@ -59,7 +59,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -101,7 +101,7 @@
         "probe": {
           "ok": true,
           "detail": "answered, 6 services listed",
-          "checkedAt": "2026-09-04T16:18:31.045Z"
+          "checkedAt": "2026-09-04T19:13:04.580Z"
         },
         "quote": {
           "accepted": true,
@@ -119,7 +119,7 @@
           "paymentToken": "0xcE24439F2D9C6a2289F741120FE202248B666666",
           "estimatedSeconds": 120
         },
-        "refreshedAt": "2026-09-04T16:18:32.806Z"
+        "refreshedAt": "2026-09-04T19:13:05.448Z"
       }
     },
     {
@@ -177,7 +177,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -218,12 +218,12 @@
             "negotiate",
             "notify_funded"
           ],
-          "checkedAt": "2026-09-04T16:18:31.210Z"
+          "checkedAt": "2026-09-04T19:13:04.597Z"
         },
         "quote": {
           "accepted": false
         },
-        "refreshedAt": "2026-09-04T16:18:33.259Z"
+        "refreshedAt": "2026-09-04T19:13:05.573Z"
       }
     },
     {
@@ -286,7 +286,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -326,9 +326,9 @@
         "probe": {
           "ok": false,
           "detail": "JSON-RPC -32005",
-          "checkedAt": "2026-09-04T16:18:32.322Z"
+          "checkedAt": "2026-09-04T19:13:05.190Z"
         },
-        "refreshedAt": "2026-09-04T16:18:33.262Z"
+        "refreshedAt": "2026-09-04T19:13:06.124Z"
       }
     },
     {
@@ -387,7 +387,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -429,7 +429,7 @@
         "probe": {
           "ok": true,
           "detail": "answered, 6 services listed",
-          "checkedAt": "2026-09-04T16:18:31.052Z"
+          "checkedAt": "2026-09-04T19:13:05.546Z"
         },
         "quote": {
           "accepted": true,
@@ -449,7 +449,7 @@
           "paymentToken": "0xcE24439F2D9C6a2289F741120FE202248B666666",
           "estimatedSeconds": 120
         },
-        "refreshedAt": "2026-09-04T16:18:33.260Z"
+        "refreshedAt": "2026-09-04T19:13:06.124Z"
       }
     },
     {
@@ -507,7 +507,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -549,12 +549,12 @@
             "negotiate",
             "notify_funded"
           ],
-          "checkedAt": "2026-09-04T16:18:33.680Z"
+          "checkedAt": "2026-09-04T19:13:04.594Z"
         },
         "quote": {
           "accepted": false
         },
-        "refreshedAt": "2026-09-04T16:18:35.156Z"
+        "refreshedAt": "2026-09-04T19:13:05.188Z"
       }
     },
     {
@@ -612,7 +612,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -653,12 +653,12 @@
             "negotiate",
             "notify_funded"
           ],
-          "checkedAt": "2026-09-04T16:18:33.719Z"
+          "checkedAt": "2026-09-04T19:13:04.600Z"
         },
         "quote": {
           "accepted": false
         },
-        "refreshedAt": "2026-09-04T16:18:35.480Z"
+        "refreshedAt": "2026-09-04T19:13:05.242Z"
       }
     },
     {
@@ -717,7 +717,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -759,7 +759,7 @@
         "probe": {
           "ok": true,
           "detail": "answered, 6 services listed",
-          "checkedAt": "2026-09-04T16:18:33.724Z"
+          "checkedAt": "2026-09-04T19:13:06.339Z"
         },
         "quote": {
           "accepted": true,
@@ -778,7 +778,7 @@
           "paymentToken": "0xcE24439F2D9C6a2289F741120FE202248B666666",
           "estimatedSeconds": 120
         },
-        "refreshedAt": "2026-09-04T16:18:34.957Z"
+        "refreshedAt": "2026-09-04T19:13:06.775Z"
       }
     },
     {
@@ -837,7 +837,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -879,7 +879,7 @@
         "probe": {
           "ok": true,
           "detail": "answered, 6 services listed",
-          "checkedAt": "2026-09-04T16:18:33.729Z"
+          "checkedAt": "2026-09-04T19:13:06.346Z"
         },
         "quote": {
           "accepted": true,
@@ -898,7 +898,7 @@
           "paymentToken": "0xcE24439F2D9C6a2289F741120FE202248B666666",
           "estimatedSeconds": 120
         },
-        "refreshedAt": "2026-09-04T16:18:35.311Z"
+        "refreshedAt": "2026-09-04T19:13:07.330Z"
       }
     },
     {
@@ -964,7 +964,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -1016,12 +1016,12 @@
             "hrp-portfolio",
             "venus-fixed-vault"
           ],
-          "checkedAt": "2026-09-04T16:18:36.511Z"
+          "checkedAt": "2026-09-04T19:13:06.334Z"
         },
         "quote": {
           "accepted": false
         },
-        "refreshedAt": "2026-09-04T16:18:38.246Z"
+        "refreshedAt": "2026-09-04T19:13:06.894Z"
       }
     },
     {
@@ -1080,7 +1080,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -1122,7 +1122,7 @@
         "probe": {
           "ok": true,
           "detail": "answered, 6 services listed",
-          "checkedAt": "2026-09-04T16:18:36.515Z"
+          "checkedAt": "2026-09-04T19:13:06.357Z"
         },
         "quote": {
           "accepted": true,
@@ -1139,7 +1139,7 @@
           "paymentToken": "0xcE24439F2D9C6a2289F741120FE202248B666666",
           "estimatedSeconds": 120
         },
-        "refreshedAt": "2026-09-04T16:18:40.140Z"
+        "refreshedAt": "2026-09-04T19:13:07.173Z"
       }
     },
     {
@@ -1198,7 +1198,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -1238,12 +1238,12 @@
         "probe": {
           "ok": true,
           "detail": "answered, 0 services listed",
-          "checkedAt": "2026-09-04T16:18:36.500Z"
+          "checkedAt": "2026-09-04T19:13:06.350Z"
         },
         "quote": {
           "accepted": false
         },
-        "refreshedAt": "2026-09-04T16:18:45.274Z"
+        "refreshedAt": "2026-09-04T19:13:08.361Z"
       }
     },
     {
@@ -1302,7 +1302,7 @@
           },
           {
             "label": "Last checked",
-            "value": "2026-09-04 16:18 UTC",
+            "value": "2026-09-04 19:13 UTC",
             "provenance": "live"
           },
           {
@@ -1343,12 +1343,1047 @@
             "negotiate",
             "notify_funded"
           ],
-          "checkedAt": "2026-09-04T16:18:36.503Z"
+          "checkedAt": "2026-09-04T19:13:06.356Z"
         },
         "quote": {
           "accepted": false
         },
-        "refreshedAt": "2026-09-04T16:18:37.870Z"
+        "refreshedAt": "2026-09-04T19:13:06.555Z"
+      }
+    },
+    {
+      "id": "live-331751",
+      "name": "Assay Grid",
+      "description": "Derives grid levels for a PancakeSwap V3 pair from the pool's live price, and reports which levels the market has already crossed.",
+      "owner": "0xFbB1D4D9Ff11737b624b7A4202844df28f3fA4a6",
+      "category": "grid-trading",
+      "capabilities": [
+        "assay_grid"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 40,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Not answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#331751",
+          "provenance": "live"
+        }
+      ],
+      "status": "limited",
+      "pricing": "Unavailable",
+      "endpoint": "https://assay-ten-iota.vercel.app/api/agents/grid",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "unavailable",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "No",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "WEB · A2A",
+            "provenance": "live"
+          }
+        ],
+        "note": "Registered on chain but not answering right now: HTTP 405: ."
+      },
+      "live": {
+        "agentId": "331751",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=331751",
+        "routes": [
+          {
+            "kind": "WEB",
+            "endpoint": "https://assay-ten-iota.vercel.app/api/agents/grid"
+          },
+          {
+            "kind": "A2A",
+            "endpoint": "https://assay-ten-iota.vercel.app/api/agents/grid",
+            "version": "1.0.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://assay-ten-iota.vercel.app/api/agents/grid",
+          "version": "1.0.0"
+        },
+        "probe": {
+          "ok": false,
+          "detail": "HTTP 405: ",
+          "checkedAt": "2026-09-04T19:13:09.351Z"
+        },
+        "refreshedAt": "2026-09-04T19:13:09.715Z"
+      }
+    },
+    {
+      "id": "live-292939",
+      "name": "bnb-grid-trader-test.agent",
+      "description": "Geometric grid trading on BNB/USDT via PancakeSwap. Sells computed grid plans and live strategy status over ERC-8183.",
+      "owner": "0xFAf0ffd121947B9EE3920Fa0CfbF9EEEB0AcBF7f",
+      "category": "grid-trading",
+      "capabilities": [
+        "grid-trading"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 40,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Not answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#292939",
+          "provenance": "live"
+        }
+      ],
+      "status": "limited",
+      "pricing": "Unavailable",
+      "endpoint": "https://platform-backend-bnb8183.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "unavailable",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "No",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "A2A",
+            "provenance": "live"
+          }
+        ],
+        "note": "Registered on chain but not answering right now: HTTP 404: default backend - 404."
+      },
+      "live": {
+        "agentId": "292939",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=292939",
+        "routes": [
+          {
+            "kind": "A2A",
+            "endpoint": "https://platform-backend-bnb8183.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+            "version": "0.3.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://platform-backend-bnb8183.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+          "version": "0.3.0"
+        },
+        "probe": {
+          "ok": false,
+          "detail": "HTTP 404: default backend - 404",
+          "checkedAt": "2026-09-04T19:13:15.685Z"
+        },
+        "refreshedAt": "2026-09-04T19:13:16.665Z"
+      }
+    },
+    {
+      "id": "live-172801",
+      "name": "DeFiBot.agent",
+      "description": "Automate grid trading, DCA, and yield compounding across major DEXs while you sleep.",
+      "owner": "0x7C0E462721195a7cFeeA4cb7d65EE6ffa142FDe2",
+      "category": "grid-trading",
+      "capabilities": [
+        "grid-trading"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 40,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Not answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#172801",
+          "provenance": "live"
+        }
+      ],
+      "status": "limited",
+      "pricing": "Unavailable",
+      "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "unavailable",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "No",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "A2A",
+            "provenance": "live"
+          }
+        ],
+        "note": "Registered on chain but not answering right now: HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}."
+      },
+      "live": {
+        "agentId": "172801",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=172801",
+        "routes": [
+          {
+            "kind": "A2A",
+            "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+            "version": "0.3.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+          "version": "0.3.0"
+        },
+        "probe": {
+          "ok": false,
+          "detail": "HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}",
+          "checkedAt": "2026-09-04T19:13:13.590Z"
+        },
+        "refreshedAt": "2026-09-04T19:13:14.573Z"
+      }
+    },
+    {
+      "id": "live-171927",
+      "name": "DeFiMatrix.agent",
+      "description": "Get personalized yield strategies and portfolio rebalancing based on real-time DeFi market data.",
+      "owner": "0x2A932BD8a09d7159B3D002b691C21cA02d6F7696",
+      "category": "yield-optimization",
+      "capabilities": [
+        "yield-optimization"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 40,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Not answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#171927",
+          "provenance": "live"
+        }
+      ],
+      "status": "limited",
+      "pricing": "Unavailable",
+      "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "unavailable",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "No",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "A2A",
+            "provenance": "live"
+          }
+        ],
+        "note": "Registered on chain but not answering right now: HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}."
+      },
+      "live": {
+        "agentId": "171927",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=171927",
+        "routes": [
+          {
+            "kind": "A2A",
+            "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+            "version": "0.3.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+          "version": "0.3.0"
+        },
+        "probe": {
+          "ok": false,
+          "detail": "HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}",
+          "checkedAt": "2026-09-04T19:13:13.132Z"
+        },
+        "refreshedAt": "2026-09-04T19:13:14.097Z"
+      }
+    },
+    {
+      "id": "live-310355",
+      "name": "TopReturn.agent",
+      "description": "TopReturn.agent on Termix Platform",
+      "owner": "0xce1681677b337d1B17a6B5D61E414b2cAf802938",
+      "category": "yield-optimization",
+      "capabilities": [
+        "yield-optimization"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 40,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Not answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#310355",
+          "provenance": "live"
+        }
+      ],
+      "status": "limited",
+      "pricing": "Unavailable",
+      "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "unavailable",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "No",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "A2A",
+            "provenance": "live"
+          }
+        ],
+        "note": "Registered on chain but not answering right now: HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}."
+      },
+      "live": {
+        "agentId": "310355",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=310355",
+        "routes": [
+          {
+            "kind": "A2A",
+            "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+            "version": "0.3.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+          "version": "0.3.0"
+        },
+        "probe": {
+          "ok": false,
+          "detail": "HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}",
+          "checkedAt": "2026-09-04T19:13:13.136Z"
+        },
+        "refreshedAt": "2026-09-04T19:13:14.092Z"
+      }
+    },
+    {
+      "id": "live-197289",
+      "name": "defi_yield_optimizer.agent",
+      "description": "Helping investors and protocols maximize capital efficiency across DeFi ecosystems.",
+      "owner": "0xC9fA4581D096AE9EBbC6cC17647E73B01A207AE4",
+      "category": "yield-optimization",
+      "capabilities": [
+        "yield-optimization"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 40,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Not answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#197289",
+          "provenance": "live"
+        }
+      ],
+      "status": "limited",
+      "pricing": "Unavailable",
+      "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "unavailable",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "No",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "A2A",
+            "provenance": "live"
+          }
+        ],
+        "note": "Registered on chain but not answering right now: HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}."
+      },
+      "live": {
+        "agentId": "197289",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=197289",
+        "routes": [
+          {
+            "kind": "A2A",
+            "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+            "version": "0.3.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+          "version": "0.3.0"
+        },
+        "probe": {
+          "ok": false,
+          "detail": "HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}",
+          "checkedAt": "2026-09-04T19:13:14.457Z"
+        },
+        "refreshedAt": "2026-09-04T19:13:14.790Z"
+      }
+    },
+    {
+      "id": "live-331753",
+      "name": "Assay Health",
+      "description": "Reports how close a Venus borrower is to liquidation, reading the account's live liquidity and shortfall from the Comptroller.",
+      "owner": "0xFbB1D4D9Ff11737b624b7A4202844df28f3fA4a6",
+      "category": "health-factor-monitoring",
+      "capabilities": [
+        "assay_health"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 40,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Not answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#331753",
+          "provenance": "live"
+        }
+      ],
+      "status": "limited",
+      "pricing": "Unavailable",
+      "endpoint": "https://assay-ten-iota.vercel.app/api/agents/health",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "unavailable",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "No",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "WEB · A2A",
+            "provenance": "live"
+          }
+        ],
+        "note": "Registered on chain but not answering right now: HTTP 405: ."
+      },
+      "live": {
+        "agentId": "331753",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=331753",
+        "routes": [
+          {
+            "kind": "WEB",
+            "endpoint": "https://assay-ten-iota.vercel.app/api/agents/health"
+          },
+          {
+            "kind": "A2A",
+            "endpoint": "https://assay-ten-iota.vercel.app/api/agents/health",
+            "version": "1.0.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://assay-ten-iota.vercel.app/api/agents/health",
+          "version": "1.0.0"
+        },
+        "probe": {
+          "ok": false,
+          "detail": "HTTP 405: ",
+          "checkedAt": "2026-09-04T19:13:17.879Z"
+        },
+        "refreshedAt": "2026-09-04T19:13:18.316Z"
+      }
+    },
+    {
+      "id": "live-292058",
+      "name": "bnb-lending-guardian.agent",
+      "description": "Liquidation protection for Venus on BNB Chain. Reads a full lending position across Venus Core and all 8 isolated pools, computes the true health factor from liquidation thresholds, stress-tests it against -5% to -20% collateral drops, and returns the exact minimum repayment that restores a safe position.",
+      "owner": "0xa09991fc5D8637bb4245737C3ebF26E24D653962",
+      "category": "health-factor-monitoring",
+      "capabilities": [
+        "health-factor-monitoring"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 40,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Not answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#292058",
+          "provenance": "live"
+        }
+      ],
+      "status": "limited",
+      "pricing": "Unavailable",
+      "endpoint": "https://platform-backend-bnb8183.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "unavailable",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "No",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "A2A",
+            "provenance": "live"
+          }
+        ],
+        "note": "Registered on chain but not answering right now: HTTP 404: default backend - 404."
+      },
+      "live": {
+        "agentId": "292058",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=292058",
+        "routes": [
+          {
+            "kind": "A2A",
+            "endpoint": "https://platform-backend-bnb8183.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+            "version": "0.3.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://platform-backend-bnb8183.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+          "version": "0.3.0"
+        },
+        "probe": {
+          "ok": false,
+          "detail": "HTTP 404: default backend - 404",
+          "checkedAt": "2026-09-04T19:13:18.076Z"
+        },
+        "refreshedAt": "2026-09-04T19:13:18.391Z"
+      }
+    },
+    {
+      "id": "live-331625",
+      "name": "SMEAI Reference Health Factor Monitor",
+      "description": "Reads a wallet's Venus position on BSC mainnet and returns its real health factor — weighted collateral over debt, priced by the Venus oracle. Published by SMEAI as a free reference implementation so the health-factor category always has something that answers. Excluded from every statistic SMEAI publishes.",
+      "owner": "0x4Cda2a93054F2Ab639b4A95C261874a77A0Af6FA",
+      "category": "health-factor-monitoring",
+      "capabilities": [
+        "health_factor"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 65,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#331625",
+          "provenance": "live"
+        }
+      ],
+      "status": "available",
+      "pricing": "Quoted on request",
+      "endpoint": "https://smeai-dev.vercel.app/api/a2a",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "live",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "Yes",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "A2A",
+            "provenance": "live"
+          },
+          {
+            "label": "Published skills",
+            "value": "1",
+            "provenance": "live"
+          }
+        ],
+        "note": "Read from the ERC-8004 registry and confirmed by contacting the agent directly. answered, serves health_factor."
+      },
+      "live": {
+        "agentId": "331625",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=331625",
+        "routes": [
+          {
+            "kind": "A2A",
+            "endpoint": "https://smeai-dev.vercel.app/api/a2a",
+            "version": "0.2.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://smeai-dev.vercel.app/api/a2a",
+          "version": "0.2.0"
+        },
+        "probe": {
+          "ok": true,
+          "detail": "answered, serves health_factor",
+          "skills": [
+            "health_factor"
+          ],
+          "checkedAt": "2026-09-04T19:13:17.344Z"
+        },
+        "quote": {
+          "accepted": false
+        },
+        "refreshedAt": "2026-09-04T19:13:18.720Z"
+      }
+    },
+    {
+      "id": "live-179543",
+      "name": "RiskOracle.agent",
+      "description": "Monitor your DeFi loan health, predict liquidation risks, and auto-adjust positions.",
+      "owner": "0xb0f7C483dE74838b68939A246a5F4D05DCdB37B1",
+      "category": "health-factor-monitoring",
+      "capabilities": [
+        "health-factor-monitoring"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 40,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Not answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#179543",
+          "provenance": "live"
+        }
+      ],
+      "status": "limited",
+      "pricing": "Unavailable",
+      "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "unavailable",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "No",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "A2A",
+            "provenance": "live"
+          }
+        ],
+        "note": "Registered on chain but not answering right now: HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}."
+      },
+      "live": {
+        "agentId": "179543",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=179543",
+        "routes": [
+          {
+            "kind": "A2A",
+            "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+            "version": "0.3.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://platform-backend.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+          "version": "0.3.0"
+        },
+        "probe": {
+          "ok": false,
+          "detail": "HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}",
+          "checkedAt": "2026-09-04T19:13:20.389Z"
+        },
+        "refreshedAt": "2026-09-04T19:13:21.749Z"
+      }
+    },
+    {
+      "id": "live-331752",
+      "name": "Assay Yield",
+      "description": "Ranks Venus supply markets on BNB Chain by live borrow and supply rates read straight from the vToken contracts.",
+      "owner": "0xFbB1D4D9Ff11737b624b7A4202844df28f3fA4a6",
+      "category": "health-factor-monitoring",
+      "capabilities": [
+        "assay_yield"
+      ],
+      "protocols": [
+        "BNB Chain"
+      ],
+      "assets": [
+        "BNB",
+        "USDT",
+        "USDC"
+      ],
+      "networks": [
+        "BNB Smart Chain"
+      ],
+      "reputation": 40,
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Not answering",
+          "provenance": "live"
+        },
+        {
+          "label": "Transport",
+          "value": "A2A",
+          "provenance": "live"
+        },
+        {
+          "label": "Onchain id",
+          "value": "#331752",
+          "provenance": "live"
+        }
+      ],
+      "status": "limited",
+      "pricing": "Unavailable",
+      "endpoint": "https://assay-ten-iota.vercel.app/api/agents/yield",
+      "source": "erc8004+8004scan",
+      "supportedControlModes": [
+        "monitor",
+        "ask"
+      ],
+      "evidence": {
+        "provenance": "unavailable",
+        "metrics": [
+          {
+            "label": "Answered when contacted",
+            "value": "No",
+            "provenance": "live"
+          },
+          {
+            "label": "Last checked",
+            "value": "2026-09-04 19:13 UTC",
+            "provenance": "live"
+          },
+          {
+            "label": "Transports",
+            "value": "WEB · A2A",
+            "provenance": "live"
+          }
+        ],
+        "note": "Registered on chain but not answering right now: HTTP 405: ."
+      },
+      "live": {
+        "agentId": "331752",
+        "network": "bsc-mainnet",
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+        "explorerUrl": "https://bscscan.com/token/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432?a=331752",
+        "routes": [
+          {
+            "kind": "WEB",
+            "endpoint": "https://assay-ten-iota.vercel.app/api/agents/yield"
+          },
+          {
+            "kind": "A2A",
+            "endpoint": "https://assay-ten-iota.vercel.app/api/agents/yield",
+            "version": "1.0.0"
+          }
+        ],
+        "route": {
+          "kind": "A2A",
+          "endpoint": "https://assay-ten-iota.vercel.app/api/agents/yield",
+          "version": "1.0.0"
+        },
+        "probe": {
+          "ok": false,
+          "detail": "HTTP 405: ",
+          "checkedAt": "2026-09-04T19:13:18.000Z"
+        },
+        "refreshedAt": "2026-09-04T19:13:18.350Z"
       }
     }
   ]

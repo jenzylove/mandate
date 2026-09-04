@@ -38,8 +38,16 @@ export async function GET(req: Request) {
     // No price means the only way to get work is a free read-only tool. An
     // agent with neither is discoverable but not hireable, and must say so.
     const entry = rosterEntry(agent.live.agentId);
+    // A card that lists skills is a claim; only a live JSON-RPC endpoint that
+    // answered under its own skill name is something we can actually call.
+    const a2aEndpoint = agent.live.route?.kind === "A2A" ? agent.live.route.endpoint : null;
+    const servesDirectSkill =
+      Boolean(a2aEndpoint) &&
+      !a2aEndpoint!.endsWith(".json") &&
+      (agent.live.probe.skills?.length ?? 0) > 0;
     const hasFreeTool =
-      Boolean(entry?.evidenceTool) && agent.live.routes.some((r) => r.kind === "MCP" && r.endpoint);
+      (Boolean(entry?.evidenceTool) && agent.live.routes.some((r) => r.kind === "MCP" && r.endpoint)) ||
+      servesDirectSkill;
     return NextResponse.json({
       ok: true,
       canHire: hasFreeTool,

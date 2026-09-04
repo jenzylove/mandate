@@ -98,17 +98,38 @@ async function hireFree(
 ): Promise<Receipt> {
   const entry = rosterEntry(agent.live.agentId);
   const mcp = agent.live.routes.find((r) => r.kind === "MCP" && r.endpoint);
-  if (!mcp || !entry?.evidenceTool)
+
+  let content: string | null = null;
+  let via = "";
+
+  if (mcp && entry?.evidenceTool) {
+    const out = await callTool(
+      mcp,
+      entry.evidenceTool,
+      (params.toolArgs as Record<string, unknown>) ?? entry.evidenceArgs ?? {},
+    );
+    if (out.ok && out.text) {
+      content = out.text.slice(0, 20_000);
+      via = `${entry.evidenceTool} tool`;
+    }
+  }
+
+  // Some sellers charge nothing and answer a named skill directly over A2A.
+  // They need the subject of the work, which is the buyer's own address.
+  if (!content && agent.live.route?.kind === "A2A") {
+    const subject = input.buyer ?? undefined;
+    const q = await quote(agent.live.route, request, agent.live.serviceId, {
+      ...(subject ? { wallet: subject, address: subject, account: subject } : {}),
+      ...params,
+    });
+    if (q.accepted && q.deliverables) {
+      content = q.deliverables.slice(0, 20_000);
+      via = q.service ? `${q.service} skill` : "A2A skill";
+    }
+  }
+
+  if (!content)
     throw new Error(`${agent.name} does not expose a free tool and did not quote a price`);
-
-  const out = await callTool(
-    mcp,
-    entry.evidenceTool,
-    (params.toolArgs as Record<string, unknown>) ?? entry.evidenceArgs ?? {},
-  );
-  if (!out.ok || !out.text) throw new Error(`${agent.name} returned no output: ${out.text.slice(0, 160)}`);
-
-  const content = out.text.slice(0, 20_000);
   const receipt: Receipt = {
     id: `free-${agent.live.agentId}-${Date.now()}`,
     jobId: null,
@@ -128,7 +149,7 @@ async function hireFree(
     provider: { escrowAddress: escrowAddress() },
     delivery: {
       kind: "agent-output",
-      label: `Live output from ${agent.name}'s ${entry.evidenceTool} tool`,
+      label: `Live output from ${agent.name}'s ${via}`,
       content,
       hash: keccak256(toHex(content)),
     },
@@ -258,7 +279,10 @@ export async function hire(input: HireInput): Promise<Receipt> {
   let q = agent.live.quote;
   if (agent.live.route) {
     try {
-      const fresh = await quote(agent.live.route, request, agent.live.serviceId);
+      const subject = input.buyer ?? undefined;
+      const fresh = await quote(agent.live.route, request, agent.live.serviceId, {
+        ...(subject ? { wallet: subject, address: subject, account: subject } : {}),
+      });
       if (fresh.accepted && fresh.priceRaw && fresh.provider) {
         q = {
           accepted: true,

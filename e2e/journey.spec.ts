@@ -156,13 +156,18 @@ test.describe("marketplace journey", () => {
       page.getByText(/SETTLED ONCHAIN|DELIVERED|ESCROW/i).first(),
     ).toBeVisible();
 
-    // The receipt is reachable from My Outcomes.
-    await page.getByRole("link", { name: /view receipt/i }).click();
+    // Reopen the app cold and find the result again: this is what a returning
+    // visitor actually does, and it must survive a full page load.
+    await page.goto("/my-outcomes");
+    await expect(page.getByText(/Your activity/i)).toBeVisible({ timeout: 30_000 });
+    const row = page.locator("a.saved-row[href*='/my-outcomes/']").first();
+    await expect(row).toBeVisible();
+    await row.click();
+
     await expect(page).toHaveURL(/\/my-outcomes\/(job|free)-/);
-    await expect(page.locator(".deliverable")).toBeVisible();
+    await expect(page.locator(".deliverable")).toBeVisible({ timeout: 30_000 });
     // A paid hire shows its onchain trail; a free read has no job to show.
-    const url = page.url();
-    if (url.includes("/job-")) {
+    if (page.url().includes("/job-")) {
       await expect(page.getByText(/Onchain settlement/i)).toBeVisible();
     }
   });
