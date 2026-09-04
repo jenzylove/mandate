@@ -18,7 +18,8 @@ export interface ReceiptStep {
 
 export interface ReceiptRecord {
   id: string;
-  jobId: string;
+  jobId: string | null;
+  mode: "paid" | "free";
   agentId: string;
   agentName: string;
   category: string;
@@ -30,9 +31,9 @@ export interface ReceiptRecord {
   settlementLabel: string;
   discoveryNetwork: string;
   price: { raw: string; display: string; currency: string; quotedByAgent: boolean };
-  provider: { quotedAddress?: string; escrowAddress: string };
+  provider: { quotedAddress?: string; escrowAddress: string; onchainProvider?: string };
   delivery: { kind: string; label: string; content: string; hash: string };
-  chain: { steps: ReceiptStep[]; settleAvailableAt: string | null; disputeWindowSeconds: number };
+  chain: { steps: ReceiptStep[]; settleAvailableAt: string | null; disputeWindowSeconds: number } | null;
   caveats: string[];
 }
 
@@ -66,7 +67,13 @@ export function useReceipts(address?: string) {
 }
 
 const statusLabel = (s: string) =>
-  s === "COMPLETED" ? "SETTLED" : s === "SUBMITTED" ? "IN DISPUTE WINDOW" : s;
+  s === "COMPLETED"
+    ? "SETTLED"
+    : s === "SUBMITTED"
+      ? "DELIVERED · ESCROW HELD"
+      : s === "DELIVERED"
+        ? "DELIVERED"
+        : s;
 
 export function ReceiptList({ receipts }: { receipts: ReceiptRecord[] }) {
   if (!receipts.length) return null;
@@ -80,10 +87,11 @@ export function ReceiptList({ receipts }: { receipts: ReceiptRecord[] }) {
       </div>
       <div className="saved-list">
         {receipts.map((r) => (
-          <Link className="saved-row" key={r.jobId} href={`/my-outcomes/job-${r.jobId}`}>
+          <Link className="saved-row" key={r.id} href={`/my-outcomes/${r.id}`}>
             <div>
               <p className="eyebrow">
-                {statusLabel(r.status)} · JOB #{r.jobId}
+                {statusLabel(r.status)}
+                {r.jobId ? ` · JOB #${r.jobId}` : " · NO PAYMENT REQUIRED"}
               </p>
               <h3>{r.agentName}</h3>
               <p>
@@ -99,13 +107,13 @@ export function ReceiptList({ receipts }: { receipts: ReceiptRecord[] }) {
   );
 }
 
-export function ReceiptDetail({ jobId }: { jobId: string }) {
+export function ReceiptDetail({ receiptId }: { receiptId: string }) {
   const [receipt, setReceipt] = useState<ReceiptRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [settling, setSettling] = useState(false);
 
   const load = () =>
-    fetch(`/api/receipts/${jobId}`)
+    fetch(`/api/receipts/${receiptId}`)
       .then((r) => r.json())
       .then((j: { ok: boolean; receipt?: ReceiptRecord }) => setReceipt(j.receipt ?? null))
       .catch(() => setReceipt(null))
@@ -114,7 +122,7 @@ export function ReceiptDetail({ jobId }: { jobId: string }) {
   useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [jobId]);
+  }, [receiptId]);
 
   if (loading)
     return (
@@ -143,7 +151,7 @@ export function ReceiptDetail({ jobId }: { jobId: string }) {
       </p>
       <h2>{receipt.agentName}</h2>
       <div className="review-summary">
-        <span>Job #{receipt.jobId}</span>
+        {receipt.jobId && <span>Job #{receipt.jobId}</span>}
         <span>{receipt.price.display}</span>
         <span>{receipt.category.replaceAll("-", " ")}</span>
         {receipt.price.quotedByAgent && <span>price quoted by the agent</span>}
@@ -152,6 +160,7 @@ export function ReceiptDetail({ jobId }: { jobId: string }) {
       <p>{receipt.delivery.label}</p>
       <pre className="deliverable">{receipt.delivery.content.slice(0, 8000)}</pre>
 
+      {receipt.chain && (
       <div className="role-row">
         <p>Onchain settlement</p>
         {receipt.chain.steps.map((s) => (
@@ -170,6 +179,7 @@ export function ReceiptDetail({ jobId }: { jobId: string }) {
           <p>Agent&apos;s own payout address: {receipt.provider.quotedAddress}</p>
         )}
       </div>
+      )}
 
       {receipt.caveats.length > 0 && (
         <div className="notice">
@@ -189,7 +199,7 @@ export function ReceiptDetail({ jobId }: { jobId: string }) {
               await fetch("/api/settle", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify({ jobId: receipt.jobId }),
+                body: JSON.stringify({ id: receipt.id }),
               }).catch(() => null);
               await load();
               setSettling(false);
@@ -202,9 +212,9 @@ export function ReceiptDetail({ jobId }: { jobId: string }) {
           Back to my outcomes
         </Link>
       </div>
-      {canSettle && (
+      {canSettle && receipt.chain && (
         <p className="flow-note">
-          Escrow is held for a {receipt.chain.disputeWindowSeconds}s dispute window
+          Escrow is held for a {Math.round(receipt.chain.disputeWindowSeconds / 3600)}h dispute window
           after delivery
           {receipt.chain.settleAvailableAt
             ? `, which opens at ${new Date(receipt.chain.settleAvailableAt).toISOString().replace("T", " ").slice(0, 16)} UTC`

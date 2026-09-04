@@ -122,12 +122,13 @@ export function MyActivity({ id }: { id?: string }) {
   useEffect(() => setItems(address ? read(address) : []), [address]);
   const selected = id ? items.find((s) => s.id === id) : undefined;
   const { receipts, loading } = useReceipts(address);
-  const jobId = id?.startsWith("job-") ? id.slice(4) : undefined;
+  // Receipt ids are namespaced so they never collide with saved-setup ids.
+  const receiptId = id && /^(job|free)-/.test(id) ? id : undefined;
 
-  if (jobId)
+  if (receiptId)
     return (
       <WalletGate>
-        <ReceiptDetail jobId={jobId} />
+        <ReceiptDetail receiptId={receiptId} />
       </WalletGate>
     );
 

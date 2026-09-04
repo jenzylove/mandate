@@ -8,17 +8,21 @@ import {
   policyAbi,
   erc20Abi,
   JOB_STATUS,
-  SETTLEMENT_NETWORK,
   type NetworkName,
 } from "@/lib/live/chain";
 
-// The ERC-8183 job lifecycle, exactly as proved on chain:
-//   createJob -> registerJob -> setBudget -> (approve) -> fund -> submit
-//   -> wait out the dispute window -> settle -> COMPLETED
+// The ERC-8183 job lifecycle. A job is always created on the chain where the
+// provider actually lives, naming that provider, so the seller can see it and
+// work for it. Nothing here assumes testnet.
 //
-// On testnet every write is sponsored by the MegaFuel paymaster: ask
-// pm_isSponsorable, then broadcast a gasPrice-0 raw transaction through the
-// paymaster's own RPC. The caller pays no gas at all.
+//   createJob -> registerJob -> setBudget -> (approve) -> fund
+//     -> the provider submits its deliverable
+//     -> dispute window
+//     -> settle -> COMPLETED
+//
+// Gas is sponsored by MegaFuel on both networks for every buyer-side call
+// (createJob, registerJob, setBudget, fund, approve, settle). Only `submit` is
+// unsponsored, and that is the provider's own transaction to pay for.
 
 export interface StepRecord {
   step: string;
@@ -30,7 +34,7 @@ export interface StepRecord {
   explorer: string;
 }
 
-export interface SettlementResult {
+export interface OpenResult {
   jobId: string;
   network: NetworkName;
   chainId: number;
@@ -46,16 +50,16 @@ export interface SettlementResult {
   contracts: { commerce: string; router: string; policy: string; paymentToken: string };
 }
 
-function accounts(network: NetworkName) {
-  const clientPk = process.env.SETTLEMENT_CLIENT_KEY as Hex | undefined;
-  const providerPk = process.env.SETTLEMENT_PROVIDER_KEY as Hex | undefined;
-  if (!clientPk || !providerPk) {
-    throw new Error(
-      "Settlement keys are not configured. Set SETTLEMENT_CLIENT_KEY and SETTLEMENT_PROVIDER_KEY.",
-    );
-  }
-  void network;
-  return { client: privateKeyToAccount(clientPk), provider: privateKeyToAccount(providerPk) };
+function clientAccount() {
+  const pk = process.env.SETTLEMENT_CLIENT_KEY as Hex | undefined;
+  if (!pk) throw new Error("SETTLEMENT_CLIENT_KEY is not configured");
+  return privateKeyToAccount(pk);
+}
+
+function providerAccount() {
+  const pk = process.env.SETTLEMENT_PROVIDER_KEY as Hex | undefined;
+  if (!pk) throw new Error("SETTLEMENT_PROVIDER_KEY is not configured");
+  return privateKeyToAccount(pk);
 }
 
 async function rpc(url: string, method: string, params: unknown[]) {
@@ -88,7 +92,7 @@ export class Erc8183Settlement {
   private readonly n: ReturnType<typeof net>;
   private readonly pub: ReturnType<typeof publicClientFor>;
 
-  constructor(network: NetworkName = SETTLEMENT_NETWORK) {
+  constructor(network: NetworkName) {
     this.network = network;
     this.n = net(network);
     this.pub = publicClientFor(network);
@@ -112,10 +116,9 @@ export class Erc8183Settlement {
     let hash: Hex;
 
     if (this.n.paymaster) {
-      const tx = { from: acct.address, to, value: "0x0", data };
-      const spon = (await rpc(this.n.paymaster, "pm_isSponsorable", [tx]).catch(() => null)) as
-        | { sponsorable?: boolean }
-        | null;
+      const spon = (await rpc(this.n.paymaster, "pm_isSponsorable", [
+        { from: acct.address, to, value: "0x0", data },
+      ]).catch(() => null)) as { sponsorable?: boolean } | null;
       if (spon?.sponsorable) {
         const wallet = createWalletClient({ account: acct, chain: this.n.chain, transport: http(this.n.rpc) });
         const raw = await wallet.signTransaction({
@@ -178,6 +181,25 @@ export class Erc8183Settlement {
     return { address, symbol, decimals: Number(decimals) };
   }
 
+  async escrowBalance() {
+    const tok = await this.token();
+    const buyer = clientAccount();
+    const raw = await this.pub.readContract({
+      address: tok.address,
+      abi: erc20Abi,
+      functionName: "balanceOf",
+      args: [buyer.address],
+    });
+    return {
+      address: buyer.address,
+      raw: raw.toString(),
+      display: `${Number(raw) / 10 ** tok.decimals} ${tok.symbol}`,
+      symbol: tok.symbol,
+      decimals: tok.decimals,
+      token: tok.address,
+    };
+  }
+
   async jobState(jobId: bigint) {
     const j = await this.pub.readContract({
       address: this.n.commerce,
@@ -201,29 +223,40 @@ export class Erc8183Settlement {
     );
   }
 
-  /**
-   * Escrow a job and record the provider's deliverable. Stops at SUBMITTED:
-   * settlement has to wait out the dispute window, which is the whole point of
-   * an optimistic policy.
-   */
-  async openAndDeliver(opts: {
-    budgetRaw: bigint;
-    description: string;
-    deliverableHash: Hex;
-  }): Promise<SettlementResult> {
-    const { client, provider } = accounts(this.network);
+  /** The buyer's half: escrow value against a named provider. Never submits. */
+  async open(opts: { provider: string; budgetRaw: bigint; description: string }): Promise<OpenResult> {
+    const buyer = clientAccount();
     const steps: StepRecord[] = [];
     const tok = await this.token();
     const window = await this.disputeWindow();
-    const expiredAt = BigInt(Math.floor(Date.now() / 1000) + window + 1800);
+
+    if (opts.budgetRaw > 0n) {
+      const held = await this.pub.readContract({
+        address: tok.address,
+        abi: erc20Abi,
+        functionName: "balanceOf",
+        args: [buyer.address],
+      });
+      if (held < opts.budgetRaw) {
+        throw new Error(
+          `Escrow account holds ${Number(held) / 10 ** tok.decimals} ${tok.symbol} on ${this.network}, ` +
+            `but this job costs ${Number(opts.budgetRaw) / 10 ** tok.decimals} ${tok.symbol}. ` +
+            `Fund ${buyer.address} with ${tok.symbol} on ${this.network} to hire this agent.`,
+        );
+      }
+    }
+
+    // Expiry must outlast the dispute window or a job can expire before it is
+    // ever allowed to settle. Mainnet's window is a week, not fifteen minutes.
+    const expiredAt = BigInt(Math.floor(Date.now() / 1000) + window + 3 * 24 * 3600);
 
     const r1 = await this.send(
-      client,
+      buyer,
       this.n.commerce,
       encodeFunctionData({
         abi: commerceAbi,
         functionName: "createJob",
-        args: [provider.address, this.n.router, expiredAt, opts.description, this.n.router],
+        args: [opts.provider as Hex, this.n.router, expiredAt, opts.description, this.n.router],
       }),
       "createJob",
       steps,
@@ -235,13 +268,13 @@ export class Erc8183Settlement {
         const d = decodeEventLog({ abi: commerceAbi, data: log.data, topics: log.topics });
         if (d.eventName === "JobCreated") jobId = (d.args as { jobId: bigint }).jobId;
       } catch {
-        /* logs emitted by the router and policy contracts */
+        /* logs from the router and policy contracts */
       }
     }
     if (jobId === null) throw new Error("createJob succeeded but emitted no JobCreated");
 
     await this.send(
-      client,
+      buyer,
       this.n.router,
       encodeFunctionData({ abi: routerAbi, functionName: "registerJob", args: [jobId, this.n.policy] }),
       "registerJob",
@@ -249,7 +282,7 @@ export class Erc8183Settlement {
     );
 
     await this.send(
-      client,
+      buyer,
       this.n.commerce,
       encodeFunctionData({ abi: commerceAbi, functionName: "setBudget", args: [jobId, opts.budgetRaw, "0x"] }),
       "setBudget",
@@ -261,11 +294,11 @@ export class Erc8183Settlement {
         address: tok.address,
         abi: erc20Abi,
         functionName: "allowance",
-        args: [client.address, this.n.commerce],
+        args: [buyer.address, this.n.commerce],
       });
       if (allowance < opts.budgetRaw) {
         await this.send(
-          client,
+          buyer,
           tok.address,
           encodeFunctionData({
             abi: parseAbi(["function approve(address,uint256) returns (bool)"]),
@@ -279,35 +312,62 @@ export class Erc8183Settlement {
     }
 
     await this.send(
-      client,
+      buyer,
       this.n.commerce,
       encodeFunctionData({ abi: commerceAbi, functionName: "fund", args: [jobId, opts.budgetRaw, "0x"] }),
       "fund",
       steps,
     );
 
+    return this.describe(jobId, steps, window);
+  }
+
+  /** Only used when Mandate itself is the provider, for testnet demo jobs. */
+  async selfSubmit(jobId: bigint, deliverableHash: Hex, steps: StepRecord[]) {
     await this.send(
-      provider,
+      providerAccount(),
       this.n.commerce,
-      encodeFunctionData({
-        abi: commerceAbi,
-        functionName: "submit",
-        args: [jobId, opts.deliverableHash, "0x"],
-      }),
+      encodeFunctionData({ abi: commerceAbi, functionName: "submit", args: [jobId, deliverableHash, "0x"] }),
       "submit",
       steps,
     );
+  }
 
+  /** Wait for the provider to record its deliverable on chain. */
+  async awaitDelivery(
+    jobId: bigint,
+    timeoutMs: number,
+  ): Promise<{ delivered: boolean; status: string; deliverable: string }> {
+    const deadline = Date.now() + timeoutMs;
+    for (;;) {
+      const s = await this.jobState(jobId);
+      if (s.status === "SUBMITTED" || s.status === "COMPLETED")
+        return { delivered: true, status: s.status, deliverable: s.deliverable };
+      if (s.status === "REJECTED" || s.status === "EXPIRED" || s.status === "REFUNDED")
+        return { delivered: false, status: s.status, deliverable: s.deliverable };
+      if (Date.now() > deadline) return { delivered: false, status: s.status, deliverable: s.deliverable };
+      await new Promise((r) => setTimeout(r, 6000));
+    }
+  }
+
+  async describe(jobId: bigint, steps: StepRecord[], window?: number): Promise<OpenResult> {
     const state = await this.jobState(jobId);
-    const submittedAt = Number(
-      await this.pub.readContract({
-        address: this.n.policy,
-        abi: policyAbi,
-        functionName: "submittedAt",
-        args: [jobId],
-      }),
-    );
-
+    const tok = await this.token();
+    const w = window ?? (await this.disputeWindow());
+    let settleAvailableAt: string | null = null;
+    try {
+      const submittedAt = Number(
+        await this.pub.readContract({
+          address: this.n.policy,
+          abi: policyAbi,
+          functionName: "submittedAt",
+          args: [jobId],
+        }),
+      );
+      if (submittedAt > 0) settleAvailableAt = new Date((submittedAt + w) * 1000).toISOString();
+    } catch {
+      /* nothing submitted yet */
+    }
     return {
       jobId: jobId.toString(),
       network: this.network,
@@ -319,8 +379,8 @@ export class Erc8183Settlement {
       provider: state.provider,
       deliverable: state.deliverable,
       steps,
-      disputeWindowSeconds: window,
-      settleAvailableAt: new Date((submittedAt + window) * 1000).toISOString(),
+      disputeWindowSeconds: w,
+      settleAvailableAt,
       contracts: {
         commerce: this.n.commerce,
         router: this.n.router,
@@ -331,14 +391,12 @@ export class Erc8183Settlement {
   }
 
   /**
-   * Find the transaction that released a job's escrow. Used when a job was
-   * settled by an earlier call (or by anyone else, since settle is
-   * permissionless) so the receipt can still show the release onchain.
+   * Find the transaction that released a job's escrow, for receipts whose
+   * release happened in an earlier call or was triggered by someone else.
    */
   async findCompletionStep(jobId: bigint): Promise<StepRecord | undefined> {
     try {
       const latest = await this.pub.getBlockNumber();
-      // The dispute window bounds how far back to look; testnet blocks are ~3s.
       const span = BigInt(Math.ceil(((await this.disputeWindow()) + 7200) / 3));
       const logs = await this.pub.getContractEvents({
         address: this.n.commerce,
@@ -350,8 +408,10 @@ export class Erc8183Settlement {
       });
       const hit = logs.at(-1);
       if (!hit) return undefined;
-      const rcpt = await this.pub.getTransactionReceipt({ hash: hit.transactionHash });
-      const tx = await this.pub.getTransaction({ hash: hit.transactionHash });
+      const [rcpt, tx] = await Promise.all([
+        this.pub.getTransactionReceipt({ hash: hit.transactionHash }),
+        this.pub.getTransaction({ hash: hit.transactionHash }),
+      ]);
       return {
         step: "settle",
         txHash: hit.transactionHash,
@@ -392,10 +452,9 @@ export class Erc8183Settlement {
         status: state.status,
       };
 
-    const { client } = accounts(this.network);
     const steps: StepRecord[] = [];
     await this.send(
-      client,
+      clientAccount(),
       this.n.router,
       encodeFunctionData({ abi: routerAbi, functionName: "settle", args: [jobId, "0x"] }),
       "settle",
@@ -406,4 +465,16 @@ export class Erc8183Settlement {
   }
 }
 
-export const settlement = new Erc8183Settlement();
+const cache = new Map<NetworkName, Erc8183Settlement>();
+export function settlementFor(network: NetworkName): Erc8183Settlement {
+  let s = cache.get(network);
+  if (!s) {
+    s = new Erc8183Settlement(network);
+    cache.set(network, s);
+  }
+  return s;
+}
+
+export function escrowAddress(): string {
+  return clientAccount().address;
+}

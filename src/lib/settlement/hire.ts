@@ -3,19 +3,28 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { liveAgent } from "@/lib/live/snapshot";
 import { quote, callTool, notifyFunded } from "@/lib/live/agent-adapter";
-import { settlement, type SettlementResult } from "@/lib/settlement/erc8183";
+import { settlementFor, escrowAddress, type OpenResult, type StepRecord } from "@/lib/settlement/erc8183";
 import { rosterEntry } from "@/lib/live/roster";
-import { SETTLEMENT_NETWORK, net } from "@/lib/live/chain";
+import { NETWORKS, type NetworkName } from "@/lib/live/chain";
 
-// What a hire actually produces. Every field says where it came from, because
-// discovery and negotiation happen on mainnet while escrow settles on testnet,
-// and a receipt that blurs the two would be dishonest.
+// A hire settles on the chain where the provider actually lives, naming that
+// provider, so the seller can see the job and work for it.
+//
+// Two shapes, and only two:
+//
+//   paid   The agent quoted a price and a payout address. We escrow that exact
+//          amount on that exact chain against that exact provider, tell the
+//          seller, and wait for it to submit real work.
+//   free   The agent exposes read-only tools and charges nothing. There is
+//          nothing to escrow, so no job is created and the output is the result.
+//
+// A quote is never recorded as if it were finished work.
 
-export type DeliveryKind = "agent-output" | "negotiated-quote";
+export type DeliveryKind = "agent-output" | "agent-delivered";
 
 export interface Receipt {
   id: string;
-  jobId: string;
+  jobId: string | null;
   agentId: string;
   agentName: string;
   category: string;
@@ -24,18 +33,14 @@ export interface Receipt {
   createdAt: string;
   settledAt?: string;
   status: string;
-  settlementNetwork: string;
+  mode: "paid" | "free";
+  settlementNetwork: NetworkName | null;
   settlementLabel: string;
   discoveryNetwork: string;
   price: { raw: string; display: string; currency: string; quotedByAgent: boolean };
-  provider: { quotedAddress?: string; escrowAddress: string };
-  delivery: {
-    kind: DeliveryKind;
-    label: string;
-    content: string;
-    hash: string;
-  };
-  chain: SettlementResult;
+  provider: { quotedAddress?: string; escrowAddress: string; onchainProvider?: string };
+  delivery: { kind: DeliveryKind; label: string; content: string; hash: string };
+  chain: OpenResult | null;
   caveats: string[];
 }
 
@@ -43,12 +48,12 @@ const RECEIPTS = path.join(process.cwd(), "data", "receipts");
 
 export async function saveReceipt(r: Receipt) {
   await fs.mkdir(RECEIPTS, { recursive: true });
-  await fs.writeFile(path.join(RECEIPTS, `${r.jobId}.json`), JSON.stringify(r, null, 2), "utf8");
+  await fs.writeFile(path.join(RECEIPTS, `${r.id}.json`), JSON.stringify(r, null, 2), "utf8");
 }
 
-export async function readReceipt(jobId: string): Promise<Receipt | null> {
+export async function readReceipt(id: string): Promise<Receipt | null> {
   try {
-    return JSON.parse(await fs.readFile(path.join(RECEIPTS, `${jobId}.json`), "utf8")) as Receipt;
+    return JSON.parse(await fs.readFile(path.join(RECEIPTS, `${id}.json`), "utf8")) as Receipt;
   } catch {
     return null;
   }
@@ -69,62 +74,12 @@ export async function listReceipts(buyer?: string): Promise<Receipt[]> {
   }
 }
 
-/**
- * Get something real back from the agent.
- *
- * Where the agent exposes read-only MCP tools we call one and record its actual
- * output. Where it only sells work behind mainnet escrow, we record the quote it
- * signed for this request. We never invent a deliverable.
- */
-async function obtainDelivery(
-  agent: NonNullable<Awaited<ReturnType<typeof liveAgent>>>,
-  request: string,
-  params: Record<string, unknown>,
-): Promise<{ kind: DeliveryKind; label: string; content: string; quotedProvider?: string; priceRaw?: string; priceDisplay?: string; quotedByAgent: boolean }> {
-  const entry = rosterEntry(agent.live.agentId);
-  const mcp = agent.live.routes.find((r) => r.kind === "MCP" && r.endpoint);
-
-  // Preferred: real output from a free, read-only tool.
-  if (mcp && entry?.evidenceTool) {
-    const out = await callTool(mcp, entry.evidenceTool, (params.toolArgs as Record<string, unknown>) ?? entry.evidenceArgs ?? {});
-    if (out.ok && out.text) {
-      return {
-        kind: "agent-output",
-        label: `Live output from the agent's ${entry.evidenceTool} tool`,
-        content: out.text.slice(0, 20_000),
-        quotedByAgent: false,
-      };
-    }
-  }
-
-  // Otherwise: a real negotiation, recorded as the deliverable.
-  const route = agent.live.route!;
-  const q = await quote(route, request, agent.live.serviceId);
-  const body = {
-    request,
-    accepted: q.accepted,
-    service: q.service,
-    category: q.category,
-    price: q.priceDisplay ?? q.priceRaw,
-    currency: q.currency,
-    provider: q.provider,
-    deliverables: q.deliverables,
-    needs: q.needs,
-    chain_id: q.chainId,
-    verifying_contract: q.verifyingContract,
-    payment_token: q.paymentToken,
-    negotiated_at: new Date().toISOString(),
-  };
-  return {
-    kind: "negotiated-quote",
-    label: "Quote negotiated live with the agent over A2A",
-    content: JSON.stringify(body, null, 2),
-    quotedProvider: q.provider,
-    priceRaw: q.priceRaw,
-    priceDisplay: q.priceDisplay,
-    quotedByAgent: q.accepted,
-  };
-}
+const networkForChainId = (id?: number): NetworkName | null => {
+  const hit = (Object.entries(NETWORKS) as [NetworkName, { chainId: number }][]).find(
+    ([, n]) => n.chainId === id,
+  );
+  return hit?.[0] ?? null;
+};
 
 export interface HireInput {
   agentId: string;
@@ -132,6 +87,162 @@ export interface HireInput {
   outcomeId?: string;
   request?: string;
   params?: Record<string, unknown>;
+}
+
+/** A free read from an agent that exposes read-only tools. No escrow. */
+async function hireFree(
+  agent: NonNullable<Awaited<ReturnType<typeof liveAgent>>>,
+  request: string,
+  params: Record<string, unknown>,
+  input: HireInput,
+): Promise<Receipt> {
+  const entry = rosterEntry(agent.live.agentId);
+  const mcp = agent.live.routes.find((r) => r.kind === "MCP" && r.endpoint);
+  if (!mcp || !entry?.evidenceTool)
+    throw new Error(`${agent.name} does not expose a free tool and did not quote a price`);
+
+  const out = await callTool(
+    mcp,
+    entry.evidenceTool,
+    (params.toolArgs as Record<string, unknown>) ?? entry.evidenceArgs ?? {},
+  );
+  if (!out.ok || !out.text) throw new Error(`${agent.name} returned no output: ${out.text.slice(0, 160)}`);
+
+  const content = out.text.slice(0, 20_000);
+  const receipt: Receipt = {
+    id: `free-${agent.live.agentId}-${Date.now()}`,
+    jobId: null,
+    agentId: agent.id,
+    agentName: agent.name,
+    category: agent.category,
+    buyer: input.buyer ?? null,
+    outcomeId: input.outcomeId,
+    createdAt: new Date().toISOString(),
+    settledAt: new Date().toISOString(),
+    status: "DELIVERED",
+    mode: "free",
+    settlementNetwork: null,
+    settlementLabel: "No payment required",
+    discoveryNetwork: agent.live.network,
+    price: { raw: "0", display: "No charge", currency: "U", quotedByAgent: false },
+    provider: { escrowAddress: escrowAddress() },
+    delivery: {
+      kind: "agent-output",
+      label: `Live output from ${agent.name}'s ${entry.evidenceTool} tool`,
+      content,
+      hash: keccak256(toHex(content)),
+    },
+    chain: null,
+    caveats: [
+      "This agent publishes read-only tools free of charge, so there is nothing to escrow and no onchain job was created.",
+    ],
+  };
+  await saveReceipt(receipt);
+  return receipt;
+}
+
+/** A paid hire: escrow on the provider's own chain, then wait for real work. */
+async function hirePaid(
+  agent: NonNullable<Awaited<ReturnType<typeof liveAgent>>>,
+  request: string,
+  input: HireInput,
+): Promise<Receipt> {
+  const q = agent.live.quote!;
+  const network = networkForChainId(q.chainId) ?? (agent.live.network as NetworkName);
+  const provider = q.provider!;
+  const settlement = settlementFor(network);
+  const budgetRaw = BigInt(q.priceRaw ?? "0");
+
+  const description = JSON.stringify({
+    schema: "mandate/hire/v1",
+    agentId: agent.live.agentId,
+    agentName: agent.name,
+    category: agent.category,
+    service: agent.live.serviceId,
+    buyer: input.buyer ?? null,
+    outcomeId: input.outcomeId ?? null,
+    request,
+  });
+
+  // 1. Escrow against the agent's own payout address, on its own chain.
+  const chain = await settlement.open({ provider, budgetRaw, description });
+
+  // 2. Tell the seller. It reads the job from the same chain, sees itself named
+  //    as provider, does the work, and submits.
+  const route = agent.live.route!;
+  const notice = await notifyFunded(route, chain.jobId, {
+    request,
+    chain_id: chain.chainId,
+    ...(input.params ?? {}),
+  });
+
+  // 3. Wait for the deliverable to land on chain.
+  const delivered = await settlement.awaitDelivery(BigInt(chain.jobId), 180_000);
+  const finalChain = await settlement.describe(BigInt(chain.jobId), chain.steps);
+
+  const caveats: string[] = [];
+  let content: string;
+  let label: string;
+
+  if (delivered.delivered && notice.ok) {
+    content = notice.text.slice(0, 20_000);
+    label = `Work delivered by ${agent.name} against job #${chain.jobId}`;
+  } else if (delivered.delivered) {
+    content = `Deliverable recorded on chain: ${delivered.deliverable}\n\nThe agent submitted its work to the kernel but did not return the payload over A2A.`;
+    label = `Deliverable recorded on chain for job #${chain.jobId}`;
+  } else {
+    content = notice.ok
+      ? notice.text.slice(0, 20_000)
+      : `The seller has not submitted yet.\n\nIts reply: ${notice.text.slice(0, 1200)}`;
+    label = `Job #${chain.jobId} is funded and awaiting the agent's submission`;
+    caveats.push(
+      "Escrow is funded and the agent has been notified, but it had not submitted its deliverable when this receipt was written. Escrow stays locked until it does, and refunds to you if the job expires first.",
+    );
+  }
+
+  if (finalChain.disputeWindowSeconds > 3600) {
+    const days = Math.round(finalChain.disputeWindowSeconds / 86400);
+    caveats.push(
+      `This chain's dispute window is ${days} day${days === 1 ? "" : "s"}. The deliverable is yours now; escrow releases to the agent automatically after that window unless you dispute.`,
+    );
+  }
+
+  const receipt: Receipt = {
+    id: `job-${network}-${chain.jobId}`,
+    jobId: chain.jobId,
+    agentId: agent.id,
+    agentName: agent.name,
+    category: agent.category,
+    buyer: input.buyer ?? null,
+    outcomeId: input.outcomeId,
+    createdAt: new Date().toISOString(),
+    status: finalChain.status,
+    mode: "paid",
+    settlementNetwork: network,
+    settlementLabel: network === "bsc-mainnet" ? "BNB Smart Chain" : "BNB Smart Chain testnet",
+    discoveryNetwork: agent.live.network,
+    price: {
+      raw: budgetRaw.toString(),
+      display: finalChain.budgetDisplay,
+      currency: q.currency ?? "U",
+      quotedByAgent: true,
+    },
+    provider: {
+      quotedAddress: provider,
+      escrowAddress: escrowAddress(),
+      onchainProvider: finalChain.provider,
+    },
+    delivery: {
+      kind: delivered.delivered ? "agent-delivered" : "agent-output",
+      label,
+      content,
+      hash: keccak256(toHex(content)),
+    },
+    chain: finalChain,
+    caveats,
+  };
+  await saveReceipt(receipt);
+  return receipt;
 }
 
 export async function hire(input: HireInput): Promise<Receipt> {
@@ -143,100 +254,48 @@ export async function hire(input: HireInput): Promise<Receipt> {
   const request =
     input.request ?? `${agent.category.replaceAll("-", " ")} for a position on BNB Smart Chain`;
 
-  const delivery = await obtainDelivery(agent, request, input.params ?? {});
-  const deliverableHash = keccak256(toHex(delivery.content)) as Hex;
-
-  // Escrow the job. The budget is the agent's own quoted price where it gave
-  // one, so the escrowed amount is not a number we made up.
-  const budgetRaw = BigInt(agent.live.quote?.priceRaw ?? delivery.priceRaw ?? "0");
-  const n = net(SETTLEMENT_NETWORK);
-
-  const description = JSON.stringify({
-    schema: "mandate/hire/v1",
-    agentId: agent.live.agentId,
-    agentName: agent.name,
-    category: agent.category,
-    buyer: input.buyer ?? null,
-    outcomeId: input.outcomeId ?? null,
-    request,
-    deliveryKind: delivery.kind,
-    discoveryNetwork: agent.live.network,
-  });
-
-  const chain = await settlement.openAndDeliver({ budgetRaw, description, deliverableHash });
-
-  // Tell an A2A seller its job is funded. Harmless on testnet (the seller is
-  // watching mainnet), but it is the real protocol step and its answer is kept.
-  let notified: string | undefined;
-  if (agent.live.route?.kind === "A2A" && budgetRaw > 0n) {
-    const res = await notifyFunded(agent.live.route, chain.jobId, { network: SETTLEMENT_NETWORK });
-    notified = res.ok ? res.text.slice(0, 2000) : `not acknowledged: ${res.text.slice(0, 200)}`;
+  // Re-quote at hire time: a snapshot price is a listing, not a commitment.
+  let q = agent.live.quote;
+  if (agent.live.route) {
+    try {
+      const fresh = await quote(agent.live.route, request, agent.live.serviceId);
+      if (fresh.accepted && fresh.priceRaw && fresh.provider) {
+        q = {
+          accepted: true,
+          priceRaw: fresh.priceRaw,
+          priceDisplay: fresh.priceDisplay,
+          currency: fresh.currency,
+          provider: fresh.provider,
+          needs: fresh.needs,
+          deliverables: fresh.deliverables,
+          chainId: fresh.chainId,
+          verifyingContract: fresh.verifyingContract,
+          paymentToken: fresh.paymentToken,
+          estimatedSeconds: fresh.estimatedSeconds,
+        };
+        agent.live.quote = q;
+      }
+    } catch {
+      /* keep the snapshot quote */
+    }
   }
 
-  const caveats: string[] = [];
-  if (SETTLEMENT_NETWORK !== agent.live.network) {
-    caveats.push(
-      `Discovery and negotiation ran on ${agent.live.network}; escrow settled on ${SETTLEMENT_NETWORK} with test funds. Paying this agent for production work requires a mainnet job.`,
-    );
-  }
-  if (delivery.kind === "negotiated-quote") {
-    caveats.push(
-      "The deliverable is the agent's own live quote for this request, not finished work. This agent only performs paid work against mainnet escrow.",
-    );
-  }
-  if (notified) caveats.push(`Seller notification: ${notified.slice(0, 300)}`);
-
-  const receipt: Receipt = {
-    id: `receipt-${chain.jobId}`,
-    jobId: chain.jobId,
-    agentId: agent.id,
-    agentName: agent.name,
-    category: agent.category,
-    buyer: input.buyer ?? null,
-    outcomeId: input.outcomeId,
-    createdAt: new Date().toISOString(),
-    status: chain.status,
-    settlementNetwork: SETTLEMENT_NETWORK,
-    settlementLabel: SETTLEMENT_NETWORK === "bsc-testnet" ? "BNB Smart Chain testnet" : "BNB Smart Chain",
-    discoveryNetwork: agent.live.network,
-    price: {
-      raw: budgetRaw.toString(),
-      display: chain.budgetDisplay,
-      currency: agent.live.quote?.currency ?? "U",
-      quotedByAgent: Boolean(agent.live.quote?.accepted || delivery.quotedByAgent),
-    },
-    provider: {
-      quotedAddress: agent.live.quote?.provider ?? delivery.quotedProvider,
-      escrowAddress: chain.provider,
-    },
-    delivery: {
-      kind: delivery.kind,
-      label: delivery.label,
-      content: delivery.content,
-      hash: deliverableHash,
-    },
-    chain,
-    caveats,
-  };
-
-  void n;
-  await saveReceipt(receipt);
-  return receipt;
+  const priced = Boolean(q?.accepted && q.provider && BigInt(q.priceRaw ?? "0") > 0n);
+  return priced ? hirePaid(agent, request, input) : hireFree(agent, request, input.params ?? {}, input);
 }
 
 /** Try to release escrow; safe to call repeatedly. */
-export async function trySettle(jobId: string): Promise<Receipt | null> {
-  const receipt = await readReceipt(jobId);
-  if (!receipt) return null;
-  const res = await settlement.settle(BigInt(jobId));
+export async function trySettle(id: string): Promise<Receipt | null> {
+  const receipt = await readReceipt(id);
+  if (!receipt || !receipt.jobId || !receipt.settlementNetwork) return receipt;
+  const settlement = settlementFor(receipt.settlementNetwork);
+  const res = await settlement.settle(BigInt(receipt.jobId));
   receipt.status = res.status;
   if (res.settled) {
     receipt.settledAt = receipt.settledAt ?? new Date().toISOString();
-    // Only record the release once, however many times settle is polled.
-    if (res.step && !receipt.chain.steps.some((s) => s.txHash === res.step!.txHash))
-      receipt.chain.steps = [...receipt.chain.steps, res.step];
-  } else if (res.reason) {
-    receipt.chain.settleAvailableAt = receipt.chain.settleAvailableAt ?? null;
+    const step: StepRecord | undefined = res.step;
+    if (step && !receipt.chain?.steps.some((s) => s.txHash === step.txHash) && receipt.chain)
+      receipt.chain.steps = [...receipt.chain.steps, step];
   }
   await saveReceipt(receipt);
   return receipt;

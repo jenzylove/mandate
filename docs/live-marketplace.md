@@ -45,32 +45,48 @@ integration seam.
 
 ## Settlement
 
-Discovery and negotiation happen on **mainnet**, where the agents live. Escrow
-settles on **testnet** by default, funded by Mandate's settlement account, so a
-full journey costs nothing. Every receipt says so in its own caveats.
+**A job is created on the chain where the provider actually lives, naming that
+provider.** The seller reads the job from its own chain, sees itself named, does
+the work and submits. There is no cross-chain mismatch to explain away.
 
-The lifecycle is the one proved on chain:
+The chain and the provider both come from the agent's own quote (`chain_id` and
+`provider`), re-fetched at hire time because a snapshot price is a listing, not
+a commitment.
 
 ```
-createJob -> registerJob -> setBudget -> (approve) -> fund -> submit
-          -> dispute window (900s) -> settle -> COMPLETED
+createJob -> registerJob -> setBudget -> (approve) -> fund
+          -> the agent submits its deliverable
+          -> dispute window
+          -> settle -> COMPLETED
 ```
 
-Gas is free on testnet: each write asks MegaFuel `pm_isSponsorable`, then
-broadcasts a `gasPrice: 0` raw transaction through the paymaster. Self-pay is
-the automatic fallback.
+Gas is free for the buyer on **both** networks: each write asks MegaFuel
+`pm_isSponsorable`, then broadcasts a `gasPrice: 0` raw transaction through the
+paymaster. Mainnet sponsorship is provided by Pieverse. Self-pay is the
+automatic fallback. Only `submit` is unsponsored, and that is the provider's own
+transaction.
 
-### Deliverables
+Dispute windows differ sharply and the UI reflects it: **900 seconds on testnet,
+7 days on mainnet**. The deliverable is yours the moment it is submitted; escrow
+release is what waits.
 
-Two kinds, never mixed:
+### Two hire shapes, never mixed
 
-| Kind | When | What is recorded |
+| Mode | When | What happens |
 | --- | --- | --- |
-| `agent-output` | The agent exposes a free read-only MCP tool | Its real output |
-| `negotiated-quote` | The agent only sells work behind mainnet escrow | The quote it signed for this request |
+| `paid` | The agent quoted a price and a payout address | That exact amount is escrowed on that exact chain against that exact provider, the seller is notified, and we wait for it to submit real work |
+| `free` | The agent publishes read-only tools and charges nothing | No job is created at all, and its actual output is the result |
 
-A deliverable is never fabricated. The `negotiated-quote` case carries an
-explicit caveat saying it is a quote, not finished work.
+A quote is never recorded as if it were finished work.
+
+## Preflight
+
+`GET /api/hire/preflight?agentId=` answers whether a hire can complete *before*
+the button is shown. It returns `canHire: false` with a plain reason when the
+escrow account is short of the quoted price, when the agent has stopped
+answering, or when an agent neither quotes a price nor exposes a free tool (an
+OAuth-gated seller, for instance). A call to action that cannot finish is worse
+than one that is honestly unavailable.
 
 ## Wallet and account
 
@@ -78,15 +94,26 @@ Browsing, category pages, agent detail and the whole guided-matching flow work
 with no wallet. A wallet is requested at exactly two points: saving a setup
 against your address, and activating an agent. Connecting never moves funds.
 
-## Refreshing supply
+## Freshness
+
+No page render ever waits on a chain scan. `data/live/agents.json` is committed,
+so a cold deploy serves a market immediately. From there:
+
+- Requests read the snapshot from disk (memoised for 30s).
+- A request that finds the snapshot older than 15 minutes kicks off a refresh in
+  the background and serves the current data anyway. Concurrent refreshes
+  collapse into one.
+- `vercel.json` schedules `/api/live/refresh` every 10 minutes, so in production
+  the snapshot is normally fresh before anyone notices.
+- The agents index shows `Availability checked N minutes ago`, and says so when
+  the data is more than six hours old.
+
+Manual refresh:
 
 ```bash
 npm run dev
-npm run refresh:live      # re-resolves every rostered agent and re-probes it
+npm run refresh:live
 ```
-
-`data/live/agents.json` is the snapshot the app reads. Resolving and probing
-twelve agents takes ~25s, which is why it is not done per request.
 
 ## Adding supply
 
