@@ -1,11 +1,16 @@
 import { keccak256, toHex, type Hex } from "viem";
-import { promises as fs } from "node:fs";
-import path from "node:path";
 import { liveAgent } from "@/lib/live/snapshot";
 import { quote, callTool, notifyFunded } from "@/lib/live/agent-adapter";
 import { settlementFor, escrowAddress, type OpenResult, type StepRecord } from "@/lib/settlement/erc8183";
 import { rosterEntry } from "@/lib/live/roster";
 import { NETWORKS, type NetworkName } from "@/lib/live/chain";
+import {
+  writeToStore,
+  readFromStore,
+  listFromStore,
+  reconstructFromChain,
+  listFromChain,
+} from "@/lib/settlement/receipt-store";
 
 // A hire settles on the chain where the provider actually lives, naming that
 // provider, so the seller can see the job and work for it.
@@ -44,34 +49,41 @@ export interface Receipt {
   caveats: string[];
 }
 
-const RECEIPTS = path.join(process.cwd(), "data", "receipts");
+export const saveReceipt = writeToStore;
 
-export async function saveReceipt(r: Receipt) {
-  await fs.mkdir(RECEIPTS, { recursive: true });
-  await fs.writeFile(path.join(RECEIPTS, `${r.id}.json`), JSON.stringify(r, null, 2), "utf8");
-}
+// A receipt id encodes where it came from: job-<network>-<jobId> is anchored on
+// chain, free-* only ever existed on this server.
+const ID_PATTERN = new RegExp("^job-(bsc-mainnet|bsc-testnet)-([0-9]+)$");
+const parseId = (id: string): { network: NetworkName; jobId: string } | null => {
+  const m = ID_PATTERN.exec(id);
+  return m ? { network: m[1] as NetworkName, jobId: m[2] } : null;
+};
 
+/**
+ * Serve from the local store when it is there, and rebuild from chain when it
+ * is not. A serverless instance that has never seen this job still answers.
+ */
 export async function readReceipt(id: string): Promise<Receipt | null> {
-  try {
-    return JSON.parse(await fs.readFile(path.join(RECEIPTS, `${id}.json`), "utf8")) as Receipt;
-  } catch {
-    return null;
-  }
+  const stored = await readFromStore(id);
+  if (stored) return stored;
+  const anchor = parseId(id);
+  return anchor ? reconstructFromChain(anchor.network, anchor.jobId) : null;
 }
 
 export async function listReceipts(buyer?: string): Promise<Receipt[]> {
-  try {
-    const files = await fs.readdir(RECEIPTS);
-    const all = await Promise.all(
-      files
-        .filter((f) => f.endsWith(".json"))
-        .map(async (f) => JSON.parse(await fs.readFile(path.join(RECEIPTS, f), "utf8")) as Receipt),
-    );
-    const rows = buyer ? all.filter((r) => r.buyer?.toLowerCase() === buyer.toLowerCase()) : all;
-    return rows.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-  } catch {
-    return [];
-  }
+  const stored = await listFromStore();
+  const onChain = await Promise.all(
+    (Object.keys(NETWORKS) as NetworkName[]).map((n) => listFromChain(n, buyer)),
+  );
+
+  // The stored copy wins where both exist: it still has the delivered payload.
+  const merged = new Map<string, Receipt>();
+  for (const r of onChain.flat()) merged.set(r.id, r);
+  for (const r of stored) merged.set(r.id, r);
+
+  const rows = [...merged.values()];
+  const filtered = buyer ? rows.filter((r) => r.buyer?.toLowerCase() === buyer.toLowerCase()) : rows;
+  return filtered.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
 const networkForChainId = (id?: number): NetworkName | null => {

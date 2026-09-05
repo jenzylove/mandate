@@ -120,20 +120,30 @@ test.describe("marketplace journey", () => {
   }) => {
     test.setTimeout(600_000);
 
-    // Pick an agent whose hire can complete right now, so the test exercises
-    // the whole path rather than stopping at a funding gate.
+    // Pick an agent whose hire can complete right now. Free agents are strongly
+    // preferred: a paid hire escrows real value on mainnet, and a test suite
+    // must not spend money every time it runs. Set E2E_ALLOW_PAID=1 to include
+    // paid agents deliberately.
+    const allowPaid = process.env.E2E_ALLOW_PAID === "1";
     const res = await page.request.get("/api/live/status");
     const json = (await res.json()) as { agents: { id: string; status: string; category: string }[] };
     let agent: { id: string } | undefined;
+    let paidFallback: { id: string } | undefined;
     for (const a of json.agents.filter((x) => x.status === "available")) {
       const pre = await page.request.get(`/api/hire/preflight?agentId=${a.id}`);
-      const p = (await pre.json()) as { canHire?: boolean };
-      if (p.canHire) {
+      const p = (await pre.json()) as { canHire?: boolean; mode?: string };
+      if (!p.canHire) continue;
+      if (p.mode === "free") {
         agent = a;
         break;
       }
+      paidFallback ??= a;
     }
-    test.skip(!agent, "no agent can be hired right now: escrow account needs funding");
+    if (!agent && allowPaid) agent = paidFallback;
+    test.skip(
+      !agent,
+      "no free agent is answering; set E2E_ALLOW_PAID=1 to exercise a paid hire, which spends real value",
+    );
     const hireable = agent!;
 
     // Without a wallet, activation is gated but the page still renders.

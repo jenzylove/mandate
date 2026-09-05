@@ -121,3 +121,33 @@ Add an entry to `src/lib/live/roster.ts` with the onchain agent id, its
 category, and the seller's own `serviceId`. Everything else (name, description,
 skills, price, availability) is read from the agent itself. Nothing bespoke is
 needed per agent: the common adapter covers A2A and MCP.
+
+## Receipts: the filesystem is a cache, the chain is the record
+
+Receipts are written to `data/receipts`, which on a serverless host is
+per-instance and does not survive a redeploy. So it is treated as a cache and
+never as the system of record.
+
+The durable half is the chain. A paid hire's job description carries the agent,
+the buyer and the request; the kernel carries the status, budget, provider and
+deliverable digest. `readReceipt` serves the stored copy when it exists and
+rebuilds from chain when it does not, so an instance that has never seen a job
+still answers for it. `listReceipts` merges both, preferring the stored copy
+because it still holds the delivered payload.
+
+What cannot be rebuilt is the payload itself: only its digest is on chain. A
+reconstructed receipt says so plainly rather than pretending the work is lost or
+that it still has it.
+
+Free hires have no chain anchor by definition, so they live only in the store.
+That is stated on the receipt.
+
+`e2e/receipt-durability.spec.ts` asserts all of this against a running
+deployment: a cold request, a brand-new browser context with no cookies or
+local storage, and a wallet whose device has never been used before.
+
+## Tests never spend money
+
+The journey suite prefers a free agent, because a paid hire escrows real value
+on mainnet and a test run must not cost anything. Set `E2E_ALLOW_PAID=1` to
+deliberately exercise a paid hire.
