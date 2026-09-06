@@ -1,7 +1,8 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import type { LiveAgent } from "@/lib/live/qualify";
-import { qualifyAll } from "@/lib/live/qualify";
+import { qualifyAll, buildOne } from "@/lib/live/qualify";
+import { rosterEntry } from "@/lib/live/roster";
 
 // Resolving twelve agent cards and probing twelve endpoints takes tens of
 // seconds. No visitor should ever wait for that, so a page render only ever
@@ -124,6 +125,37 @@ export async function liveAgents(): Promise<LiveAgent[]> {
 
 export async function liveAgent(id: string): Promise<LiveAgent | null> {
   return (await liveAgents()).find((a) => a.id === id) ?? null;
+}
+
+/**
+ * Resolve a single agent straight from the registry, for ids this instance's
+ * snapshot does not carry. Cached so a crawler cannot turn one cold link into
+ * a stampede of chain reads.
+ */
+const onDemand = new Map<string, { at: number; agent: LiveAgent | null }>();
+const ON_DEMAND_TTL_MS = 10 * 60_000;
+
+export async function resolveAgentOnDemand(id: string): Promise<LiveAgent | null> {
+  const m = /^live-(\d+)$/.exec(id);
+  if (!m) return null;
+
+  const cached = onDemand.get(id);
+  if (cached && Date.now() - cached.at < ON_DEMAND_TTL_MS) return cached.agent;
+
+  const entry = rosterEntry(m[1]) ?? {
+    agentId: m[1],
+    category: "yield-optimization" as const,
+    protocols: [],
+    assets: [],
+  };
+  let agent: LiveAgent | null = null;
+  try {
+    agent = await buildOne(entry);
+  } catch {
+    agent = null;
+  }
+  onDemand.set(id, { at: Date.now(), agent });
+  return agent;
 }
 
 export const snapshotPath = SNAPSHOT;

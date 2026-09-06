@@ -1,7 +1,7 @@
 import type { Agent, Category, Outcome } from "@/lib/domain/types";
 import type { DataAdapter } from "@/lib/data/adapter";
 import { JsonAdapter } from "@/lib/data/json-adapter";
-import { liveAgents } from "@/lib/live/snapshot";
+import { liveAgents, resolveAgentOnDemand } from "@/lib/live/snapshot";
 
 // The marketplace's real data source. Live ERC-8004 agents come first; seeded
 // examples remain only to fill a category that has no live supply right now,
@@ -29,7 +29,16 @@ export class LiveAdapter implements DataAdapter {
 
   async getAgent(id: string): Promise<Agent | null> {
     const live = await liveAgents();
-    return live.find((a) => a.id === id) ?? (await seed.getAgent(id));
+    const hit = live.find((a) => a.id === id);
+    if (hit) return hit;
+
+    // Each serverless instance refreshes its own snapshot, so a link rendered
+    // by one instance can reach another that has never seen that agent. Rather
+    // than 404 a real agent, resolve it from the registry on demand.
+    const onDemand = await resolveAgentOnDemand(id);
+    if (onDemand) return onDemand;
+
+    return seed.getAgent(id);
   }
 
   async listAgentsByCategory(category: Category): Promise<Agent[]> {
