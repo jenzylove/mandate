@@ -49,8 +49,13 @@ export async function writeSnapshot(): Promise<Snapshot> {
         network: "bsc-mainnet",
         agents,
       };
-      await fs.mkdir(path.dirname(SNAPSHOT), { recursive: true });
-      await fs.writeFile(SNAPSHOT, JSON.stringify(snap, null, 2), "utf8");
+      try {
+        await fs.mkdir(path.dirname(SNAPSHOT), { recursive: true });
+        await fs.writeFile(SNAPSHOT, JSON.stringify(snap, null, 2), "utf8");
+      } catch {
+        // Production filesystems are read-only. The in-memory copy below still
+        // serves this instance, and the committed snapshot is the cold start.
+      }
       memo = { at: Date.now(), snap };
       return snap;
     } finally {
