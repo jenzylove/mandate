@@ -1,0 +1,100 @@
+{
+  "id": "job-bsc-mainnet-56712",
+  "jobId": "56712",
+  "agentId": "live-304494",
+  "agentName": "Brain on BNB — Portfolio Rebalance Pricer",
+  "category": "rebalancing",
+  "buyer": "0x083b0370F8e8a00D03746cA9A54C5264dDC08124",
+  "createdAt": "2026-09-04T20:24:17.368Z",
+  "status": "SUBMITTED",
+  "mode": "paid",
+  "settlementNetwork": "bsc-mainnet",
+  "settlementLabel": "BNB Smart Chain",
+  "discoveryNetwork": "bsc-mainnet",
+  "price": {
+    "raw": "100000000000000000",
+    "display": "0.1 U",
+    "currency": "U",
+    "quotedByAgent": true
+  },
+  "provider": {
+    "quotedAddress": "0x73809F69916FcF7Ddc5BB1315fBdf96A569a5963",
+    "escrowAddress": "0x083b0370F8e8a00D03746cA9A54C5264dDC08124",
+    "onchainProvider": "0x73809F69916FcF7Ddc5BB1315fBdf96A569a5963"
+  },
+  "delivery": {
+    "kind": "agent-delivered",
+    "label": "Work delivered by Brain on BNB — Portfolio Rebalance Pricer against job #56712",
+    "content": "{\n  \"delivered\": true,\n  \"job_id\": \"56712\",\n  \"service\": \"rebalance_plan\",\n  \"result\": {\n    \"service\": \"rebalance_plan\",\n    \"plan\": {\n      \"portfolio\": {\n        \"total_usd\": 1000,\n        \"holdings\": 1,\n        \"priced\": 0\n      },\n      \"legs\": [\n        {\n          \"token\": \"0x083b0370f8e8a00d03746ca9a54c5264ddc08124\",\n          \"current_pct\": 100,\n          \"target_pct\": 100,\n          \"drift_pct\": 0,\n          \"trade_usd\": 0,\n          \"cost\": null,\n          \"note\": \"this pool could not be measured, so this leg is unpriced and the totals below exclude it\"\n        }\n      ],\n      \"unpriceable\": [\n        {\n          \"token\": \"0x083b0370f8e8a00d03746ca9a54c5264ddc08124\",\n          \"reason\": \"That address is not a BSC token. It answers nothing to symbol() or totalSupply(), has no pool at any venue this tool can read, and GoPlus does not list it. A wallet address, or a contract that is not a token, looks exactly like this.\"\n        }\n      ],\n      \"economics\": {\n        \"value_to_move_usd\": 0,\n        \"drift_pct_of_portfolio\": 0,\n        \"cost_to_rebalance_usd\": 0,\n        \"cost_pct_of_portfolio\": 0,\n        \"cost_pct_of_value_moved\": 0,\n        \"worth_it_if\": \"the corrected allocation is worth more to you than 0.00% of the money you move. That is a judgement about risk, not a quantity in any pool, so this does not pretend to make it for you.\",\n        \"explanation\": \"Rebalancing moves value from overweight positions to underweight ones and pays swap fee, price impact and transfer tax to do it. Those costs are measured here. What the correction is worth is not measurable from the chain — a rebalance does not earn the dollars it moves — so the cost is given as a share of the money moved and the decision stays with you.\"\n      },\n      \"where_the_cost_sits\": [],\n      \"verdict\": \"Moving $0.00 of exposure costs $0.00 — 0.00% of the money moved, 0.00% of the portfolio. That is cheap, so the decision rests on whether the correction matters to you at all rather than on what it costs.\",\n      \"warnings\": [\n        \"1 of 1 holdings could not be priced against a pool. Every total here excludes them, so the real cost is higher than shown.\"\n      ],\n      \"what_this_is_not\": \"A view on what you should hold. You bring the target weights; this prices the route to them against the pools that would execute it. Measurement only, not financial advice.\",\n      \"measured_at\": \"2026-09-04T20:24:15.002Z\",\n      \"source\": \"Pools measured live via https://brainonbnb.com/scanner — the same arithmetic the public scanner, the installable skill and the grid agent run.\"\n    }\n  },\n  \"on_chain\": {\n    \"delivered\": true,\n    \"job_id\": \"56712\",\n    \"tx\": \"0x1e5e489a757c85a8ba7062e88f5dd7cc2b86971506887ed63532686ca5babfc5\",\n    \"explorer\": \"https://bscscan.com/tx/0x1e5e489a757c85a8ba7062e88f5dd7cc2b86971506887ed63532686ca5babfc5\",\n    \"block\": 119982078,\n    \"deliverable_digest\": \"0x0d5be0ddb8f9b21658637e350b1183cb478e64453db96399e25066003707a9d4\",\n    \"digest_algorithm\": \"sha-256\",\n    \"bytes\": 2549,\n    \"provider\": \"0x73809F69916FcF7Ddc5BB1315fBdf96A569a5963\"\n  },\n  \"deliverable_url\": \"https://agent.brainonbnb.com/job/56712/result\",\n  \"note\": \"The deliverable is on-chain in full, not as a link. The bytes32 is the SHA-256 of the document served at the URL above, so both can be checked against each other.\"\n}",
+    "hash": "0x98e6e47a6363d28bcafda2d59ed67aad5013f62557d0c934d460d00aabeaed68"
+  },
+  "chain": {
+    "jobId": "56712",
+    "network": "bsc-mainnet",
+    "chainId": 56,
+    "status": "SUBMITTED",
+    "budgetRaw": "100000000000000000",
+    "budgetDisplay": "0.1 U",
+    "client": "0x083b0370F8e8a00D03746cA9A54C5264dDC08124",
+    "provider": "0x73809F69916FcF7Ddc5BB1315fBdf96A569a5963",
+    "deliverable": "0x0d5be0ddb8f9b21658637e350b1183cb478e64453db96399e25066003707a9d4",
+    "steps": [
+      {
+        "step": "createJob",
+        "txHash": "0x67d88095bf07f64ebdf1b2ef3c38dae4779e8e2c93659861bc1f72e15497e59b",
+        "block": 119982042,
+        "status": "success",
+        "gasUsed": 443256,
+        "sponsored": true,
+        "explorer": "https://bscscan.com/tx/0x67d88095bf07f64ebdf1b2ef3c38dae4779e8e2c93659861bc1f72e15497e59b"
+      },
+      {
+        "step": "registerJob",
+        "txHash": "0x89b68b6918afa47581bb7c8494e9c002716d5b66d9ee91634784367550f886b1",
+        "block": 119982049,
+        "status": "success",
+        "gasUsed": 118117,
+        "sponsored": true,
+        "explorer": "https://bscscan.com/tx/0x89b68b6918afa47581bb7c8494e9c002716d5b66d9ee91634784367550f886b1"
+      },
+      {
+        "step": "setBudget",
+        "txHash": "0xf892c636e4782eba6579a73c3f4222fda961d419457f2124269301407369a69b",
+        "block": 119982054,
+        "status": "success",
+        "gasUsed": 96162,
+        "sponsored": true,
+        "explorer": "https://bscscan.com/tx/0xf892c636e4782eba6579a73c3f4222fda961d419457f2124269301407369a69b"
+      },
+      {
+        "step": "approve",
+        "txHash": "0xc32df29096dbf70e5a74ba7cde09178da5be43a77cee8ed1d3268b640bd65080",
+        "block": 119982060,
+        "status": "success",
+        "gasUsed": 60245,
+        "sponsored": true,
+        "explorer": "https://bscscan.com/tx/0xc32df29096dbf70e5a74ba7cde09178da5be43a77cee8ed1d3268b640bd65080"
+      },
+      {
+        "step": "fund",
+        "txHash": "0xa45629bc3e8ab1ba36a67d35b4b40432148a2626d37177f72d3c1a611fc071fd",
+        "block": 119982067,
+        "status": "success",
+        "gasUsed": 102529,
+        "sponsored": true,
+        "explorer": "https://bscscan.com/tx/0xa45629bc3e8ab1ba36a67d35b4b40432148a2626d37177f72d3c1a611fc071fd"
+      }
+    ],
+    "disputeWindowSeconds": 604800,
+    "settleAvailableAt": "2026-09-11T20:24:15.000Z",
+    "contracts": {
+      "commerce": "0xea4daa3100a767e86fded867729ae7446476eba6",
+      "router": "0x51895229e12f9876011789b04f8698af06ccd6da",
+      "policy": "0x9c01845705b3078aa2e8cff7520a6376fd766de5",
+      "paymentToken": "0xcE24439F2D9C6a2289F741120FE202248B666666"
+    }
+  },
+  "caveats": [
+    "This chain's dispute window is 7 days. The deliverable is yours now; escrow releases to the agent automatically after that window unless you dispute."
+  ]
+}
