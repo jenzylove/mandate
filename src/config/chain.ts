@@ -7,7 +7,23 @@ import { injected } from "@wagmi/core";
 // UI. Transports use the public RPC by default.
 export const wagmiConfig = createConfig({
   chains: [bsc, bscTestnet],
-  connectors: [injected()],
+  // A BNB Chain marketplace should reach for a BNB wallet first. Binance Wallet
+  // injects itself as window.BinanceChain, which the generic injected connector
+  // does not find, so it is named explicitly and listed ahead of the rest.
+  connectors: [
+    injected({
+      target() {
+        const w = typeof window !== "undefined" ? (window as unknown as Record<string, unknown>) : undefined;
+        const binance = w?.BinanceChain ?? w?.binancew3w;
+        return {
+          id: "binanceWallet",
+          name: "Binance Wallet",
+          provider: binance as never,
+        };
+      },
+    }),
+    injected(),
+  ],
   transports: {
     [bsc.id]: http(),
     [bscTestnet.id]: http(),

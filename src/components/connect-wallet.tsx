@@ -23,8 +23,16 @@ export function ConnectWallet() {
           onClick={async () => {
             setMissing(false);
             reset();
-            const connector = connectors[0];
-            if (!connector || !(await connector.getProvider())) {
+            // Prefer a wallet that is actually installed, Binance first, rather
+            // than always taking the first connector and failing when the user
+            // has a different wallet.
+            let connector = null;
+            for (const candidate of connectors) {
+              try {
+                if (await candidate.getProvider()) { connector = candidate; break; }
+              } catch { /* this wallet is not present */ }
+            }
+            if (!connector) {
               setMissing(true);
               return;
             }

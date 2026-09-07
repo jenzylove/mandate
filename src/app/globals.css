@@ -1634,3 +1634,39 @@ dd {
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+/* Marketplace shelves: one row per category, scrolled sideways, the way a
+   store is browsed. Cards are deliberately smaller here than on the home
+   carousel so a whole category is legible without scrolling the page. */
+.catalog-shelves { display: flex; flex-direction: column; gap: 30px; }
+.catalog-shelf { min-width: 0; }
+.shelf-head {
+  display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px;
+}
+.shelf-head h2 { font-size: 17px; letter-spacing: -0.02em; }
+.shelf-head span {
+  font-size: 9px; color: #a99bb4; background: #f4f0f8;
+  border-radius: 20px; padding: 3px 8px;
+}
+.shelf-track {
+  display: flex; gap: 14px; overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding: 2px 2px 12px; margin: 0 -2px;
+  scrollbar-width: thin; scrollbar-color: #d6c6e2 transparent;
+}
+.shelf-track::-webkit-scrollbar { height: 7px; }
+.shelf-track::-webkit-scrollbar-thumb { background: #ddd2e6; border-radius: 4px; }
+.shelf-track > * {
+  scroll-snap-align: start;
+  flex: 0 0 236px;
+  min-width: 0;
+}
+/* Compact the card itself so a shelf shows several at once. */
+.shelf-track .market-card { padding: 15px; border-radius: 12px; }
+.shelf-track .market-card h3 { font-size: 15px; }
+.shelf-track .market-card p { font-size: 10.5px; line-height: 1.65; }
+.shelf-track .market-card .symbol-art { height: 78px; }
+@media (max-width: 700px) {
+  .shelf-track > * { flex-basis: 202px; }
+  .shelf-head h2 { font-size: 15px; }
+}
