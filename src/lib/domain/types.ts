@@ -38,6 +38,9 @@ export interface Agent {
   id: string;
   name: string;
   description: string;
+  /** The agent's own avatar from its ERC-8004 registration file, when it
+   *  publishes a usable one. Never substituted with a stand-in image. */
+  image?: string;
   owner: string;
   category: Category;
   capabilities: string[];

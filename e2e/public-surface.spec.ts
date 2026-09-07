@@ -59,12 +59,19 @@ test.describe("public surface", () => {
       await page.goto(url);
       const signIn = page.getByRole("button", { name: /sign in/i }).first();
       await expect(signIn, `${url} should offer Sign in`).toBeVisible();
-      // With no wallet installed, Sign in must explain itself rather than hang.
+      // Sign in must respond rather than hang, in either configuration: with
+      // Privy it opens the account dialog, without it explains that no wallet
+      // was found. Both are a response; silence is the failure.
       await signIn.click();
-      await expect(
-        page.locator(".wallet-error"),
-        `${url} Sign in should report that no wallet was found`,
-      ).toBeVisible({ timeout: 15_000 });
+      await expect
+        .poll(
+          async () =>
+            (await page.locator(".wallet-error").count()) > 0 ||
+            (await page.locator("iframe[src*='privy'], #privy-dialog, [id^='privy']").count()) > 0 ||
+            (await page.getByText(/continue with|enter your email|connect a wallet/i).count()) > 0,
+          { timeout: 20_000, message: `${url} Sign in should respond` },
+        )
+        .toBe(true);
     }
   });
 

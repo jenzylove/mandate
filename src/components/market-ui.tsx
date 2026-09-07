@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AgentAvatar } from "./agent-avatar";
 import type { Agent, Outcome, Evidence } from "@/lib/domain/types";
 export const goals = [
   {
@@ -140,30 +141,26 @@ export function OutcomeCard({ outcome: o }: { outcome: Outcome }) {
   );
 }
 export function AgentCard({ agent: a }: { agent: Agent }) {
+  // A marketplace tile: who it is, what it does, what it costs. Everything
+  // longer than a line belongs on the detail page. The whole tile is the link,
+  // so any click anywhere opens the agent.
+  // Capabilities are the agent's own skill ids, so they arrive as slugs like
+  // "grid_viability". Shown as written words; never rewritten into something
+  // the agent did not say.
+  const capability = (a.capabilities[0] ?? a.category).replace(/[-_]+/g, " ").trim();
   return (
     <Link className="agent-card" href={`/agents/${a.id}`}>
       <div className="agent-card-top">
-        <span
-          className={`agent-avatar ${goals.find((g) => g.id === goalForCategory[a.category])?.tone}`}
-        >
-          {a.name[0]}
-        </span>
-        <span className="demo-label">
-          {a.source === "seed" ? "Demo agent" : a.evidence.provenance}
-        </span>
+        <AgentAvatar agent={a} />
+        <div className="agent-card-id">
+          <h3>{a.name}</h3>
+          <p className="eyebrow">{categoryNames[a.category]}</p>
+        </div>
       </div>
-      <p className="eyebrow">{categoryNames[a.category]}</p>
-      <h3>
-        {a.name} <span>↗</span>
-      </h3>
-      <p>{a.description}</p>
-      <div className="agent-protocols">{a.protocols.join(" · ")}</div>
-      <div className="agent-fee">{a.pricing}</div>
-      <div className="card-bottom">
-        <span>
-          Reputation {a.reputation}/100 · {a.evidence.provenance}
-        </span>
-        <span>{a.status}</span>
+      <p className="agent-card-line">{capability}</p>
+      <div className="agent-card-foot">
+        <span className="agent-fee">{a.pricing}</span>
+        <span className={`agent-dot ${a.status}`}>{a.status}</span>
       </div>
     </Link>
   );

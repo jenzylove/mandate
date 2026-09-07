@@ -13,8 +13,8 @@ export default async function AgentsPage() {
         <h1>Specialists for your next move.</h1>
         <p>
           Meet the agents. Explore what they do, where they work, and what they
-          cost. Live listings are read from the onchain registry; seeded examples
-          are labelled.
+          cost. Every listing is a real agent read from the ERC-8004 registry on
+          BNB Chain.
         </p>
         <p className="eyebrow">
           {fresh.label}

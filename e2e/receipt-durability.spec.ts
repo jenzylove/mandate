@@ -1,3 +1,9 @@
+// PRIVY_MODE_NOTE
+// These tests drive wagmi's injected connector directly through a stubbed
+// EIP-1193 provider. When NEXT_PUBLIC_PRIVY_APP_ID is set the Sign in button
+// opens Privy's dialog instead, which a stub cannot satisfy, so the wallet
+// steps are skipped rather than asserted against the wrong front door. Run
+// without the app id to exercise them.
 import { test, expect, type Page } from "@playwright/test";
 
 // Receipts are written to the server filesystem, which on a serverless host is
@@ -48,6 +54,17 @@ async function anyPaidReceipt(page: Page): Promise<ReceiptRow | undefined> {
   return (json.receipts ?? []).find((r) => r.mode === "paid" && r.jobId);
 }
 
+// True when the app is wired to Privy, whose dialog a stubbed EIP-1193 provider
+// cannot satisfy.
+async function privyMode(request: { get: (u: string) => Promise<{ json: () => Promise<unknown> }> }) {
+  try {
+    const res = await request.get("/api/health");
+    return ((await res.json()) as { signIn?: string }).signIn === "privy";
+  } catch {
+    return false;
+  }
+}
+
 test.describe("receipt durability", () => {
   test("a paid receipt is readable with no prior session", async ({ page }) => {
     const receipt = await anyPaidReceipt(page);
@@ -65,7 +82,8 @@ test.describe("receipt durability", () => {
     expect(json.receipt.delivery.hash).toMatch(/^0x[0-9a-f]{64}$/i);
   });
 
-  test("the receipt page renders in a fresh browser session", async ({ browser }) => {
+  test("the receipt page renders in a fresh browser session", async ({ browser, request }) => {
+    test.skip(await privyMode(request), "Privy dialog cannot be driven by a stubbed provider");
     const probe = await browser.newContext();
     const probePage = await probe.newPage();
     const receipt = await anyPaidReceipt(probePage);
@@ -108,7 +126,8 @@ test.describe("receipt durability", () => {
     expect(json.receipt.delivery.content.length).toBeGreaterThan(0);
   });
 
-  test("My Outcomes finds past work for a wallet that has no local state", async ({ browser }) => {
+  test("My Outcomes finds past work for a wallet that has no local state", async ({ browser, request }) => {
+    test.skip(await privyMode(request), "Privy dialog cannot be driven by a stubbed provider");
     const fresh = await browser.newContext();
     const page = await fresh.newPage();
     await injectWallet(page);

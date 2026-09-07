@@ -1,3 +1,9 @@
+// PRIVY_MODE_NOTE
+// These tests drive wagmi's injected connector directly through a stubbed
+// EIP-1193 provider. When NEXT_PUBLIC_PRIVY_APP_ID is set the Sign in button
+// opens Privy's dialog instead, which a stub cannot satisfy, so the wallet
+// steps are skipped rather than asserted against the wrong front door. Run
+// without the app id to exercise them.
 import { test, expect, type Page } from "@playwright/test";
 
 // The journey a first-time visitor actually takes:
@@ -40,6 +46,17 @@ async function injectWallet(page: Page) {
     };
     Object.defineProperty(window, "ethereum", { value: provider, configurable: true, writable: true });
   }, BUYER);
+}
+
+// True when the app is wired to Privy, whose dialog a stubbed EIP-1193 provider
+// cannot satisfy.
+async function privyMode(request: { get: (u: string) => Promise<{ json: () => Promise<unknown> }> }) {
+  try {
+    const res = await request.get("/api/health");
+    return ((await res.json()) as { signIn?: string }).signIn === "privy";
+  } catch {
+    return false;
+  }
 }
 
 test.describe("marketplace journey", () => {
@@ -119,6 +136,7 @@ test.describe("marketplace journey", () => {
     page,
   }) => {
     test.setTimeout(600_000);
+    test.skip(await privyMode(page.request), "Privy dialog cannot be driven by a stubbed provider");
 
     // Pick an agent whose hire can complete right now. Free agents are strongly
     // preferred: a paid hire escrows real value on mainnet, and a test suite
@@ -183,6 +201,7 @@ test.describe("marketplace journey", () => {
   });
 
   test("my outcomes lists receipts for the connected account", async ({ page }) => {
+    test.skip(await privyMode(page.request), "Privy dialog cannot be driven by a stubbed provider");
     await injectWallet(page);
     await page.goto("/my-outcomes");
     await page.getByRole("button", { name: /sign in/i }).first().click();

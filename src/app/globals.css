@@ -1635,38 +1635,106 @@ dd {
   word-break: break-word;
 }
 
-/* Marketplace shelves: one row per category, scrolled sideways, the way a
-   store is browsed. Cards are deliberately smaller here than on the home
-   carousel so a whole category is legible without scrolling the page. */
-.catalog-shelves { display: flex; flex-direction: column; gap: 30px; }
-.catalog-shelf { min-width: 0; }
-.shelf-head {
-  display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px;
+
+/* A marketplace is scanned, not paged through. Many compact tiles, scrolled
+   vertically, in Mandate's own visual language rather than a carousel. */
+.agent-grid-dense {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+  gap: 14px;
 }
-.shelf-head h2 { font-size: 17px; letter-spacing: -0.02em; }
-.shelf-head span {
-  font-size: 9px; color: #a99bb4; background: #f4f0f8;
-  border-radius: 20px; padding: 3px 8px;
+@media (min-width: 1180px) {
+  .agent-grid-dense { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
-.shelf-track {
-  display: flex; gap: 14px; overflow-x: auto;
-  scroll-snap-type: x proximity;
-  padding: 2px 2px 12px; margin: 0 -2px;
-  scrollbar-width: thin; scrollbar-color: #d6c6e2 transparent;
+@media (min-width: 900px) and (max-width: 1179px) {
+  .agent-grid-dense { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
-.shelf-track::-webkit-scrollbar { height: 7px; }
-.shelf-track::-webkit-scrollbar-thumb { background: #ddd2e6; border-radius: 4px; }
-.shelf-track > * {
-  scroll-snap-align: start;
-  flex: 0 0 236px;
-  min-width: 0;
+@media (min-width: 660px) and (max-width: 899px) {
+  .agent-grid-dense { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-/* Compact the card itself so a shelf shows several at once. */
-.shelf-track .market-card { padding: 15px; border-radius: 12px; }
-.shelf-track .market-card h3 { font-size: 15px; }
-.shelf-track .market-card p { font-size: 10.5px; line-height: 1.65; }
-.shelf-track .market-card .symbol-art { height: 78px; }
-@media (max-width: 700px) {
-  .shelf-track > * { flex-basis: 202px; }
-  .shelf-head h2 { font-size: 15px; }
+@media (max-width: 659px) {
+  .agent-grid-dense { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+}
+@media (max-width: 380px) {
+  .agent-grid-dense { grid-template-columns: 1fr; }
+}
+
+/* The tile. Everything on it is one line long; the rest is on the detail page. */
+.agent-grid-dense .agent-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 13px;
+  border-radius: 12px;
+  min-height: 0;
+}
+.agent-card-top { display: flex; align-items: center; gap: 10px; margin: 0; }
+.agent-card-id { min-width: 0; }
+.agent-card-id h3 {
+  font-size: 13px; font-weight: 600; letter-spacing: -0.02em; margin: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.agent-card-id .eyebrow { font-size: 8px; margin-top: 3px; }
+.agent-card-line {
+  font-size: 10.5px; line-height: 1.5; color: #9d90a8; margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; min-height: 31px; text-transform: capitalize;
+}
+.agent-card-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  border-top: 1px solid #f1ecf6; padding-top: 9px; margin-top: auto;
+  font-size: 9px;
+}
+.agent-card-foot .agent-fee { color: #8d72a2; font-weight: 600; }
+.agent-dot { color: #a99bb4; display: flex; align-items: center; gap: 4px; text-transform: capitalize; }
+.agent-dot::before {
+  content: ""; width: 5px; height: 5px; border-radius: 50%; background: #c9bcd4;
+}
+.agent-dot.available::before { background: #6cb98f; }
+.agent-dot.limited::before { background: #d8b467; }
+.agent-dot.offline::before { background: #cf9a92; }
+
+/* The agent's own picture, square and quiet, with the monogram behind it. */
+.agent-grid-dense .agent-avatar,
+.agent-avatar {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.agent-avatar-initial {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+}
+.agent-avatar img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* Sits over the monogram, so a failed image simply is not painted. */
+  background: inherit;
+}
+.agent-grid-dense .agent-avatar { width: 36px; height: 36px; border-radius: 10px; font-size: 15px; }
+.agent-avatar.is-lg { width: 60px; height: 60px; border-radius: 16px; font-size: 26px; }
+
+/* The tile reuses .agent-card, which still carries the old full-size listing
+   rules: a flexed h3 that spreads the name across the card, a 76px minimum on
+   the description, and a rule under the fee. Undo those here rather than
+   editing the original, which the detail and home layouts still use. */
+.agent-grid-dense .agent-card-top {
+  justify-content: flex-start;
+  margin-bottom: 0;
+}
+.agent-grid-dense .agent-card h3 {
+  display: block;
+  font-size: 13px;
+  justify-content: normal;
+}
+.agent-grid-dense .agent-card > p:not(.eyebrow) {
+  min-height: 31px;
+  margin-top: 0;
+  font-size: 10.5px;
+}
+.agent-grid-dense .agent-fee {
+  min-height: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
 }

@@ -91,6 +91,20 @@ function reputationFrom(d: DiscoveredAgent, p: ProbeResult, q?: Quote): number {
   return Math.min(100, score);
 }
 
+// An agent's registration file may carry an image. Only an absolute http(s)
+// URL is usable in a browser: cards in the wild also hold empty strings, IPFS
+// CIDs with no gateway, and data URIs. Anything else is dropped so the card
+// falls back to its monogram rather than rendering a broken image.
+function usableImage(raw: unknown): string | undefined {
+  if (typeof raw !== "string" || !raw.trim()) return undefined;
+  try {
+    const url = new URL(raw.trim());
+    return url.protocol === "https:" || url.protocol === "http:" ? url.toString() : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 async function buildOne(entry: RosterEntry): Promise<LiveAgent | null> {
   let d: DiscoveredAgent | null = null;
   // A flaky RPC or a slow card host must not silently delete supply, so try
@@ -130,6 +144,7 @@ async function buildOne(entry: RosterEntry): Promise<LiveAgent | null> {
   return {
     id: `live-${entry.agentId}`,
     name: d.name ?? `Agent #${entry.agentId}`,
+    image: usableImage(d.card.image),
     description:
       d.description ??
       "Registered on the ERC-8004 identity registry on BNB Smart Chain.",

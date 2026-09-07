@@ -20,11 +20,10 @@ function order(agents: Agent[]): Agent[] {
 
 export class LiveAdapter implements DataAdapter {
   async listAgents(): Promise<Agent[]> {
-    const live = await liveAgents();
-    const seeded = await seed.listAgents();
-    // Keep a seeded example only where live supply is missing for its category.
-    const covered = new Set(live.map((a) => a.category));
-    return order([...live, ...seeded.filter((s) => !covered.has(s.category))]);
+    // Real agents only. A seeded listing cannot be inspected, hired or settled,
+    // so padding a thin category with one is a promise the marketplace cannot
+    // keep. An empty category is the honest answer.
+    return order(await liveAgents());
   }
 
   async getAgent(id: string): Promise<Agent | null> {

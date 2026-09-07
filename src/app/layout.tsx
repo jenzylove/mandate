@@ -22,7 +22,7 @@ export default function RootLayout({
             <div className="shell">
               <span>mandate. · Your money. Your mandate.</span>
               <span>
-                Demo marketplace on BNB Chain · Seeded evidence, not live
+                Marketplace on BNB Chain · Evidence read from each agent, not live
                 performance.
               </span>
             </div>

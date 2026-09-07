@@ -55,11 +55,6 @@ export function Catalog({
   const liveCount = kind === "agents" ? as.filter((a) => a.source !== "seed").length : 0;
   const seededCount = kind === "agents" ? as.length - liveCount : 0;
 
-  // Group into shelves in the order the categories are declared, so the page
-  // reads the same way every time rather than following whatever the data did.
-  const shelves = Object.keys(categoryNames)
-    .map((c) => [c, as.filter((a) => a.category === c)] as const)
-    .filter(([, rows]) => rows.length > 0);
   return (
     <div className="catalog">
       <div className="catalog-toolbar">
@@ -94,33 +89,11 @@ export function Catalog({
         {count} {kind} to explore{liveCount > 0 ? ` · ${liveCount} live onchain` : ""}{seededCount > 0 ? ` · ${seededCount} seeded` : ""}
       </p>
       {count ? (
-        kind === "agents" ? (
-          // A marketplace is browsed the way a store is: a shelf per category,
-          // scrolled sideways, so the whole catalogue is visible at a glance
-          // instead of four cards filling the screen and the rest below the fold.
-          <div className="catalog-shelves">
-            {shelves.map(([category, rows]) => (
-              <section className="catalog-shelf" key={category}>
-                <div className="shelf-head">
-                  <h2>{categoryNames[category as keyof typeof categoryNames] ?? category}</h2>
-                  <span>{rows.length}</span>
-                </div>
-                <div
-                  className="shelf-track"
-                  tabIndex={0}
-                  role="region"
-                  aria-label={`${categoryNames[category as keyof typeof categoryNames] ?? category}, scroll sideways`}
-                >
-                  {rows.map((a) => <AgentCard key={a.id} agent={a} />)}
-                </div>
-              </section>
-            ))}
-          </div>
-        ) : (
-          <div className="cards-grid">
-            {os.map((o) => <OutcomeCard key={o.id} outcome={o} />)}
-          </div>
-        )
+        <div className={kind === "agents" ? "agent-grid-dense" : "cards-grid"}>
+          {kind === "outcomes"
+            ? os.map((o) => <OutcomeCard key={o.id} outcome={o} />)
+            : as.map((a) => <AgentCard key={a.id} agent={a} />)}
+        </div>
       ) : (
         <div className="empty-state">
           <h2>No matches just yet.</h2>
