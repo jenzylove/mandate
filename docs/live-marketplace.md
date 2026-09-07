@@ -151,3 +151,29 @@ local storage, and a wallet whose device has never been used before.
 The journey suite prefers a free agent, because a paid hire escrows real value
 on mainnet and a test run must not cost anything. Set `E2E_ALLOW_PAID=1` to
 deliberately exercise a paid hire.
+
+## Sign in: email, Google or a wallet
+
+Sign in is account identity. With `NEXT_PUBLIC_PRIVY_APP_ID` set, Privy accepts
+an email address or a Google account beside a wallet, and mints an embedded
+wallet for anyone who arrives without one. That address is the account:
+receipts file against it exactly as they do for a self-custody wallet, so
+nothing downstream needs a notion of "signed in but walletless".
+
+Privy's own wagmi bridge feeds the resulting address to the same `useAccount()`
+the rest of the app already reads, so no page or hook changed.
+
+Without the app id the app falls back to plain wagmi and wallet-only sign in.
+A missing key degrades to the previous behaviour rather than a broken dialog,
+which is why the whole E2E suite passes either way.
+
+Binance Wallet is named explicitly and listed first, because it injects as
+`window.BinanceChain` and the generic injected connector never finds it.
+
+### One build note
+
+`@wagmi/connectors` imports optional peers for wallets this app does not offer
+(Coinbase x402, Farcaster, Solana, React Native storage). They are not
+installed, so `next.config.mjs` replaces those requests with an empty module.
+Ignoring them instead leaves a "Cannot find module" throw at prerender time,
+which is how it first showed up.
