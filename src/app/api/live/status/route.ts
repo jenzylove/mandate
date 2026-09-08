@@ -10,6 +10,7 @@ export async function GET() {
     ok: true,
     refreshedAt: snap.refreshedAt,
     network: snap.network,
+    funnel: snap.funnel ?? null,
     total: snap.agents.length,
     available: snap.agents.filter((a) => a.status === "available").length,
     agents: snap.agents.map((a) => ({

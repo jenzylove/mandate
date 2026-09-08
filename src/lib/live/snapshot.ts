@@ -21,6 +21,9 @@ export interface Snapshot {
   refreshedAt: string;
   network: string;
   agents: LiveAgent[];
+  /** The qualification funnel that produced this snapshot, when written by
+   *  `npm run refresh:market`. Evidence, not decoration. */
+  funnel?: Record<string, unknown>;
 }
 
 let memo: { at: number; snap: Snapshot } | null = null;

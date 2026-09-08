@@ -1,0 +1,86 @@
+[
+  {
+    "agentId": "293902",
+    "name": "mandaterebalance-agent",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "agent card serves 2 skills"
+  },
+  {
+    "agentId": "303779",
+    "name": "marketplace-operated-grid-planner",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "agent card serves 3 skills"
+  },
+  {
+    "agentId": "269224",
+    "name": "Grid Trader",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "agent card serves 3 skills"
+  },
+  {
+    "agentId": "269228",
+    "name": "Health Factor Monitor",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "agent card serves 3 skills"
+  },
+  {
+    "agentId": "331751",
+    "name": "Assay Grid",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "HTTP 405: "
+  },
+  {
+    "agentId": "338477",
+    "name": "PancakeSwap Grid Trader",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "JSON-RPC -32601"
+  },
+  {
+    "agentId": "292939",
+    "name": "bnb-grid-trader-test.agent",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "HTTP 404: default backend - 404"
+  },
+  {
+    "agentId": "331794",
+    "name": "SMEAI Reference Grid Viability Checker",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "answered, serves grid_viability"
+  },
+  {
+    "agentId": "172801",
+    "name": "DeFiBot.agent",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}"
+  },
+  {
+    "agentId": "331753",
+    "name": "Assay Health",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "HTTP 405: "
+  },
+  {
+    "agentId": "292058",
+    "name": "bnb-lending-guardian.agent",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "HTTP 404: default backend - 404"
+  },
+  {
+    "agentId": "331625",
+    "name": "SMEAI Reference Health Factor Monitor",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "answered, serves health_factor"
+  },
+  {
+    "agentId": "179543",
+    "name": "RiskOracle.agent",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}"
+  },
+  {
+    "agentId": "331752",
+    "name": "Assay Yield",
+    "reason": "no-quote-and-no-free-output",
+    "detail": "HTTP 405: "
+  }
+]

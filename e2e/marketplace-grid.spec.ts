@@ -63,9 +63,15 @@ test.describe("agents marketplace", () => {
   test("shows a scannable catalogue rather than a handful of large cards", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/agents");
+    // The real invariant is that /agents shows the whole qualified snapshot,
+    // not some arbitrary slice of it. Asserting a fixed number would just
+    // encode whatever the market happened to hold on the day.
+    const status = await page.request.get("/api/live/status");
+    const { total: qualified } = (await status.json()) as { total: number };
     const cards = page.locator(".agent-card");
     const total = await cards.count();
-    expect(total, "the marketplace should list its whole live roster").toBeGreaterThanOrEqual(20);
+    expect(total, "/agents must render every qualified agent").toBe(qualified);
+    expect(qualified, "the market should not be empty").toBeGreaterThan(0);
 
     // A tile is a tile, not a panel: it must be a small fraction of the viewport.
     const box = await cards.first().boundingBox();

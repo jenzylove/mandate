@@ -18,6 +18,8 @@ export interface LiveAgent extends Agent {
     route: Route | null;
     serviceId?: string;
     probe: ProbeResult;
+    /** What Mandate proved: a paid quote, a tool it ran, or neither. */
+    hireability?: "paid" | "free" | "unproven";
     quote?: {
       accepted: boolean;
       priceRaw?: string;
@@ -133,11 +135,20 @@ async function buildOne(entry: RosterEntry): Promise<LiveAgent | null> {
   }
 
   const n = net(DISCOVERY_NETWORK);
-  const pricing = q?.accepted
-    ? q.priceDisplay ?? (q.priceRaw ? `${Number(q.priceRaw) / 1e18} ${q.currency ?? "U"}` : "Quoted on request")
-    : p.ok
-      ? "Quoted on request"
-      : "Unavailable";
+  // Price says what Mandate actually established, and nothing more.
+  //
+  // "Quoted on request" used to appear whenever an endpoint answered, which
+  // promised a negotiation we had never had: the agent may quote nothing, or
+  // refuse without credentials. An answered socket is not a price.
+  const priced = Boolean(q?.accepted && q.provider && BigInt(q.priceRaw ?? "0") > 0n);
+  const free = Boolean(q?.accepted && q.priceRaw === "0");
+  const pricing = priced
+    ? q!.priceDisplay ?? `${Number(q!.priceRaw) / 1e18} ${q!.currency ?? "U"}`
+    : free
+      ? "Free"
+      : p.ok
+        ? "No price quoted"
+        : "Unavailable";
 
   const discovered = !ROSTER.some((r) => r.agentId === entry.agentId);
 

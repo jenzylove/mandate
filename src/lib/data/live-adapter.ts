@@ -11,11 +11,52 @@ import { liveAgents, resolveAgentOnDemand } from "@/lib/live/snapshot";
 
 const seed = new JsonAdapter();
 
+/**
+ * Rank the catalogue, then interleave it by operator.
+ *
+ * Sorting on quality alone put five services from one operator at the top,
+ * which reads as a shopfront rather than a market. Every agent is kept and the
+ * best still lead; the round robin only decides who is adjacent to whom.
+ */
 function order(agents: Agent[]): Agent[] {
+  // Proof of hireability dominates the order. An agent Mandate can actually pay
+  // or run belongs above one that only answered, whatever else it has going for
+  // it, because the first can be bought and the second cannot.
+  const proven = (a: Agent) =>
+    a.pricing !== "No price quoted" && a.pricing !== "Unavailable" && a.pricing !== "";
+
   const rank = (a: Agent) =>
-    (a.source === "seed" ? 100 : 0) +
-    (a.status === "available" ? 0 : a.status === "limited" ? 10 : 20);
-  return [...agents].sort((a, b) => rank(a) - rank(b) || b.reputation - a.reputation);
+    (proven(a) ? 1000 : 0) +
+    (a.status === "available" ? 200 : a.status === "limited" ? 80 : 0) +
+    (a.image ? 20 : 0) +
+    a.reputation;
+
+  const spread = (tier: Agent[]): Agent[] => {
+    const byOperator = new Map<string, Agent[]>();
+    for (const a of [...tier].sort((x, y) => rank(y) - rank(x))) {
+      const op = (a.owner || a.id).toLowerCase();
+      const list = byOperator.get(op) ?? [];
+      list.push(a);
+      byOperator.set(op, list);
+    }
+    const queues = [...byOperator.values()];
+    const out: Agent[] = [];
+    for (let round = 0; out.length < tier.length; round++) {
+      let moved = false;
+      for (const q of queues) {
+        if (q[round]) {
+          out.push(q[round]);
+          moved = true;
+        }
+      }
+      if (!moved) break;
+    }
+    return out;
+  };
+
+  // Hireable inventory first, spread across its operators; then the rest,
+  // spread across theirs. Variety never promotes an agent past a tier.
+  return [...spread(agents.filter(proven)), ...spread(agents.filter((a) => !proven(a)))];
 }
 
 export class LiveAdapter implements DataAdapter {

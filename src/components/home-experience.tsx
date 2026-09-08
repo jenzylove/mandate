@@ -33,9 +33,40 @@ function OutcomeProduct({ outcome }: { outcome: Outcome }) {
     </article>
   );
 }
+/**
+ * One service per operator first, spread across categories, then fill.
+ *
+ * Every agent stays eligible; this only decides who is seen first.
+ */
+function previewSelection(agents: Agent[], size: number): Agent[] {
+  const seenOperator = new Set<string>();
+  const seenCategory = new Set<string>();
+  const first: Agent[] = [];
+  const rest: Agent[] = [];
+
+  for (const a of agents) {
+    const op = (a.owner || a.id).toLowerCase();
+    if (!seenOperator.has(op) && !seenCategory.has(a.category)) {
+      seenOperator.add(op);
+      seenCategory.add(a.category);
+      first.push(a);
+    } else rest.push(a);
+  }
+  // Then any operator not yet shown, before a second service from one already on.
+  const second = rest.filter((a) => !seenOperator.has((a.owner || a.id).toLowerCase()));
+  for (const a of second) seenOperator.add((a.owner || a.id).toLowerCase());
+  const filler = rest.filter((a) => !second.includes(a));
+
+  return [...first, ...second, ...filler].slice(0, size);
+}
+
 export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agents: Agent[] }) {
   const liveAgents = agents.filter((agent) => agent.source !== "seed");
-  const previewAgents = liveAgents.slice(0, 10);
+  // A preview of the market, not the first ten rows of it. Taking the head of
+  // the list showed whichever operator ranked highest five times over; this
+  // leads with one service per operator, spread across categories, so the first
+  // impression is the breadth of the marketplace. The full catalogue is /agents.
+  const previewAgents = previewSelection(liveAgents, 10);
   const featured = ["protect-and-earn", "stablecoin-yield"].map((id) => outcomes.find((outcome) => outcome.id === id)).filter(Boolean) as Outcome[];
   return (
     <main className="mh-home mh-wrap">
