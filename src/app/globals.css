@@ -1738,3 +1738,9 @@ dd {
   border-bottom: 0;
   padding-bottom: 0;
 }
+
+/* The homepage uses the same dense, vertically browsed live-agent tiles as the
+   full marketplace, with a little breathing room from the section heading. */
+.mh-agent-preview {
+  margin-top: 4px;
+}

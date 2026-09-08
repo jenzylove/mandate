@@ -29,11 +29,12 @@ export const privyConfig: PrivyClientConfig = {
     theme: "light",
     accentColor: "#6850bb",
     walletList: [
-      // The chain's own wallet first, then the usual suspects.
-      "detected_wallets",
+      // Explicit BNB-first choices, then any other injected EVM wallet and a
+      // broad WalletConnect fallback. Rabby is covered by those fallbacks.
+      "binance",
       "metamask",
+      "detected_ethereum_wallets",
       "wallet_connect",
-      "coinbase_wallet",
     ],
     showWalletLoginFirst: true,
   },

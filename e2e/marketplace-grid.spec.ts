@@ -5,6 +5,34 @@ import { test, expect } from "@playwright/test";
 // layout cannot quietly regress into something that needs sideways scrolling.
 
 test.describe("agents marketplace", () => {
+  test("homepage previews the live marketplace as compact linked tiles", async ({ page }) => {
+    for (const [label, width, height] of [
+      ["desktop", 1440, 900],
+      ["mobile", 390, 844],
+    ] as const) {
+      await page.setViewportSize({ width, height });
+      await page.goto("/");
+
+      const preview = page.getByLabel("Live agent marketplace preview");
+      const cards = preview.locator(".agent-card");
+      await expect(cards.first()).toBeVisible();
+      await expect(page.getByRole("link", { name: /view all agents/i })).toBeVisible();
+      await expect(page.getByRole("button", { name: /previous agents|next agents/i })).toHaveCount(0);
+      await expect(page.getByText(/swipe or scroll|seeded inventory|demo agents/i)).toHaveCount(0);
+
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      );
+      expect(overflow, `${label} homepage must not scroll horizontally`).toBeLessThanOrEqual(1);
+
+      const href = await cards.first().getAttribute("href");
+      expect(href).toMatch(/^\/agents\//);
+      await cards.first().click();
+      await expect(page).toHaveURL(new RegExp(href!.replace(/\//g, "\\/")));
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    }
+  });
+
   test("scrolls vertically, never sideways, at every width", async ({ page }) => {
     for (const [label, width, height, minPerRow] of [
       ["desktop", 1440, 900, 4],
