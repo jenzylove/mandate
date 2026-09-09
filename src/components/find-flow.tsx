@@ -11,6 +11,7 @@ import type {
 } from "@/lib/domain/types";
 import { recommend } from "@/lib/engine/recommend";
 import { goals } from "./market-ui";
+const matchLabel = (score: number) => score >= 75 ? "Strong match" : score >= 55 ? "Good match" : "Partial match";
 const steps = ["goal", "context", "risk", "control", "recommendations"];
 const labels = [
   "Your goal",
@@ -289,9 +290,8 @@ export function FindFlow({
               </span>
             </div>
             <div className="notice">
-              Demo recommendations, based on seeded agents and evidence. Fit
-              scores indicate compatibility, not expected returns or safety
-              guarantees.
+              Matches are selected from the current marketplace catalogue and
+              only include agents that currently pass Mandate&apos;s activation gate.
               {goal === "protect"
                 ? " The current catalog offers protection paired with yield; review both roles before choosing."
                 : ""}
@@ -301,13 +301,12 @@ export function FindFlow({
                 {recs.map((r) => (
                   <section className="panel" key={r.id}>
                     <p className="eyebrow">
-                      {r.mode === "safe" ? "Safety-leaning" : r.mode} setup ·
-                      Demo
+                      {r.mode === "safe" ? "Safety-leaning" : r.mode} setup
                     </p>
                     <h2>{outcomes.find((o) => o.id === r.outcomeId)?.name}</h2>
                     <div className="fit-score">
-                      {r.fitScore}
-                      <small> / 100 fit</small>
+                      {matchLabel(r.fitScore)}
+                      <small> compatibility</small>
                     </div>
                     {r.agents.map((a) => (
                       <div className="role-row" key={a.agentId}>
@@ -320,11 +319,11 @@ export function FindFlow({
                     <details className="reason-list">
                       <summary>Why this matches</summary>
                       {r.reasons.map((reason) => (
-                        <p key={reason}>✓ {reason} · seeded assessment</p>
+                        <p key={reason}>✓ {reason}</p>
                       ))}
                       <p>
-                        Risk is inferred from agent category; it is not an
-                        audited risk rating.
+                        Compatibility uses the selected asset, protocol, risk,
+                        control mode, current availability, and published agent evidence.
                       </p>
                     </details>
                     <Link

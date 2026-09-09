@@ -8,7 +8,7 @@ const adapter = new JsonAdapter();
 
 async function ctx(id: string) {
   const outcome = await adapter.getOutcome(id);
-  const agents = await adapter.listAgents();
+  const agents = (await adapter.listAgents()).map((agent) => ({ ...agent, source: "test-live", hireable: true }));
   if (!outcome) throw new Error(`missing outcome ${id}`);
   return { outcome, agents };
 }

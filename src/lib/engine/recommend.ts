@@ -7,6 +7,7 @@ import type {
   Category,
 } from "@/lib/domain/types";
 import { computeFit, agentRiskBand } from "@/lib/engine/scoring";
+import { compatibleAgents } from "@/lib/engine/matching";
 
 // PRD §22 pipeline, step by step and inspectable:
 //   goal -> required category -> protocol/asset compat -> risk filter
@@ -27,27 +28,6 @@ function requiredCategories(outcome: Outcome): Category[] {
 }
 
 // Filter the pool to viable candidates for a single role/category.
-function candidatesForCategory(
-  agents: Agent[],
-  category: Category,
-  q: OutcomeQuery,
-): Agent[] {
-  return agents
-    .filter((a) => a.category === category)
-    .filter((a) => a.status !== "offline") // availability gate
-    .filter((a) =>
-      q.protocol
-        ? a.protocols.some((p) => p.toLowerCase() === q.protocol!.toLowerCase())
-        : true,
-    )
-    .filter((a) =>
-      q.asset
-        ? a.assets.some((x) => x.toLowerCase() === q.asset!.toLowerCase())
-        : true,
-    )
-    .filter((a) => a.supportedControlModes.includes(q.control)); // PRD §4/step4
-}
-
 // Rank candidates by Fit for the given query.
 function rankByFit(agents: Agent[], q: OutcomeQuery): Agent[] {
   return [...agents].sort(
@@ -91,7 +71,7 @@ export function recommend(input: EngineInput): Recommendation[] {
 
     for (const role of outcome.requiredRoles) {
       const ranked = rankByFit(
-        candidatesForCategory(agents, role.category, query),
+        compatibleAgents(agents, outcome, query, role),
         query,
       );
       const pick = pickForMode(ranked, mode);

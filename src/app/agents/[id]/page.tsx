@@ -13,31 +13,12 @@ import {
 
 export const dynamic = "force-dynamic";
 
-const capabilityCopy: Record<string, { title: string; detail: string }> = {
-  explain_strategy: {
-    title: "Explain strategy",
-    detail: "Explains the strategy, assumptions, and constraints behind its recommendation.",
-  },
-  list_agents: {
-    title: "List available agents",
-    detail: "Returns the services or specialist agents currently exposed by this provider.",
-  },
-  get_hire_link: {
-    title: "Provide a hire route",
-    detail: "Returns the provider's current route for requesting or hiring a service; it does not itself prove a paid quote.",
-  },
+const productCapabilities: Record<string, string[]> = {
+  "health-factor-monitoring": ["Monitors lending-position health factor and liquidation distance."],
+  rebalancing: ["Builds portfolio rebalance plans for supported assets and protocols."],
+  "yield-optimization": ["Compares supported yield markets and proposes bounded allocations."],
+  "grid-trading": ["Creates bounded grid strategies with explicit price and risk limits."],
 };
-
-function capabilityInfo(raw: string, description: string) {
-  const normalized = raw.replaceAll("-", "_").trim().toLowerCase();
-  const known = capabilityCopy[normalized];
-  if (known) return known;
-  const title = raw.replace(/[-_]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-  return {
-    title,
-    detail: `The agent advertises this capability for its stated service: ${description}`,
-  };
-}
 
 export default async function AgentDetail({
   params,
@@ -52,14 +33,10 @@ export default async function AgentDetail({
     SETTLEMENT_NETWORK === "bsc-testnet" ? "BNB Smart Chain testnet" : "BNB Smart Chain";
   const statusLabel =
     a.status === "available"
-      ? "Answering now"
+      ? "Available now"
       : a.status === "limited"
-        ? "Reachable, limited"
-        : "Not answering";
-  const confirmed = new Set([
-    ...(live?.live.probe.skills ?? []),
-    ...(live?.live.probe.tools ?? []),
-  ].map((skill) => skill.toLowerCase()));
+        ? "Registered"
+        : "Currently unavailable";
   const priceLabel = a.pricing === "Free"
     ? "Free tool confirmed"
     : a.pricing === "Price not verified" || a.pricing === "No price quoted"
@@ -84,14 +61,10 @@ export default async function AgentDetail({
             <SymbolArt goal={goalForCategory[a.category]} large />
           </div>
           <section className="panel">
-            <h2>What this agent can do</h2>
-            {a.capabilities.map((c) => (
-              <div className="role-row" key={c}>
-                <strong>{capabilityInfo(c, a.description).title}</strong>
-                <p>{capabilityInfo(c, a.description).detail}</p>
-                <small className={confirmed.has(c.toLowerCase()) ? "capability-confirmed" : "capability-advertised"}>
-                  {confirmed.has(c.toLowerCase()) ? "Confirmed by latest endpoint probe" : "Advertised by the agent; not independently callable in the latest probe"}
-                </small>
+            <h2>Capabilities</h2>
+            {(productCapabilities[a.category] ?? [a.description]).map((capability) => (
+              <div className="role-row" key={capability}>
+                <p>{capability}</p>
               </div>
             ))}
             <p>

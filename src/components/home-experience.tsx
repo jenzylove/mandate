@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { AgentCard } from "./market-ui";
+import { AgentCard, GoalGlyph } from "./market-ui";
 import type { Agent, Outcome } from "@/lib/domain/types";
 
 const goalCopy = [
@@ -12,12 +12,12 @@ const goalCopy = [
   ["✳", "Do a little of both", "combine"],
 ] as const;
 function OutcomeProduct({ outcome }: { outcome: Outcome }) {
-  const icon = goalCopy.find((goal) => goal[2] === outcome.goalType)?.[0] ?? "✳";
+  const goalId = goalCopy.find((goal) => goal[2] === outcome.goalType)?.[2] ?? "combine";
   return (
     <article className="mh-outcome-card">
       <div className="mh-card-head">
-        <span className={`mh-outcome-icon ${outcome.goalType}`}>{icon}</span>
-        <span className="mh-badge">{outcome.evidence.provenance} evidence</span>
+        <span className={`mh-outcome-icon ${outcome.goalType}`}><GoalGlyph goal={goalId} size={25} /></span>
+        <span className="mh-badge">{outcome.requiredRoles.length} specialist {outcome.requiredRoles.length === 1 ? "role" : "roles"}</span>
       </div>
       <h3>{outcome.name}</h3>
       <p>{outcome.description}</p>
@@ -68,7 +68,7 @@ export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agen
   // leads with one service per operator, spread across categories, so the first
   // impression is the breadth of the marketplace. The full catalogue is /agents.
   const previewAgents = previewSelection(liveAgents, 12);
-  const featured = ["protect-and-earn", "stablecoin-yield"].map((id) => outcomes.find((outcome) => outcome.id === id)).filter(Boolean) as Outcome[];
+  const featured = outcomes;
   return (
     <main className="mh-home mh-wrap">
       <section className="mh-hero">
@@ -96,13 +96,12 @@ export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agen
 
       <section className="mh-section" id="marketplace">
         <div className="mh-section-title"><h2>What do you want your money to do?</h2><span>Start with you.</span></div>
-        <div className="mh-goals">{goalCopy.map(([icon, label, id]) => <Link key={id} className="mh-goal" href={`/outcomes?goal=${id}`}><span>{icon}</span><b>{label}</b></Link>)}</div>
+        <div className="mh-goals">{goalCopy.map(([, label, id]) => <Link key={id} className="mh-goal" href={`/outcomes?goal=${id}`}><span><GoalGlyph goal={id} size={28} /></span><b>{label}</b></Link>)}</div>
       </section>
 
       <section className="mh-section">
         <div className="mh-section-title"><div><small>A CLEAR GOAL. THE RIGHT TEAM.</small><h2>Outcomes worth exploring.</h2></div><Link href="/outcomes">All outcomes ↗</Link></div>
         <div className="mh-outcomes">{featured.map((outcome) => <OutcomeProduct key={outcome.id} outcome={outcome} />)}</div>
-        <div className="mh-more-outcomes"><span>More ways forward</span><Link href="/outcomes/stay-in-range">≋ Stay In Range <b>↗</b></Link><Link href="/outcomes/trade-with-guardrails">⌁ Trade With Guardrails <b>↗</b></Link></div>
       </section>
 
       <section className="mh-section mh-agent-section" id="agents">

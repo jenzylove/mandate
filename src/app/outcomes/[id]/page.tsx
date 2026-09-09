@@ -46,8 +46,8 @@ export default async function OutcomeDetail({
           <EvidencePanel evidence={o.evidence} />
         </div>
         <aside className="panel detail-side">
-          <p className="eyebrow">OUTCOME OVERVIEW · DEMO</p>
-          <h3>Make it fit your life.</h3>
+          <p className="eyebrow">OUTCOME OVERVIEW</p>
+          <h3>Shape the setup.</h3>
           <dl>
             <div>
               <dt>Risk preference</dt>
@@ -77,7 +77,7 @@ export default async function OutcomeDetail({
           </Link>
           <p>
             Browse and compare without a wallet. Connect only when you want to
-            save your setup. Live execution is not available yet.
+            save a setup or activate a currently hireable agent.
           </p>
         </aside>
       </div>

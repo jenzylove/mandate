@@ -102,7 +102,7 @@ export function SaveSetup({ setup }: { setup: SavedSetup }) {
                 }
               }}
             >
-              Save demo setup
+              Save draft
             </button>
           )}
         </div>
@@ -141,7 +141,7 @@ export function MyActivity({ id }: { id?: string }) {
       {id ? (
         selected ? (
           <section className="panel">
-            <p className="eyebrow">SAVED DEMO SETUP · NOT ACTIVE</p>
+            <p className="eyebrow">SAVED DRAFT · NOT ACTIVE</p>
             <h2>{selected.name}</h2>
             <div className="review-summary">
               <span>{selected.risk} risk</span>
@@ -187,7 +187,7 @@ export function MyActivity({ id }: { id?: string }) {
                   href={`/my-outcomes/${encodeURIComponent(s.id)}`}
                 >
                   <div>
-                    <p className="eyebrow">SAVED DRAFT · DEMO</p>
+                    <p className="eyebrow">SAVED DRAFT · NOT ACTIVE</p>
                     <h3>{s.name}</h3>
                     <p>
                       {s.agentIds.length} agents · {s.risk} risk · {s.control}

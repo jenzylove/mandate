@@ -1756,6 +1756,14 @@ dd {
   color: #a092ad;
 }
 .mh-agent-browse a { color: var(--purple); font-weight: 600; }
+.mh-outcomes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.mh-outcome-icon { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 15px; background: #eee7f8; color: #8d75b7; }
+.mh-outcome-icon.earn { background: #f6efd8; color: #ae9456; }
+.mh-outcome-icon.trade { background: #ece7f3; color: #9b80bb; }
+.mh-outcome-icon.manage-liquidity { background: #e9e9f4; color: #8283aa; }
+.mh-outcome-icon.protect, .mh-outcome-icon.combine { background: #eee7f8; color: #8d75b7; }
+.mh-goal > span { display: grid; place-items: center; }
+@media (max-width:700px) { .mh-outcomes { grid-template-columns: 1fr; gap: 15px; } }
 .role-row strong { display: block; font-size: 13px; color: #5f477b; text-transform: capitalize; }
 .role-row small.capability-confirmed,
 .role-row small.capability-advertised { display: block; margin-top: 7px; font-size: 9px; }

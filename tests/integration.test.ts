@@ -6,7 +6,7 @@ import type { OutcomeQuery } from "@/lib/domain/types";
 describe("adapter + engine integration", () => {
   it("produces renderable recommendations for the flagship outcome", async () => {
     const outcome = await data.getOutcome("protect-and-earn");
-    const agents = await data.listAgents();
+    const agents = (await data.listAgents()).map((agent) => ({ ...agent, source: "test-live", hireable: true }));
     expect(outcome).not.toBeNull();
     const q: OutcomeQuery = {
       goalType: "combine",

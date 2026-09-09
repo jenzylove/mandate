@@ -6,6 +6,7 @@ import { ActivateAgent } from "@/components/activate";
 import { liveAgents } from "@/lib/live/snapshot";
 import { SETTLEMENT_NETWORK } from "@/lib/live/chain";
 import type { OutcomeQuery, RiskLevel, ControlMode } from "@/lib/domain/types";
+import { recommendationIsReviewable } from "@/lib/engine/matching";
 
 export const dynamic = "force-dynamic";
 
@@ -48,12 +49,11 @@ export default async function CreateOutcome({
     : rec
       ? rec.agents.map((a) => agents.find((x) => x.id === a.agentId)!)
       : [];
+  const recommendationValid = Boolean(
+    outcome && rec && recommendationIsReviewable(agents, outcome, query, rec.agents),
+  );
   const valid =
-    agent ||
-    (outcome &&
-      rec &&
-      (!p.asset || outcome.supportedAssets.includes(p.asset)) &&
-      (!p.protocol || outcome.supportedProtocols.includes(p.protocol)));
+    agent || recommendationValid;
 
   const liveIds = new Set(live.map((a) => a.id));
   const liveSelected = selected.filter((a) => a && liveIds.has(a.id));
@@ -74,7 +74,7 @@ export default async function CreateOutcome({
         <>
           <section className="panel">
             <p className="eyebrow">
-              {liveSelected.length ? "READY TO ACTIVATE" : "DEMO SETUP · NOT ACTIVE"}
+              {liveSelected.length ? "READY TO ACTIVATE" : "SETUP UNAVAILABLE"}
             </p>
             <h2>{outcome?.name ?? agent?.name}</h2>
             <p>{outcome?.description ?? agent?.description}</p>
@@ -96,14 +96,14 @@ export default async function CreateOutcome({
                 <p>
                   {liveIds.has(a.id)
                     ? `${a.pricing} · live onchain agent`
-                    : `Example cost: ${a.pricing} · seeded listing`}
+                    : `${a.pricing} · not currently available for activation`}
                 </p>
               </div>
             ))}
             {seededSelected.length > 0 && (
               <div className="notice">
-                {seededSelected.length} of these listings are seeded examples with no
-                onchain identity. They cannot be activated.
+                {seededSelected.length} selected listing(s) are not in the current
+                marketplace catalogue and cannot be activated.
               </div>
             )}
           </section>
@@ -143,6 +143,14 @@ export default async function CreateOutcome({
               protocol: p.protocol,
             }}
           />
+          <div className="flow-footer">
+            <Link className="text-link" href={`/find/recommendations?goal=${query.goalType}&asset=${query.asset ?? ""}&protocol=${query.protocol ?? ""}&risk=${query.risk}&control=${query.control}&outcome=${outcome?.id ?? ""}`}>
+              ← Back to matches
+            </Link>
+            <Link className="text-link" href={`/find/context?goal=${query.goalType}&outcome=${outcome?.id ?? ""}&asset=${query.asset ?? ""}&protocol=${query.protocol ?? ""}&risk=${query.risk}&control=${query.control}`}>
+              Change preferences
+            </Link>
+          </div>
         </>
       ) : (
         <WalletGate>
