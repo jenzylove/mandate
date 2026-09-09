@@ -13,6 +13,32 @@ import {
 
 export const dynamic = "force-dynamic";
 
+const capabilityCopy: Record<string, { title: string; detail: string }> = {
+  explain_strategy: {
+    title: "Explain strategy",
+    detail: "Explains the strategy, assumptions, and constraints behind its recommendation.",
+  },
+  list_agents: {
+    title: "List available agents",
+    detail: "Returns the services or specialist agents currently exposed by this provider.",
+  },
+  get_hire_link: {
+    title: "Provide a hire route",
+    detail: "Returns the provider's current route for requesting or hiring a service; it does not itself prove a paid quote.",
+  },
+};
+
+function capabilityInfo(raw: string, description: string) {
+  const normalized = raw.replaceAll("-", "_").trim().toLowerCase();
+  const known = capabilityCopy[normalized];
+  if (known) return known;
+  const title = raw.replace(/[-_]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  return {
+    title,
+    detail: `The agent advertises this capability for its stated service: ${description}`,
+  };
+}
+
 export default async function AgentDetail({
   params,
 }: {
@@ -30,6 +56,15 @@ export default async function AgentDetail({
       : a.status === "limited"
         ? "Reachable, limited"
         : "Not answering";
+  const confirmed = new Set([
+    ...(live?.live.probe.skills ?? []),
+    ...(live?.live.probe.tools ?? []),
+  ].map((skill) => skill.toLowerCase()));
+  const priceLabel = a.pricing === "Free"
+    ? "Free tool confirmed"
+    : a.pricing === "Price not verified" || a.pricing === "No price quoted"
+      ? isLive && a.status !== "offline" ? "Quote on hire" : "Unavailable"
+      : isLive ? "Price quoted by the agent" : "Example pricing";
 
   return (
     <main className="shell">
@@ -52,7 +87,11 @@ export default async function AgentDetail({
             <h2>What this agent can do</h2>
             {a.capabilities.map((c) => (
               <div className="role-row" key={c}>
-                {c.replaceAll("-", " ")}
+                <strong>{capabilityInfo(c, a.description).title}</strong>
+                <p>{capabilityInfo(c, a.description).detail}</p>
+                <small className={confirmed.has(c.toLowerCase()) ? "capability-confirmed" : "capability-advertised"}>
+                  {confirmed.has(c.toLowerCase()) ? "Confirmed by latest endpoint probe" : "Advertised by the agent; not independently callable in the latest probe"}
+                </small>
               </div>
             ))}
             <p>
@@ -132,8 +171,8 @@ export default async function AgentDetail({
           <h3>Your specialist, on your terms.</h3>
           <dl>
             <div>
-              <dt>{isLive ? "Price quoted by the agent" : "Example pricing"}</dt>
-              <dd>{a.pricing}</dd>
+              <dt>{priceLabel}</dt>
+              <dd>{a.pricing === "Price not verified" || a.pricing === "No price quoted" ? (isLive && a.status !== "offline" ? "Quote available when you request a hire" : "Not currently available") : a.pricing}</dd>
             </div>
             <div>
               <dt>Supported assets</dt>

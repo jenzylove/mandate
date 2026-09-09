@@ -1756,3 +1756,8 @@ dd {
   color: #a092ad;
 }
 .mh-agent-browse a { color: var(--purple); font-weight: 600; }
+.role-row strong { display: block; font-size: 13px; color: #5f477b; text-transform: capitalize; }
+.role-row small.capability-confirmed,
+.role-row small.capability-advertised { display: block; margin-top: 7px; font-size: 9px; }
+.role-row small.capability-confirmed { color: #3f9b72; }
+.role-row small.capability-advertised { color: #ae94b4; }
