@@ -12,8 +12,9 @@ import { rosterEntry } from "@/lib/live/roster";
 
 const SNAPSHOT = path.join(process.cwd(), "data", "live", "agents.json");
 
-// How old a snapshot may be before a background refresh is kicked off, and how
-// old before the UI stops calling it current.
+// How old a snapshot may be before the UI labels it stale. Catalogue refreshes
+// are deliberately manual/offline; a page request must never replace broad
+// supply with the narrow legacy qualifier.
 export const STALE_AFTER_MS = 15 * 60 * 1000;
 export const VERY_STALE_AFTER_MS = 6 * 60 * 60 * 1000;
 
@@ -109,8 +110,8 @@ export async function freshness(): Promise<Freshness> {
 }
 
 /**
- * Serve what we have immediately, and refresh in the background if it has aged.
- * The caller never waits on the refresh.
+ * Serve the committed snapshot immediately. The expensive broad refresh is
+ * invoked explicitly by `npm run refresh:market`, never by a page request.
  */
 export async function liveAgents(): Promise<LiveAgent[]> {
   const snap = await readSnapshot();
@@ -118,10 +119,6 @@ export async function liveAgents(): Promise<LiveAgent[]> {
     // Nothing on disk at all: block once so the first visitor sees a market
     // rather than an empty page. Every later request is served from the file.
     return (await writeSnapshot()).agents;
-  }
-  const ageMs = Date.now() - new Date(snap.refreshedAt).getTime();
-  if (ageMs > STALE_AFTER_MS && !inflight) {
-    void writeSnapshot().catch(() => undefined);
   }
   return snap.agents;
 }

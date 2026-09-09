@@ -1398,6 +1398,42 @@
     "detail": "none"
   },
   {
+    "agentId": "341669",
+    "name": "Hkn",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341663",
+    "name": "Chaingep0ruq84d7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341660",
+    "name": "Blockgep0sbtek",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341656",
+    "name": "Okray",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341655",
+    "name": "1000000",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341654",
+    "name": "noble",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
     "agentId": "341636",
     "name": "zana joonm",
     "reason": "declares-no-callable-protocol",
@@ -5886,54 +5922,6 @@
     "detail": "Web"
   },
   {
-    "agentId": "340310",
-    "name": "Axiomgentr5g",
-    "reason": "declares-no-callable-protocol",
-    "detail": "Web"
-  },
-  {
-    "agentId": "340306",
-    "name": "Zkg2bx3",
-    "reason": "declares-no-callable-protocol",
-    "detail": "Web"
-  },
-  {
-    "agentId": "340294",
-    "name": "Axiomgevnh4",
-    "reason": "declares-no-callable-protocol",
-    "detail": "Web"
-  },
-  {
-    "agentId": "340291",
-    "name": "Novagen2qoq7s0",
-    "reason": "declares-no-callable-protocol",
-    "detail": "Web"
-  },
-  {
-    "agentId": "340289",
-    "name": "Ethgen2qot2bi1b",
-    "reason": "declares-no-callable-protocol",
-    "detail": "Web"
-  },
-  {
-    "agentId": "340292",
-    "name": "Ethgen2qot2r8rt",
-    "reason": "declares-no-callable-protocol",
-    "detail": "Web"
-  },
-  {
-    "agentId": "340290",
-    "name": "Axiomgen2qotnt1a",
-    "reason": "declares-no-callable-protocol",
-    "detail": "Web"
-  },
-  {
-    "agentId": "340293",
-    "name": "Novagen2qo5wk0",
-    "reason": "declares-no-callable-protocol",
-    "detail": "Web"
-  },
-  {
     "agentId": "204065",
     "name": "404.agent",
     "reason": "not-financially-relevant"
@@ -6036,6 +6024,21 @@
   {
     "agentId": "339893",
     "name": "KeenLend-AI.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341662",
+    "name": "siyaoliu.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341659",
+    "name": "siyao.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341649",
+    "name": "luluc.agent",
     "reason": "not-financially-relevant"
   },
   {
@@ -7059,61 +7062,6 @@
     "reason": "not-financially-relevant"
   },
   {
-    "agentId": "340304",
-    "name": "MetaNeural.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
-    "agentId": "340303",
-    "name": "AtlasMine_IO.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
-    "agentId": "340302",
-    "name": "NodeGate.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
-    "agentId": "340301",
-    "name": "Vector_Prism-Mu.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
-    "agentId": "340300",
-    "name": "Cloud_ify.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
-    "agentId": "340299",
-    "name": "UltraBrainNode.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
-    "agentId": "340298",
-    "name": "Bright-EarnDAO.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
-    "agentId": "340297",
-    "name": "Hash-Warp.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
-    "agentId": "340295",
-    "name": "FrostMineMini.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
-    "agentId": "340288",
-    "name": "Helix_7777.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
-    "agentId": "340287",
-    "name": "Titan_HuntCore.agent",
-    "reason": "not-financially-relevant"
-  },
-  {
     "agentId": "45650",
     "name": null,
     "reason": "registration-unresolved"
@@ -7125,6 +7073,41 @@
   },
   {
     "agentId": "43129",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341667",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341665",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341664",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341661",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341658",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341653",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341651",
     "name": null,
     "reason": "registration-unresolved"
   },
