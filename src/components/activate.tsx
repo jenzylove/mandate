@@ -260,7 +260,9 @@ export function ActivateAgent({ target }: { target: HireTarget }) {
       <p className="eyebrow">ACTIVATE THIS AGENT</p>
       <h2>Hire {target.agentName}.</h2>
       <p>
-        {pre?.mode === "free"
+        {!pre
+          ? "Checking fresh availability before any payment or job creation."
+          : pre.mode === "free"
           ? "This agent publishes its tools free of charge. There is nothing to escrow, so you get the result straight away."
           : `This opens a real ERC-8183 escrow job on ${pre?.networkLabel ?? target.settlementLabel}, against the agent's own payout address. You get the deliverable as soon as it is submitted${windowLabel ? `; escrow releases to the agent after a ${windowLabel} dispute window` : ""}.`}
       </p>
@@ -272,7 +274,7 @@ export function ActivateAgent({ target }: { target: HireTarget }) {
       <div className="page-actions">
         <button
           className="button primary"
-          disabled={phase === "hiring"}
+          disabled={phase === "hiring" || !pre?.canHire}
           onClick={async () => {
             setPhase("hiring");
             setError("");
@@ -302,7 +304,9 @@ export function ActivateAgent({ target }: { target: HireTarget }) {
             ? pre?.mode === "free"
               ? "Asking the agent…"
               : "Opening escrow…"
-            : pre?.mode === "free"
+            : !pre
+              ? "Checking availability…"
+              : pre.mode === "free"
               ? "Get this result"
               : "Activate and escrow"}
         </button>
