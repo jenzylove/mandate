@@ -6,6 +6,15 @@ export const metadata: Metadata = {
   title: "Mandate — Your money. Your mandate.",
   description:
     "Discover BNB agents and outcomes for what you want your money to achieve.",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: ["/icon.svg"],
+  },
+  openGraph: {
+    title: "Mandate — Your money. Your mandate.",
+    description: "Choose an outcome, assemble BNB financial agents, and keep evidence of the work.",
+    type: "website",
+  },
 };
 export default function RootLayout({
   children,
