@@ -1,94 +1,144 @@
 import { NextResponse } from "next/server";
-import { liveAgent } from "@/lib/live/snapshot";
+import type { HireContext } from "@/lib/domain/types";
+import {
+  negotiateHire,
+  type NegotiationResult,
+} from "@/lib/commerce/negotiate";
 import { settlementFor, escrowAddress } from "@/lib/settlement/erc8183";
-import { NETWORKS, type NetworkName } from "@/lib/live/chain";
-import { rosterEntry } from "@/lib/live/roster";
 
 export const dynamic = "force-dynamic";
 
-const networkForChainId = (id?: number): NetworkName | null => {
-  const hit = (Object.entries(NETWORKS) as [NetworkName, { chainId: number }][]).find(
-    ([, n]) => n.chainId === id,
-  );
-  return hit?.[0] ?? null;
-};
+function quoteView(result: NegotiationResult) {
+  const q = result.quote;
+  if (!q) return undefined;
+  return {
+    accepted: q.accepted,
+    provider: result.provider ?? q.provider,
+    priceRaw: q.priceRaw,
+    priceDisplay: q.priceDisplay,
+    currency: q.currency,
+    service: q.service,
+    deliverables: q.deliverables,
+    needs: q.needs,
+    chainId: q.chainId,
+    verifyingContract: q.verifyingContract,
+    paymentToken: q.paymentToken,
+    estimatedSeconds: q.estimatedSeconds,
+    expiresAt: q.expiresAt,
+    negotiationHash: q.negotiationHash,
+    responseHash: q.responseHash,
+    providerSig: q.providerSig,
+  };
+}
 
-// Can this agent actually be hired right now? Answered before the button is
-// shown, so a call to action never opens something that cannot complete.
-export async function GET(req: Request) {
-  const agentId = new URL(req.url).searchParams.get("agentId");
-  if (!agentId) return NextResponse.json({ ok: false, error: "agentId is required" }, { status: 400 });
+function baseResponse(result: NegotiationResult) {
+  return {
+    ok: true,
+    agentId: result.agent?.id,
+    agentName: result.agent?.name,
+    status: result.status,
+    canHire: false,
+    mode: result.mode ?? "paid",
+    provider: result.provider,
+    network: result.network,
+    missingFields: result.missingFields,
+    quote: quoteView(result),
+    checkedAt: result.checkedAt,
+    reason: result.reason ?? "The selected agent did not return executable terms.",
+  };
+}
 
-  const agent = await liveAgent(agentId);
-  if (!agent) return NextResponse.json({ ok: false, error: "not a live agent" }, { status: 404 });
-
-  if (agent.status === "offline") {
-    return NextResponse.json({
-      ok: true,
-      canHire: false,
-      mode: "paid",
-      reason: `${agent.name} is not answering right now.`,
-    });
+async function run(agentId: string, context: HireContext) {
+  const result = await negotiateHire(agentId, context);
+  const response = baseResponse(result);
+  if (result.status !== "ready") return response;
+  if (result.mode === "free") {
+    return {
+      ...response,
+      canHire: true,
+      mode: "free" as const,
+      price: "No charge",
+      reason: "The agent returned a callable free result.",
+    };
   }
+  if (!result.network || !result.quote?.priceRaw || !result.provider)
+    return { ...response, status: "unavailable" as const, reason: "The live quote is incomplete." };
 
-  const q = agent.live.quote;
-  const priced = Boolean(q?.accepted && q.provider && BigInt(q.priceRaw ?? "0") > 0n);
-
-  if (!priced) {
-    // No price means the only way to get work is a free read-only tool. An
-    // agent with neither is discoverable but not hireable, and must say so.
-    const entry = rosterEntry(agent.live.agentId);
-    // A card that lists skills is a claim; only a live JSON-RPC endpoint that
-    // answered under its own skill name is something we can actually call.
-    const a2aEndpoint = agent.live.route?.kind === "A2A" ? agent.live.route.endpoint : null;
-    const servesDirectSkill =
-      Boolean(a2aEndpoint) &&
-      !a2aEndpoint!.endsWith(".json") &&
-      (agent.live.probe.skills?.length ?? 0) > 0;
-    const hasFreeTool =
-      (Boolean(entry?.evidenceTool) && agent.live.routes.some((r) => r.kind === "MCP" && r.endpoint)) ||
-      servesDirectSkill;
-    return NextResponse.json({
-      ok: true,
-      canHire: hasFreeTool,
-      mode: "free",
-      price: hasFreeTool ? "No charge" : undefined,
-      reason: hasFreeTool
-        ? "This agent publishes read-only tools free of charge."
-        : `${agent.name} did not quote a price and exposes no free tool we can call. Its endpoint may require credentials the marketplace does not hold.`,
-    });
-  }
-
-  const network = networkForChainId(q!.chainId) ?? (agent.live.network as NetworkName);
   try {
-    const settlement = settlementFor(network);
+    const settlement = settlementFor(result.network);
     const [balance, window] = await Promise.all([
       settlement.escrowBalance(),
       settlement.disputeWindow(),
     ]);
-    const needed = BigInt(q!.priceRaw!);
+    const needed = BigInt(result.quote.priceRaw);
     const have = BigInt(balance.raw);
-    return NextResponse.json({
-      ok: true,
+    return {
+      ...response,
       canHire: have >= needed,
-      mode: "paid",
-      network,
-      networkLabel: network === "bsc-mainnet" ? "BNB Smart Chain" : "BNB Smart Chain testnet",
-      price: q!.priceDisplay ?? `${Number(needed) / 1e18} ${balance.symbol}`,
-      provider: q!.provider,
+      mode: "paid" as const,
+      networkLabel: result.network === "bsc-mainnet" ? "BNB Smart Chain" : "BNB Smart Chain testnet",
+      price: result.quote.priceDisplay ?? `${Number(needed) / 10 ** balance.decimals} ${balance.symbol}`,
       disputeWindowSeconds: window,
       escrow: { address: escrowAddress(), balance: balance.display },
       reason:
         have >= needed
-          ? `Escrow will be funded on ${network} against the agent's own payout address.`
-          : `Mandate's escrow account holds ${balance.display} on ${network} and this job costs ${q!.priceDisplay}. Hiring is paused until it is funded.`,
-    });
-  } catch (e) {
-    return NextResponse.json({
-      ok: true,
-      canHire: false,
-      mode: "paid",
-      reason: `Settlement is unavailable: ${(e as Error).message}`,
-    });
+          ? "Mandate received a fresh quote and can escrow it against the agent's payout address."
+          : `Mandate's escrow account holds ${balance.display} on ${result.network} and this job costs ${result.quote.priceDisplay ?? "the quoted amount"}.`,
+    };
+  } catch (error) {
+    return {
+      ...response,
+      status: "unavailable" as const,
+      reason: `Settlement is unavailable after live negotiation: ${(error as Error).message}`,
+    };
   }
+}
+
+function fromQuery(req: Request): HireContext & { agentId?: string } {
+  const params = new URL(req.url).searchParams;
+  const context: HireContext & { agentId?: string } = { agentId: params.get("agentId") ?? undefined };
+  for (const key of ["buyer", "request", "outcomeId", "asset", "quoteAsset", "pair", "protocol", "amount", "risk", "control"]) {
+    const value = params.get(key);
+    if (value) context[key] = value;
+  }
+  return context;
+}
+
+export async function GET(req: Request) {
+  const context = fromQuery(req);
+  if (!context.agentId) return NextResponse.json({ ok: false, error: "agentId is required" }, { status: 400 });
+  const { agentId, ...negotiationContext } = context;
+  return NextResponse.json(await run(agentId!, negotiationContext));
+}
+
+export async function POST(req: Request) {
+  const body = (await req.json()) as {
+    agentId?: string;
+    buyer?: string | null;
+    request?: string;
+    outcomeId?: string;
+    context?: HireContext;
+    params?: Record<string, unknown>;
+    candidateAgentIds?: string[];
+  };
+  if (!body.agentId) return NextResponse.json({ ok: false, error: "agentId is required" }, { status: 400 });
+  const context: HireContext = {
+    ...(body.context ?? {}),
+    ...(body.params ?? {}),
+    agentId: body.agentId,
+    buyer: body.buyer ?? body.context?.buyer ?? null,
+    request: body.request ?? body.context?.request,
+    outcomeId: body.outcomeId ?? body.context?.outcomeId,
+  };
+  const { agentId: _agentId, ...negotiationContext } = context;
+  const candidates = [body.agentId, ...(body.candidateAgentIds ?? [])]
+    .filter((id): id is string => Boolean(id))
+    .filter((id, index, ids) => ids.indexOf(id) === index)
+    .slice(0, 6);
+  let last = await run(candidates[0]!, negotiationContext);
+  for (const candidate of candidates.slice(1)) {
+    if (last.status !== "unavailable") break;
+    last = await run(candidate, negotiationContext);
+  }
+  return NextResponse.json(last);
 }

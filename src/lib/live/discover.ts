@@ -12,6 +12,7 @@ export interface AgentCard {
   skills?: unknown[];
   tags?: string[];
   url?: string;
+  preferredTransport?: string;
   active?: boolean;
   x402Support?: boolean;
   x402support?: boolean;
@@ -61,13 +62,32 @@ function normalizedEndpoints(card: AgentCard) {
     }));
 }
 
+function topLevelRoute(card: AgentCard): Route | null {
+  const endpoint = str(card.url);
+  if (!endpoint) return null;
+  const transport = String(card.preferredTransport ?? "").toLowerCase();
+  const skills = (card.skills ?? [])
+    .map(asRecord)
+    .filter((s): s is Record<string, unknown> => s !== null)
+    .map((s) => String(s.id ?? s.name ?? "").toLowerCase());
+  // A2A cards in the wild often put the JSON-RPC service at top-level `url`
+  // and only describe the callable skills in `skills`. That URL is distinct
+  // from the ERC-8004 registration URL which pointed us to the card.
+  if (transport.includes("jsonrpc") || transport.includes("a2a") || skills.includes("negotiate"))
+    return { kind: "A2A", endpoint };
+  return null;
+}
+
 // Decide what we can actually invoke. Order of the returned list is discovery
 // order; `bestRoute` applies the preference.
 export function classify(card: AgentCard | null): Route[] {
   if (!card) return [];
   const routes: Route[] = [];
   const push = (r: Route) => {
-    if (!routes.some((x) => x.kind === r.kind)) routes.push(r);
+    const existing = routes.findIndex((x) => x.kind === r.kind);
+    if (existing === -1) routes.push(r);
+    else if (routes[existing].endpoint?.endsWith(".json") && r.endpoint && !r.endpoint.endsWith(".json"))
+      routes[existing] = r;
   };
 
   for (const e of normalizedEndpoints(card)) {
@@ -79,6 +99,9 @@ export function classify(card: AgentCard | null): Route[] {
     else if (n.includes("x402") || n === "q402") push({ kind: "x402", endpoint: e.endpoint });
     else if (n.includes("web") || n.includes("http")) push({ kind: "WEB", endpoint: e.endpoint });
   }
+
+  const top = topLevelRoute(card);
+  if (top) push(top);
 
   // Capability flags with no endpoint are real but not addressable from the card.
   if ((card.x402Support === true || card.x402support === true) && !routes.some((r) => r.kind === "x402"))

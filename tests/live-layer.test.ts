@@ -61,6 +61,15 @@ describe("ERC-8004 card classifier", () => {
     expect(bestRoute([])).toBeNull();
   });
 
+  it("uses a top-level JSON-RPC service URL from an A2A card", () => {
+    const routes = classify({
+      url: "https://agent.example",
+      preferredTransport: "JSONRPC",
+      skills: [{ id: "negotiate" }, { id: "preview" }],
+    });
+    expect(routes).toEqual([{ kind: "A2A", endpoint: "https://agent.example" }]);
+  });
+
   it("does not duplicate a transport declared twice", () => {
     const routes = classify({
       services: [

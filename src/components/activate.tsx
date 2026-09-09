@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useAccount } from "wagmi";
 import { ConnectWallet } from "./connect-wallet";
+import type { HireContext } from "@/lib/domain/types";
 
 // Hiring an agent is the first thing in the product that touches a chain, so
 // this is the first place a wallet is asked for. Browsing, comparing and
@@ -15,6 +16,8 @@ export interface HireTarget {
   pricing: string;
   request: string;
   outcomeId?: string;
+  context?: HireContext;
+  fallbackAgentIds?: string[];
   settlementLabel: string;
   live: boolean;
 }
@@ -54,14 +57,32 @@ function remember(address: string, id: string) {
 }
 
 interface Preflight {
+  agentId?: string;
+  agentName?: string;
   canHire: boolean;
   mode: "paid" | "free";
+  status?: "ready" | "needs-input" | "unavailable";
   price?: string;
   networkLabel?: string;
   provider?: string;
   disputeWindowSeconds?: number;
   escrow?: { address: string; balance: string };
   reason: string;
+  missingFields?: { key: string; label: string; type: "text" | "number" | "wallet" }[];
+  quote?: {
+    accepted: boolean;
+    provider?: string;
+    priceRaw?: string;
+    priceDisplay?: string;
+    currency?: string;
+    service?: string;
+    deliverables?: string;
+    needs?: Record<string, string>;
+    chainId?: number;
+    verifyingContract?: string;
+    paymentToken?: string;
+    expiresAt?: number;
+  };
 }
 
 export function ActivateAgent({ target }: { target: HireTarget }) {
@@ -71,22 +92,51 @@ export function ActivateAgent({ target }: { target: HireTarget }) {
   const [error, setError] = useState("");
   const [countdown, setCountdown] = useState<number | null>(null);
   const [pre, setPre] = useState<Preflight | null>(null);
+  const [fieldValues, setFieldValues] = useState<Record<string, string>>({});
+  const [submittedContext, setSubmittedContext] = useState<Record<string, unknown>>({});
+  const [activeAgentId, setActiveAgentId] = useState(target.agentId);
+  const [activeAgentName, setActiveAgentName] = useState(target.agentName);
 
   // Ask whether this hire can complete before offering it. A call to action
   // that cannot finish is worse than one that is honestly unavailable.
   useEffect(() => {
     if (!target.live) return;
     let cancelled = false;
-    fetch(`/api/hire/preflight?agentId=${encodeURIComponent(target.agentId)}`)
+    setPre(null);
+    const context = {
+      ...(target.context ?? {}),
+      ...submittedContext,
+      buyer: address ?? target.context?.buyer ?? null,
+      request: target.request,
+      outcomeId: target.outcomeId ?? target.context?.outcomeId,
+    };
+    fetch("/api/hire/preflight", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        agentId: activeAgentId,
+        candidateAgentIds: target.fallbackAgentIds,
+        buyer: address ?? null,
+        outcomeId: target.outcomeId,
+        request: target.request,
+        context,
+      }),
+    })
       .then((r) => r.json())
       .then((j: Preflight & { ok: boolean }) => {
-        if (!cancelled && j.ok) setPre(j);
+        if (!cancelled && j.ok) {
+          setPre(j);
+          if (j.agentId && j.agentId !== activeAgentId) {
+            setActiveAgentId(j.agentId);
+            if (j.agentName) setActiveAgentName(j.agentName);
+          }
+        }
       })
       .catch(() => undefined);
     return () => {
       cancelled = true;
     };
-  }, [target.agentId, target.live]);
+  }, [activeAgentId, target.agentId, target.live, target.request, target.outcomeId, target.context, target.fallbackAgentIds, address, submittedContext]);
 
   const settle = useCallback(async (id: string) => {
     setPhase("settling");
@@ -145,9 +195,9 @@ export function ActivateAgent({ target }: { target: HireTarget }) {
         <p>
           {pre
             ? pre.mode === "free"
-              ? `${target.agentName} charges nothing for this. Connect your wallet so the result is filed against your account.`
-              : `Hiring ${target.agentName} opens an escrow job on ${pre.networkLabel ?? "BNB Smart Chain"}, against the agent's own payout address. Connect your wallet to continue.`
-            : `Connect your wallet to hire ${target.agentName}. Browsing and matching stay open to everyone.`}
+              ? `${activeAgentName} charges nothing for this. Connect your wallet so the result is filed against your account.`
+              : `Hiring ${activeAgentName} opens an escrow job on ${pre.networkLabel ?? "BNB Smart Chain"}, against the agent's own payout address. Connect your wallet to continue.`
+            : `Connect your wallet to hire ${activeAgentName}. Browsing and matching stay open to everyone.`}
         </p>
         <ConnectWallet />
         <p className="flow-note">
@@ -227,10 +277,48 @@ export function ActivateAgent({ target }: { target: HireTarget }) {
   }
 
   if (pre && !pre.canHire) {
+    if (pre.status === "needs-input") {
+      return (
+        <section className="panel">
+          <p className="eyebrow">A FEW DETAILS FOR A LIVE QUOTE</p>
+          <h2>{activeAgentName} needs context.</h2>
+          <p>{pre.reason}</p>
+          <form
+            className="form-grid"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setSubmittedContext((current) => ({ ...current, ...fieldValues }));
+            }}
+          >
+            {pre.missingFields?.map((field) => (
+              <label className="field" key={field.key}>
+                {field.label}
+                <input
+                  type={field.type === "number" ? "number" : "text"}
+                  inputMode={field.type === "number" ? "decimal" : undefined}
+                  value={fieldValues[field.key] ?? ""}
+                  placeholder={field.type === "wallet" ? "0x…" : undefined}
+                  onChange={(event) =>
+                    setFieldValues((current) => ({ ...current, [field.key]: event.target.value }))
+                  }
+                  required
+                />
+              </label>
+            ))}
+            <div className="page-actions" style={{ gridColumn: "1 / -1" }}>
+              <button className="button primary" type="submit">
+                Continue to live quote
+              </button>
+            </div>
+          </form>
+          <p className="flow-note">Mandate will send only these supplied fields back to the selected agent.</p>
+        </section>
+      );
+    }
     return (
       <section className="panel">
         <p className="eyebrow">HIRING PAUSED</p>
-        <h2>{target.agentName} cannot be hired right now.</h2>
+        <h2>{activeAgentName} cannot be hired right now.</h2>
         <p>{pre.reason}</p>
         {pre.escrow && (
           <div className="review-summary">
@@ -258,7 +346,7 @@ export function ActivateAgent({ target }: { target: HireTarget }) {
   return (
     <section className="panel">
       <p className="eyebrow">ACTIVATE THIS AGENT</p>
-      <h2>Hire {target.agentName}.</h2>
+      <h2>Hire {activeAgentName}.</h2>
       <p>
         {!pre
           ? "Checking fresh availability before any payment or job creation."
@@ -283,14 +371,44 @@ export function ActivateAgent({ target }: { target: HireTarget }) {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify({
-                  agentId: target.agentId,
+                  agentId: activeAgentId,
                   buyer: address,
                   outcomeId: target.outcomeId,
                   request: target.request,
+                  context: {
+                    ...(target.context ?? {}),
+                    ...submittedContext,
+                    buyer: address ?? target.context?.buyer ?? null,
+                    request: target.request,
+                    outcomeId: target.outcomeId ?? target.context?.outcomeId,
+                  },
+                  expectedQuote: pre?.quote,
                 }),
               });
-              const json = (await res.json()) as { ok: boolean; receipt?: Receipt; error?: string };
-              if (!json.ok || !json.receipt) throw new Error(json.error ?? "Activation failed");
+              const json = (await res.json()) as {
+                ok: boolean;
+                receipt?: Receipt;
+                error?: string;
+                status?: "needs-input" | "unavailable";
+                missingFields?: Preflight["missingFields"];
+                quote?: Preflight["quote"];
+              };
+              if (!json.ok) {
+                if (json.status === "needs-input" && json.missingFields) {
+                  setPre({
+                    canHire: false,
+                    mode: "paid",
+                    status: "needs-input",
+                    reason: json.error ?? "The agent needs more information.",
+                    missingFields: json.missingFields,
+                    quote: json.quote,
+                  });
+                  setPhase("idle");
+                  return;
+                }
+                throw new Error(json.error ?? "Activation failed");
+              }
+              if (!json.receipt) throw new Error("Activation returned no receipt");
               setReceipt(json.receipt);
               if (address) remember(address, json.receipt.id);
               setPhase(json.receipt.mode === "free" ? "done" : "settling");

@@ -119,6 +119,24 @@ export interface OutcomeQuery {
   timeframeDays?: number;
 }
 
+/** Context carried from an Outcome or an individual-agent hire into live
+ * negotiation. Unknown keys are preserved for agent-specific requirements. */
+export interface HireContext {
+  buyer?: string | null;
+  request?: string;
+  outcomeId?: string;
+  asset?: string;
+  quoteAsset?: string;
+  pair?: string;
+  protocol?: string;
+  amount?: number | string;
+  position?: unknown;
+  risk?: RiskLevel;
+  control?: ControlMode;
+  requestedDeliverable?: string;
+  [key: string]: unknown;
+}
+
 export const REQUIRED_CATEGORIES: Category[] = [
   "rebalancing",
   "grid-trading",

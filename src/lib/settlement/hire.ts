@@ -1,6 +1,14 @@
 import { keccak256, toHex, type Hex } from "viem";
 import { liveAgent } from "@/lib/live/snapshot";
-import { quote, callTool, notifyFunded } from "@/lib/live/agent-adapter";
+import { callTool, notifyFunded, type Quote } from "@/lib/live/agent-adapter";
+import {
+  negotiateHire,
+  NegotiationRequiredError,
+  TermsChangedError,
+  quoteFingerprint,
+  type NegotiationResult,
+} from "@/lib/commerce/negotiate";
+import type { HireContext } from "@/lib/domain/types";
 import { settlementFor, escrowAddress, type OpenResult, type StepRecord } from "@/lib/settlement/erc8183";
 import { rosterEntry } from "@/lib/live/roster";
 import { auditSubmission, type AuditRecord } from "@/lib/audit/mandate-audit";
@@ -101,6 +109,8 @@ export interface HireInput {
   outcomeId?: string;
   request?: string;
   params?: Record<string, unknown>;
+  context?: HireContext;
+  expectedQuote?: Partial<Quote>;
   /** Continue a job already created on chain rather than minting another. */
   resumeJobId?: string;
 }
@@ -111,37 +121,34 @@ async function hireFree(
   request: string,
   params: Record<string, unknown>,
   input: HireInput,
+  negotiation: NegotiationResult,
 ): Promise<Receipt> {
   const entry = rosterEntry(agent.live.agentId);
-  const mcp = agent.live.routes.find((r) => r.kind === "MCP" && r.endpoint);
+  const mcp = negotiation.route?.kind === "MCP"
+    ? negotiation.route
+    : agent.live.routes.find((r) => r.kind === "MCP" && r.endpoint);
 
   let content: string | null = null;
   let via = "";
 
-  if (mcp && entry?.evidenceTool) {
+  const mcpTool = negotiation.quote?.service ?? entry?.evidenceTool;
+  if (mcp && mcpTool) {
     const out = await callTool(
       mcp,
-      entry.evidenceTool,
-      (params.toolArgs as Record<string, unknown>) ?? entry.evidenceArgs ?? {},
+      mcpTool,
+      (params.toolArgs as Record<string, unknown>) ?? entry?.evidenceArgs ?? params,
     );
     if (out.ok && out.text) {
       content = out.text.slice(0, 20_000);
-      via = `${entry.evidenceTool} tool`;
+      via = `${mcpTool} tool`;
     }
   }
 
   // Some sellers charge nothing and answer a named skill directly over A2A.
   // They need the subject of the work, which is the buyer's own address.
-  if (!content && agent.live.route?.kind === "A2A") {
-    const subject = input.buyer ?? undefined;
-    const q = await quote(agent.live.route, request, agent.live.serviceId, {
-      ...(subject ? { wallet: subject, address: subject, account: subject } : {}),
-      ...params,
-    });
-    if (q.accepted && q.deliverables) {
-      content = q.deliverables.slice(0, 20_000);
-      via = q.service ? `${q.service} skill` : "A2A skill";
-    }
+  if (!content && negotiation.route?.kind === "A2A" && negotiation.quote?.deliverables) {
+    content = negotiation.quote.deliverables.slice(0, 20_000);
+    via = negotiation.quote.service ? `${negotiation.quote.service} skill` : "A2A skill";
   }
 
   if (!content)
@@ -183,10 +190,11 @@ async function hirePaid(
   agent: NonNullable<Awaited<ReturnType<typeof liveAgent>>>,
   request: string,
   input: HireInput,
+  negotiation: NegotiationResult,
 ): Promise<Receipt> {
-  const q = agent.live.quote!;
-  const network = networkForChainId(q.chainId) ?? (agent.live.network as NetworkName);
-  const provider = q.provider!;
+  const q = negotiation.quote!;
+  const network = negotiation.network ?? networkForChainId(q.chainId) ?? (agent.live.network as NetworkName);
+  const provider = negotiation.provider ?? q.provider!;
   const settlement = settlementFor(network);
   const budgetRaw = BigInt(q.priceRaw ?? "0");
 
@@ -199,6 +207,7 @@ async function hirePaid(
     buyer: input.buyer ?? null,
     outcomeId: input.outcomeId ?? null,
     request,
+    context: input.context ?? input.params ?? {},
   });
 
   // 1. Escrow against the agent's own payout address, on its own chain.
@@ -211,10 +220,11 @@ async function hirePaid(
 
   // 2. Tell the seller. It reads the job from the same chain, sees itself named
   //    as provider, does the work, and submits.
-  const route = agent.live.route!;
+  const route = negotiation.route!;
   const notice = await notifyFunded(route, chain.jobId, {
     request,
     chain_id: chain.chainId,
+    ...(input.context ?? {}),
     ...(input.params ?? {}),
   });
 
@@ -300,44 +310,26 @@ async function hirePaid(
 
 export async function hire(input: HireInput): Promise<Receipt> {
   const agent = await liveAgent(input.agentId);
+  const request = input.request ?? (agent ? `${agent.category.replaceAll("-", " ")} for a position on BNB Smart Chain` : undefined);
+  const context: HireContext = {
+    ...(input.context ?? {}),
+    ...(input.params ?? {}),
+    buyer: input.buyer ?? input.context?.buyer ?? null,
+    outcomeId: input.outcomeId ?? input.context?.outcomeId,
+    request: request ?? input.context?.request,
+  };
+  const negotiation = await negotiateHire(input.agentId, context);
+  if (negotiation.status !== "ready") throw new NegotiationRequiredError(negotiation);
+
+  // Preflight is advisory. The final hire always negotiates again, then
+  // refuses to fund if the executable terms changed under the user's feet.
+  if (input.expectedQuote && quoteFingerprint(input.expectedQuote as Quote) !== quoteFingerprint(negotiation.quote))
+    throw new TermsChangedError(negotiation);
   if (!agent) throw new Error(`No live agent ${input.agentId}`);
-  if (agent.status === "offline")
-    throw new Error(`${agent.name} is not answering right now, so it cannot be hired`);
-
-  const request =
-    input.request ?? `${agent.category.replaceAll("-", " ")} for a position on BNB Smart Chain`;
-
-  // Re-quote at hire time: a snapshot price is a listing, not a commitment.
-  let q = agent.live.quote;
-  if (agent.live.route) {
-    try {
-      const subject = input.buyer ?? undefined;
-      const fresh = await quote(agent.live.route, request, agent.live.serviceId, {
-        ...(subject ? { wallet: subject, address: subject, account: subject } : {}),
-      });
-      if (fresh.accepted && fresh.priceRaw && fresh.provider) {
-        q = {
-          accepted: true,
-          priceRaw: fresh.priceRaw,
-          priceDisplay: fresh.priceDisplay,
-          currency: fresh.currency,
-          provider: fresh.provider,
-          needs: fresh.needs,
-          deliverables: fresh.deliverables,
-          chainId: fresh.chainId,
-          verifyingContract: fresh.verifyingContract,
-          paymentToken: fresh.paymentToken,
-          estimatedSeconds: fresh.estimatedSeconds,
-        };
-        agent.live.quote = q;
-      }
-    } catch {
-      /* keep the snapshot quote */
-    }
-  }
-
-  const priced = Boolean(q?.accepted && q.provider && BigInt(q.priceRaw ?? "0") > 0n);
-  return priced ? hirePaid(agent, request, input) : hireFree(agent, request, input.params ?? {}, input);
+  const finalRequest = request ?? `${agent.category.replaceAll("-", " ")} for a position on BNB Smart Chain`;
+  return negotiation.mode === "paid"
+    ? hirePaid(agent, finalRequest, input, negotiation)
+    : hireFree(agent, finalRequest, context, input, negotiation);
 }
 
 /** Try to release escrow; safe to call repeatedly. */

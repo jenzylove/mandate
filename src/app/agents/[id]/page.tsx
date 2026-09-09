@@ -90,6 +90,9 @@ export default async function AgentDetail({
                 category: a.category,
                 pricing: a.pricing,
                 request: `${categoryNames[a.category]} for a position on BNB Smart Chain`,
+                context: {
+                  requestedDeliverable: a.description,
+                },
                 settlementLabel,
                 live: true,
               }}

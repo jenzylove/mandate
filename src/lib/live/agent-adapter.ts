@@ -26,6 +26,10 @@ export interface Quote {
   paymentToken?: string;
   estimatedSeconds?: number;
   instructions?: string;
+  expiresAt?: number;
+  negotiationHash?: string;
+  responseHash?: string;
+  providerSig?: string;
   raw: unknown;
 }
 
@@ -80,6 +84,32 @@ async function a2aSkill(url: string, skill: string, terms: Record<string, unknow
   );
 }
 
+async function a2aNegotiate(
+  url: string,
+  deliverables: string,
+  params: Record<string, unknown>,
+) {
+  const taskDescription =
+    typeof params.task_description === "string" && params.task_description.trim()
+      ? params.task_description
+      : deliverables;
+  const { task_description: _ignored, ...extra } = params;
+  const terms = { deliverables, ...extra };
+  return jsonRpc(
+    url,
+    "message/send",
+    a2aMessage([{
+      kind: "data",
+      data: {
+        skill: "negotiate",
+        task_description: taskDescription,
+        ...terms,
+        terms,
+      },
+    }]),
+  );
+}
+
 // notify_funded takes job_id at the top level of the data part, beside the
 // skill, rather than nested under terms the way negotiate does.
 async function a2aNotify(url: string, jobId: string, extra: Record<string, unknown>) {
@@ -103,29 +133,94 @@ function skillsFromError(message: string): string[] {
     .filter(Boolean);
 }
 
+const asRecord = (value: unknown): Record<string, unknown> | undefined =>
+  value && typeof value === "object" ? (value as Record<string, unknown>) : undefined;
+
+const stringValue = (value: unknown): string | undefined => {
+  if (typeof value === "string" && value.trim()) return value;
+  if (typeof value === "number" && Number.isFinite(value)) return String(value);
+  return undefined;
+};
+
+const numberValue = (value: unknown): number | undefined => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && /^\d+(?:\.\d+)?$/.test(value)) return Number(value);
+  return undefined;
+};
+
+const looksLikeAddress = (value: unknown): value is string =>
+  typeof value === "string" && /^0x[a-fA-F0-9]{40}$/.test(value);
+
 function readQuote(result: Record<string, unknown> | undefined, raw: unknown): Quote {
   if (!result) return { accepted: false, raw };
+
+  // JSON-RPC A2A responses wrap the useful data in result.parts[].data, and
+  // some providers put the actual quote one level deeper in response.terms.
+  // Flatten those protocol envelopes before interpreting commerce fields.
+  const rpcResult = asRecord(result.result);
+  const parts = Array.isArray(rpcResult?.parts) ? rpcResult.parts : [];
+  const partData = parts
+    .map((part) => asRecord(asRecord(part)?.data))
+    .find((data): data is Record<string, unknown> => Boolean(data));
+  const response = asRecord(partData?.response) ?? asRecord(result.response);
+  const terms = asRecord(response?.terms) ?? asRecord(partData?.terms);
+  const merged = { ...result, ...(rpcResult ?? {}), ...(partData ?? {}), ...(response ?? {}), ...(terms ?? {}) };
+  const needsRecord = asRecord(response?.needs) ?? asRecord(terms?.needs) ?? asRecord(merged.needs);
+  const needs = needsRecord
+    ? Object.fromEntries(
+        Object.entries(needsRecord)
+          .map(([key, value]) => [key, stringValue(asRecord(value)?.label ?? value)])
+          .filter((entry): entry is [string, string] => Boolean(entry[1])),
+      )
+    : undefined;
+  const currency = stringValue(merged.currency);
+  const paymentToken = stringValue(merged.payment_token ?? merged.paymentToken) ??
+    (looksLikeAddress(currency) ? currency : undefined);
+
   return {
-    accepted: result.accepted === true,
-    provider: typeof result.provider === "string" ? result.provider : undefined,
-    priceRaw: typeof result.price === "string" ? result.price : undefined,
-    priceDisplay: typeof result.price_display === "string" ? result.price_display : undefined,
-    currency: typeof result.currency === "string" ? result.currency : undefined,
-    service: typeof result.service === "string" ? result.service : undefined,
-    category: typeof result.category === "string" ? result.category : undefined,
-    deliverables: typeof result.deliverables === "string" ? result.deliverables : undefined,
-    needs: (result.needs as Record<string, string>) ?? undefined,
-    chainId: typeof result.chain_id === "number" ? result.chain_id : undefined,
-    verifyingContract:
-      typeof result.verifying_contract === "string" ? result.verifying_contract : undefined,
-    paymentToken: typeof result.payment_token === "string" ? result.payment_token : undefined,
-    estimatedSeconds:
-      typeof result.estimated_completion_seconds === "number"
-        ? result.estimated_completion_seconds
-        : undefined,
-    instructions: typeof result.instructions === "string" ? result.instructions : undefined,
+    accepted: merged.accepted === true,
+    provider: stringValue(merged.provider ?? merged.provider_address ?? merged.providerAddress),
+    priceRaw: stringValue(merged.price ?? merged.price_raw ?? merged.priceRaw),
+    priceDisplay: stringValue(merged.price_display ?? merged.priceDisplay),
+    currency,
+    service: stringValue(merged.service ?? merged.service_id ?? merged.serviceId),
+    category: stringValue(merged.category),
+    deliverables: stringValue(merged.deliverables),
+    needs,
+    chainId: numberValue(merged.chain_id ?? merged.chainId),
+    verifyingContract: stringValue(merged.verifying_contract ?? merged.verifyingContract),
+    paymentToken,
+    estimatedSeconds: numberValue(merged.estimated_completion_seconds ?? merged.estimatedSeconds),
+    instructions: stringValue(merged.instructions),
+    expiresAt: numberValue(merged.quote_expires_at ?? merged.expires_at ?? merged.expiresAt),
+    negotiationHash: stringValue(merged.negotiation_hash ?? merged.negotiationHash),
+    responseHash: stringValue(merged.response_hash ?? merged.responseHash),
+    providerSig: stringValue(merged.provider_sig ?? merged.providerSig),
     raw,
   };
+}
+
+const routeMemo = new Map<string, { at: number; route: Route | null }>();
+const ROUTE_MEMO_MS = 60_000;
+
+/** Resolve an ERC-8004 A2A card URL to the service endpoint it advertises. */
+export async function resolveCallableRoute(route: Route): Promise<Route | null> {
+  if (!route.endpoint || route.endpoint.startsWith("onchain")) return null;
+  if (route.kind !== "A2A" || !route.endpoint.endsWith(".json")) return route;
+  const cached = routeMemo.get(route.endpoint);
+  if (cached && Date.now() - cached.at < ROUTE_MEMO_MS) return cached.route;
+  try {
+    const r = await fetch(route.endpoint, { signal: AbortSignal.timeout(TIMEOUT), headers: { accept: "application/json" } });
+    if (!r.ok) throw new Error(`agent card HTTP ${r.status}`);
+    const card = (await r.json()) as { url?: unknown; preferredTransport?: unknown };
+    const endpoint = typeof card.url === "string" && /^https?:\/\//.test(card.url) ? card.url : null;
+    const resolved = endpoint ? { ...route, endpoint } : null;
+    routeMemo.set(route.endpoint, { at: Date.now(), route: resolved });
+    return resolved;
+  } catch {
+    routeMemo.set(route.endpoint, { at: Date.now(), route: null });
+    return null;
+  }
 }
 
 // ---------------------------------------------------------------- MCP ------
@@ -181,7 +276,10 @@ export async function probe(route: Route): Promise<ProbeResult> {
           checkedAt,
         };
       }
-      const res = (await a2aSkill(url, "negotiate", { deliverables: "availability probe" })) as {
+      const res = (await a2aNegotiate(url, "availability probe", {
+        task_description: "availability probe",
+        quality_standards: "Return whether this service can accept the requested work.",
+      })) as {
         result?: Record<string, unknown>;
         error?: { code: number; message: string };
       };
@@ -223,12 +321,12 @@ export async function quote(
   serviceId?: string,
   params: Record<string, unknown> = {},
 ): Promise<Quote> {
-  const url = route.endpoint;
+  const callable = await resolveCallableRoute(route);
+  const url = callable?.endpoint;
   if (!url || url.startsWith("onchain")) return { accepted: false, raw: null };
 
   if (route.kind === "A2A" && !url.endsWith(".json")) {
-    const res = (await a2aSkill(url, "negotiate", {
-      deliverables,
+    const res = (await a2aNegotiate(url, deliverables, {
       ...params,
       ...(serviceId ? { service_id: serviceId } : {}),
     })) as { result?: Record<string, unknown>; error?: { message: string } };
@@ -253,10 +351,10 @@ export async function quote(
             deliverables: JSON.stringify(direct.result).slice(0, 4000),
             raw: direct.result,
           };
-        return readQuote(direct.result, direct);
+        return readQuote(direct, direct);
       }
     }
-    return readQuote(res.result, res);
+    return readQuote(res, res);
   }
 
   // MCP agents publish no price today: their tools are free reads.
@@ -267,6 +365,7 @@ export async function quote(
       priceRaw: "0",
       priceDisplay: "No charge",
       currency: "U",
+      service: tools[0]?.name,
       deliverables: `Read-only MCP tools: ${tools.slice(0, 6).map((t) => t.name).join(", ")}`,
       raw: tools,
     };
@@ -276,8 +375,9 @@ export async function quote(
 
 /** Tell an A2A seller that its escrow job is funded, and collect the result. */
 export async function notifyFunded(route: Route, jobId: string, params: Record<string, unknown> = {}): Promise<Delivery> {
-  const url = route.endpoint;
-  if (!url || route.kind !== "A2A" || url.endsWith(".json"))
+  const callable = await resolveCallableRoute(route);
+  const url = callable?.endpoint;
+  if (!url || route.kind !== "A2A")
     return { ok: false, text: "agent does not accept funded-job notifications", raw: null };
   try {
     const res = (await a2aNotify(url, jobId, params)) as {

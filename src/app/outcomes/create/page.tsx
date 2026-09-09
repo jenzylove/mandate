@@ -6,7 +6,7 @@ import { ActivateAgent } from "@/components/activate";
 import { liveAgents } from "@/lib/live/snapshot";
 import { SETTLEMENT_NETWORK } from "@/lib/live/chain";
 import type { OutcomeQuery, RiskLevel, ControlMode } from "@/lib/domain/types";
-import { recommendationIsReviewable } from "@/lib/engine/matching";
+import { compatibleAgents, recommendationIsReviewable } from "@/lib/engine/matching";
 
 export const dynamic = "force-dynamic";
 
@@ -122,6 +122,25 @@ export default async function CreateOutcome({
                     outcome?.description ??
                     `${a.category.replaceAll("-", " ")} for a position on BNB Smart Chain`,
                   outcomeId: outcome?.id,
+                  context: {
+                    asset: p.asset,
+                    protocol: p.protocol,
+                    risk,
+                    control,
+                    outcomeId: outcome?.id,
+                    requestedDeliverable: outcome?.description,
+                  },
+                  fallbackAgentIds: outcome
+                    ? compatibleAgents(
+                        agents,
+                        outcome,
+                        query,
+                        outcome.requiredRoles.find((role) => role.category === a.category) ?? outcome.requiredRoles[0],
+                      )
+                        .filter((candidate) => candidate.id !== a.id)
+                        .map((candidate) => candidate.id)
+                        .slice(0, 5)
+                    : [],
                   settlementLabel,
                   live: true,
                 }}
