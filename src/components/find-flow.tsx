@@ -328,7 +328,7 @@ export function FindFlow({
                     </details>
                     <Link
                       className="button primary"
-                      href={`/outcomes/create?${query}&outcome=${r.outcomeId}&mode=${r.mode}`}
+                      href={`/outcomes/create?${query}&mode=${r.mode}`}
                     >
                       Review setup ↗
                     </Link>

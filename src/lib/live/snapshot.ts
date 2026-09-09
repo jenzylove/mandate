@@ -115,12 +115,11 @@ export async function freshness(): Promise<Freshness> {
  */
 export async function liveAgents(): Promise<LiveAgent[]> {
   const snap = await readSnapshot();
-  if (!snap) {
-    // Nothing on disk at all: block once so the first visitor sees a market
-    // rather than an empty page. Every later request is served from the file.
-    return (await writeSnapshot()).agents;
-  }
-  return snap.agents;
+  // A missing snapshot is an empty, honest market—not permission to make a
+  // visitor wait for discovery and qualification. Refresh is explicit via the
+  // refresh route or the offline refresh script; hiring still rechecks one
+  // selected agent at preflight time.
+  return snap?.agents ?? [];
 }
 
 export async function liveAgent(id: string): Promise<LiveAgent | null> {

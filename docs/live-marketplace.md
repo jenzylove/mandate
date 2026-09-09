@@ -100,9 +100,10 @@ No page render ever waits on a chain scan. `data/live/agents.json` is committed,
 so a cold deploy serves a market immediately. From there:
 
 - Requests read the snapshot from disk (memoised for 30s).
-- A request that finds the snapshot older than 15 minutes kicks off a refresh in
-  the background and serves the current data anyway. Concurrent refreshes
-  collapse into one.
+- Snapshot refresh is explicit (`/api/live/refresh` or
+  `npm run refresh:market`); a page request never starts discovery or
+  qualification. If no snapshot is available, the catalogue is empty rather
+  than pretending stale agents are hireable.
 - `vercel.json` schedules `/api/live/refresh` every 10 minutes, so in production
   the snapshot is normally fresh before anyone notices.
 - The agents index shows `Availability checked N minutes ago`, and says so when
