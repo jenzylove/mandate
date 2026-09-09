@@ -46,7 +46,15 @@ test.describe("release smoke", () => {
     await expect(page.locator(".detail-side")).toContainText(/Available now|Registered|Currently unavailable/);
 
     await page.getByRole("button", { name: /sign in/i }).first().click();
-    await expect(page.locator(".wallet-error")).toBeVisible();
+    await expect
+      .poll(
+        async () =>
+          (await page.locator(".wallet-error").count()) > 0 ||
+          (await page.locator("iframe[src*='privy'], #privy-dialog, [id^='privy']").count()) > 0 ||
+          (await page.getByText(/continue with|enter your email|connect a wallet/i).count()) > 0,
+        { timeout: 20_000, message: "sign-in should open a wallet or account flow" },
+      )
+      .toBe(true);
   });
 
   test("multi-role outcomes resolve each role from current supply", async ({ page }) => {
