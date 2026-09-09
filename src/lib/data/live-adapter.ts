@@ -2,6 +2,7 @@ import type { Agent, Category, Outcome } from "@/lib/domain/types";
 import type { DataAdapter } from "@/lib/data/adapter";
 import { JsonAdapter } from "@/lib/data/json-adapter";
 import { liveAgents, resolveAgentOnDemand } from "@/lib/live/snapshot";
+import type { LiveAgent } from "@/lib/live/qualify";
 
 // The marketplace's real data source. Live ERC-8004 agents come first; seeded
 // examples remain only to fill a category that has no live supply right now,
@@ -23,7 +24,7 @@ function order(agents: Agent[]): Agent[] {
   // or run belongs above one that only answered, whatever else it has going for
   // it, because the first can be bought and the second cannot.
   const proven = (a: Agent) =>
-    a.pricing !== "No price quoted" && a.pricing !== "Unavailable" && a.pricing !== "";
+    Boolean(a.hireable) && a.pricing !== "No price quoted" && a.pricing !== "Price not verified" && a.pricing !== "Unavailable" && a.pricing !== "";
 
   const rank = (a: Agent) =>
     (proven(a) ? 1000 : 0) +
@@ -59,12 +60,32 @@ function order(agents: Agent[]): Agent[] {
   return [...spread(agents.filter(proven)), ...spread(agents.filter((a) => !proven(a)))];
 }
 
+/**
+ * One registration can be copied across many registry identities while still
+ * advertising the same product endpoint. Showing every copy makes supply look
+ * inflated. Preserve genuinely different services, but collapse exact
+ * name/category/endpoint duplicates to the strongest current listing.
+ */
+export function canonicalizeAgents(agents: LiveAgent[]): LiveAgent[] {
+  const best = new Map<string, LiveAgent>();
+  const strength = (a: LiveAgent) => (a.hireable ? 1000 : 0) + (a.status === "available" ? 100 : a.status === "limited" ? 50 : 0) + a.reputation;
+  for (const agent of agents) {
+    const endpoint = (agent.endpoint ?? agent.live.route?.endpoint ?? "").trim().toLowerCase();
+    const key = endpoint
+      ? `${agent.name.trim().toLowerCase()}|${agent.category}|${endpoint}`
+      : `identity|${agent.live.agentId}`;
+    const current = best.get(key);
+    if (!current || strength(agent) > strength(current)) best.set(key, agent);
+  }
+  return [...best.values()];
+}
+
 export class LiveAdapter implements DataAdapter {
   async listAgents(): Promise<Agent[]> {
     // Real agents only. A seeded listing cannot be inspected, hired or settled,
     // so padding a thin category with one is a promise the marketplace cannot
     // keep. An empty category is the honest answer.
-    return order(await liveAgents());
+    return order(canonicalizeAgents(await liveAgents()));
   }
 
   async getAgent(id: string): Promise<Agent | null> {

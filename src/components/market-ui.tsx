@@ -161,7 +161,7 @@ export function AgentCard({ agent: a }: { agent: Agent }) {
       </div>
       <p className="agent-card-line">{capability}</p>
       <div className="agent-card-foot">
-        <span className="agent-fee">{a.pricing === "No price quoted" ? "Price not verified" : a.pricing}</span>
+        <span className="agent-fee">{a.pricing === "No price quoted" || a.pricing === "Price not verified" ? (a.status === "offline" ? "Unavailable" : "Quote on hire") : a.pricing}</span>
         <span className={`agent-dot ${a.status}`}>{verificationLabel}</span>
       </div>
     </Link>

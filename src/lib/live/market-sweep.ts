@@ -300,7 +300,7 @@ export async function runMarketSweep({
         r.a.live.hireability = "unproven";
         r.a.verification = r.a.status === "available" || r.a.status === "limited" ? "live" : "registered";
         r.a.hireable = false;
-        r.a.pricing = r.a.status === "offline" ? "Price not verified" : "Price not verified";
+        r.a.pricing = r.a.status === "offline" ? "Unavailable" : "Quote on hire";
         listedOnly.push(r.a);
       }
     }

@@ -67,7 +67,7 @@ export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agen
   // the list showed whichever operator ranked highest five times over; this
   // leads with one service per operator, spread across categories, so the first
   // impression is the breadth of the marketplace. The full catalogue is /agents.
-  const previewAgents = previewSelection(liveAgents, 10);
+  const previewAgents = previewSelection(liveAgents, 12);
   const featured = ["protect-and-earn", "stablecoin-yield"].map((id) => outcomes.find((outcome) => outcome.id === id)).filter(Boolean) as Outcome[];
   return (
     <main className="mh-home mh-wrap">
@@ -106,8 +106,9 @@ export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agen
       </section>
 
       <section className="mh-section mh-agent-section" id="agents">
-        <div className="mh-section-title"><div><small>LIVE ON BNB CHAIN</small><h2>Find your kind of agent.</h2><p>Real roles. Clear costs. Room to choose.</p></div><Link href="/agents" aria-label={`View all agents · ${agents.length} total`}>View all agents <span aria-hidden="true">↗</span></Link></div>
+        <div className="mh-section-title"><div><small>LIVE ON BNB CHAIN</small><h2>Find your kind of agent.</h2><p>Real roles. Clear costs. Room to choose.</p></div></div>
         <div className="agent-grid-dense mh-agent-preview" aria-label="Live agent marketplace preview">{previewAgents.map((agent) => <AgentCard key={agent.id} agent={agent} />)}</div>
+        <div className="mh-agent-browse"><Link href="/agents" aria-label={`View all agents · ${agents.length} total`}>View all agents <span aria-hidden="true">↗</span></Link><span>{agents.length} listings in the marketplace</span></div>
       </section>
 
       <section className="mh-guidance"><span>✳</span><div><h2>Not sure what fits?</h2><p>Tell us your goal, assets, risk and control preferences. We’ll help narrow the marketplace.</p></div><Link className="mh-button mh-yellow" href="/find/goal">Find my setup ↗</Link></section>

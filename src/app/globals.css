@@ -1645,7 +1645,7 @@ dd {
   gap: 14px;
 }
 @media (min-width: 1180px) {
-  .agent-grid-dense { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .agent-grid-dense { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 @media (min-width: 900px) and (max-width: 1179px) {
   .agent-grid-dense { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -1745,3 +1745,14 @@ dd {
 .mh-agent-preview {
   margin-top: 4px;
 }
+.mh-agent-browse {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #ebe5f1;
+  font-size: 11px;
+  color: #a092ad;
+}
+.mh-agent-browse a { color: var(--purple); font-weight: 600; }
