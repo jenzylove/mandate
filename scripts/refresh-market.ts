@@ -115,6 +115,12 @@ per category`);
     console.log(`  ${r.padEnd(32)} ${n}`);
   console.log(`\nwrote ${out}`);
   console.log(`wrote ${rejectionsOut} (${result.rejected.length} rows)`);
+  const tiers = result.agents.reduce((acc, agent) => {
+    const tier = agent.verification ?? (agent.hireable ? "verified-hireable" : agent.status === "available" || agent.status === "limited" ? "live" : "registered");
+    acc[tier] = (acc[tier] ?? 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  console.log(`\nmarketplace tiers\n  verified hireable             ${tiers["verified-hireable"] ?? 0}\n  live / callable               ${tiers.live ?? 0}\n  registered                    ${tiers.registered ?? 0}`);
   console.log(`took ${Math.round((Date.now() - started) / 1000)}s`);
 }
 

@@ -21,7 +21,7 @@ export function Catalog({
   const options =
     kind === "outcomes"
       ? goals.map((g) => [g.id, g.label])
-      : [["all", "All agents"], ["verified-hireable", "Verified hireable"], ["live", "Live"], ["registered", "Registered"], ...Object.entries(categoryNames)] as [string, string][];
+      : [["all", "All agents"], ["verified-hireable", "Verified hireable"], ["hireable", "Hireable now"], ["live", "Live"], ["registered", "Registered"], ...Object.entries(categoryNames)] as [string, string][];
   const q = query.trim().toLowerCase();
   const matches = (text: string) => text.toLowerCase().includes(q);
   const os = outcomes.filter(
@@ -40,11 +40,12 @@ export function Catalog({
   );
   const as = agents.filter(
     (a) =>
-      (filter === "all" || a.category === filter || verificationOf(a) === filter) &&
+      (filter === "all" || a.category === filter || verificationOf(a) === filter || (filter === "hireable" && Boolean(a.hireable))) &&
       matches(
         [
           a.name,
           a.description,
+          ...a.capabilities,
           ...a.assets,
           ...a.protocols,
           categoryNames[a.category],

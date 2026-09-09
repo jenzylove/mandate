@@ -1,86 +1,8222 @@
 [
   {
-    "agentId": "293902",
-    "name": "mandaterebalance-agent",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "agent card serves 2 skills"
+    "agentId": "3069",
+    "name": "babycaisubagent8_proudbuilder2465",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "303779",
-    "name": "marketplace-operated-grid-planner",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "agent card serves 3 skills"
+    "agentId": "3070",
+    "name": "babycaisubagent9_sharp9457",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "269224",
-    "name": "Grid Trader",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "agent card serves 3 skills"
+    "agentId": "3127",
+    "name": "babycaisubagent66_quickassistant6584",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "269228",
-    "name": "Health Factor Monitor",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "agent card serves 3 skills"
+    "agentId": "3161",
+    "name": "babycaisubagent100_cleverassistant9005",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "331751",
-    "name": "Assay Grid",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "HTTP 405: "
+    "agentId": "11047",
+    "name": "OmegaPrime_157B2B",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "338477",
-    "name": "PancakeSwap Grid Trader",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "JSON-RPC -32601"
+    "agentId": "11001",
+    "name": "BetaHub_B7CC5A",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "292939",
-    "name": "bnb-grid-trader-test.agent",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "HTTP 404: default backend - 404"
+    "agentId": "11029",
+    "name": "OmegaCore_FDBCD5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "331794",
-    "name": "SMEAI Reference Grid Viability Checker",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "answered, serves grid_viability"
+    "agentId": "11051",
+    "name": "GammaSeeker_C5B5C0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "172801",
-    "name": "DeFiBot.agent",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}"
+    "agentId": "11061",
+    "name": "NexusSentinel_432C3E",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "331753",
-    "name": "Assay Health",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "HTTP 405: "
+    "agentId": "11030",
+    "name": "EpochSeeker_F4285E",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "292058",
-    "name": "bnb-lending-guardian.agent",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "HTTP 404: default backend - 404"
+    "agentId": "23781",
+    "name": "BetaSentinel_764127",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "331625",
-    "name": "SMEAI Reference Health Factor Monitor",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "answered, serves health_factor"
+    "agentId": "10998",
+    "name": "KineticHunter_71EAB1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "179543",
-    "name": "RiskOracle.agent",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "HTTP 401: {\"error\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Unauthorized\"}}"
+    "agentId": "11066",
+    "name": "OmegaSentinel_32E739",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
   },
   {
-    "agentId": "331752",
-    "name": "Assay Yield",
-    "reason": "no-quote-and-no-free-output",
-    "detail": "HTTP 405: "
+    "agentId": "13060",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14952",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19927",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "15944",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "60939",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "60905",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "60954",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "60941",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "60879",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40051",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40097",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40501",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "37812",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "37805",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "37373",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40033",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "43548",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "37316",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "38727",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "34495",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "33957",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "33765",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14422",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14549",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14480",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14511",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14591",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14523",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14425",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19371",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19742",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19347",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19389",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19385",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19721",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "22549",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "22219",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19206",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "22579",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "59979",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19571",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19536",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19070",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19558",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "18487",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "22005",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "22066",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "20274",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "35002",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "33713",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "32399",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "26391",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "28384",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "23944",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "27719",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "25286",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "27284",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "26745",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "63992",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "63988",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "63991",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "59335",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "59351",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "53893",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "53825",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12733",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12724",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12758",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "26145",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "23180",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "58493",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "60618",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "56912",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "57351",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "57115",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "60643",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "26019",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12713",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "16999",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "16196",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "36992",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40246",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "64331",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12643",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12611",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12627",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12652",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12663",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "57348",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "59525",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "57382",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40722",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "18210",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "16905",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "16945",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "20126",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "16913",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "13370",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "15983",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "17027",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "17093",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "17011",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "17018",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "50471",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "50452",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "13973",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "26384",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "28326",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "20852",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "28339",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "26927",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "25427",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "24487",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "26333",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "23899",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19144",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "18453",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "20201",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14590",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "13950",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14456",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "13961",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14545",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14501",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14507",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14543",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14351",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "37401",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "35829",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "37924",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40115",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "43694",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "37412",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40601",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40626",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "38462",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "19157",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "50464",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "13956",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "62311",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "62304",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "54876",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "41359",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "52550",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "50588",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "55919",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "22261",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "60560",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12793",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12795",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12796",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12787",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12782",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12704",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12788",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12790",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12732",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "20115",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "60545",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12710",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12767",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12244",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12759",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12794",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "13079",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "13077",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12527",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12575",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "56146",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12943",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "63968",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "63577",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "13388",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12961",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "14436",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "59373",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "13009",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "64055",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "64047",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "61605",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "59284",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "64098",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "57653",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "58942",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "58906",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "62162",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40243",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40264",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40200",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40232",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40247",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40342",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "40373",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "36377",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "36915",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12416",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "34622",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12990",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "33710",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "18824",
+    "name": "Ave.ai Trading Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "3424",
+    "name": "BoltNode",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "8309",
+    "name": "xiaowudd666",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "87019",
+    "name": "MaelstromX",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "86083",
+    "name": "LeverageLuna",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "90893",
+    "name": "Cerberrus claw",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "3401",
+    "name": "NovaStrategist",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "90891",
+    "name": "Cerberrus",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "11041",
+    "name": "FluxSeeker_EE7704",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "11300",
+    "name": "buyagent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "12046",
+    "name": "roboclaw",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "3138",
+    "name": "babycaisubagent77_quickhelper7537",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "4287",
+    "name": "NetHub122",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "23787",
+    "name": "NovaHub_040431",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "11014",
+    "name": "FusionHub_497138",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "11022",
+    "name": "HelixHub_8D3735",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "10975",
+    "name": "LambdaAI_6E4A22",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "61965",
+    "name": "EstateBridge AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "11044",
+    "name": "PhotonHub_F2E700",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "11063",
+    "name": "OmegaMind_428A73",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "11013",
+    "name": "QuantumHub_7275A1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "341636",
+    "name": "zana joonm",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341634",
+    "name": "zana kharamt22",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341633",
+    "name": "Blockgeax62",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341632",
+    "name": "zanakharamani 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341631",
+    "name": "Axiomgep8rawha04",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341629",
+    "name": "CriptoAO",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341626",
+    "name": "zana2212",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341624",
+    "name": "handy2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341622",
+    "name": "handy",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341619",
+    "name": "Ethgep75fz",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341618",
+    "name": "Zkgep6rxw4xtarghi",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341617",
+    "name": "humtrt789",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341616",
+    "name": "Blockgepqbik",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341615",
+    "name": "Axiomgepe98msaeid",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341614",
+    "name": "Novagep5rim0g0gi",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341599",
+    "name": "amir",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341598",
+    "name": "emprazol",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341597",
+    "name": "Zkgx4zx",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341596",
+    "name": "Zkgx4zx",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341595",
+    "name": "Zkgepgin3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341594",
+    "name": "Binance Apih",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341593",
+    "name": "Sinax",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341592",
+    "name": "erphun",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341591",
+    "name": "Ethgeba8n",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341590",
+    "name": "Chaingepx96d",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341589",
+    "name": "Blockgep5l9p32",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341587",
+    "name": "erphun",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341586",
+    "name": "Axiomgep4fe3m84",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341585",
+    "name": "Blockgep4c8bq8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341584",
+    "name": "Novagep4zuy00kqi",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341583",
+    "name": "Ethgep4tlirz",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341582",
+    "name": "Blockgep481fq",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341581",
+    "name": "Chaingeg97p",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341580",
+    "name": "Axiomgepbua",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341579",
+    "name": "burik",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341578",
+    "name": "Log4",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341577",
+    "name": "butuh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341576",
+    "name": "kogi",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341575",
+    "name": "bodooooohhh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341574",
+    "name": "koko",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341573",
+    "name": "bubu222",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341572",
+    "name": "barzan",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341571",
+    "name": "bubu",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341570",
+    "name": "baset1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341569",
+    "name": "Novagep3xan5133u",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341567",
+    "name": "Novagep3pikf1c",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341566",
+    "name": "Zkgeb7tetsa2l",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341562",
+    "name": "Ethgept6jt",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341561",
+    "name": "Novagep1sun110si",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341560",
+    "name": "Chaingep1qim45z7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341559",
+    "name": "Novagep1qap6w0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341558",
+    "name": "Novageoif0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341552",
+    "name": "Zkgep1korgqd9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341551",
+    "name": "Zkgep1kik6bwwkf",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341550",
+    "name": "66",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341549",
+    "name": "Blockgep1ce75ak",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341548",
+    "name": "Messi10",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341547",
+    "name": "50",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341546",
+    "name": "Ethgebmcb",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341545",
+    "name": "49",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341544",
+    "name": "MOSTAFIJUR",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341543",
+    "name": "48",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341542",
+    "name": "Ethgeaxb5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341541",
+    "name": "47",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341540",
+    "name": "46",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341537",
+    "name": "45 last ngntuk dh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341536",
+    "name": "44",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341535",
+    "name": "42",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341534",
+    "name": "zana22",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341533",
+    "name": "43",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341532",
+    "name": "41",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341531",
+    "name": "40",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341530",
+    "name": "zana22",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341529",
+    "name": "39",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341528",
+    "name": "38",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341527",
+    "name": "37",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341525",
+    "name": "36",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341524",
+    "name": "Thyme",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341523",
+    "name": "GIGANAI",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341522",
+    "name": "ThymeCrypto",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341521",
+    "name": "ThymeCrypto",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341520",
+    "name": "35",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341518",
+    "name": "cool",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341517",
+    "name": "34",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341515",
+    "name": "33",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341514",
+    "name": "Novagen2pmw6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341513",
+    "name": "32",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341512",
+    "name": "31",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341510",
+    "name": "Chainga4v7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341509",
+    "name": "vibez",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341508",
+    "name": "30 dohhhhhh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341507",
+    "name": "29",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341506",
+    "name": "28",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341505",
+    "name": "7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341504",
+    "name": "26",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341503",
+    "name": "Blockgep9nfqe",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341502",
+    "name": "25",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341501",
+    "name": "Zkgep9modyjqf",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341500",
+    "name": "24",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341498",
+    "name": "23",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341497",
+    "name": "22",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341496",
+    "name": "21",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341495",
+    "name": "Chicko",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341492",
+    "name": "20 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341491",
+    "name": "20 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341490",
+    "name": "19 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341489",
+    "name": "19 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341488",
+    "name": "18 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341487",
+    "name": "18 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341486",
+    "name": "Novagep8kin9vt1u",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341485",
+    "name": "17 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341484",
+    "name": "Ethgerbbz",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341483",
+    "name": "17 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341482",
+    "name": "Novagep8kin9vt1u",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341481",
+    "name": "16 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341480",
+    "name": "16 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341479",
+    "name": "Ethgen2wewnrvt",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341478",
+    "name": "15 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341477",
+    "name": "15 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341475",
+    "name": "Chaingen2p442d",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341474",
+    "name": "14 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341473",
+    "name": "Blockgenafz2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341472",
+    "name": "14 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341471",
+    "name": "Novagen2uz1i",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341469",
+    "name": "13 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341468",
+    "name": "Axiomgen2jnb4",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341467",
+    "name": "13 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341466",
+    "name": "Novagen2vus8vc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341465",
+    "name": "Axiomgeccmg",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341461",
+    "name": "12 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341460",
+    "name": "12",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341459",
+    "name": "Ethgen2xja5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341458",
+    "name": "11 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341457",
+    "name": "Zkgen2sen5fi3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341456",
+    "name": "11",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341455",
+    "name": "Novagen2xnti",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341452",
+    "name": "10 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341451",
+    "name": "10 terusss",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341449",
+    "name": "9 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341448",
+    "name": "9 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341447",
+    "name": "Chaingen1w4a7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341446",
+    "name": "Okey",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341445",
+    "name": "8 (2)",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341444",
+    "name": "8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341443",
+    "name": "DARIUSH",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341441",
+    "name": "giponko",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341440",
+    "name": "Novagen03rgu",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341439",
+    "name": "conta 7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341437",
+    "name": "Chaingen14qi1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341436",
+    "name": "Omniscape",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341435",
+    "name": "CrossVector",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341434",
+    "name": "GlobalSignal",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341433",
+    "name": "Statecraft",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341432",
+    "name": "trovão",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341431",
+    "name": "WorldOrder",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341430",
+    "name": "PerformanceLab",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341429",
+    "name": "TacticalVision",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341428",
+    "name": "GameMind",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341427",
+    "name": "Multi7 [3]",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341426",
+    "name": "Multi7 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341425",
+    "name": "NarrativeX",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341424",
+    "name": "Multi7 1]",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341423",
+    "name": "MarketArchitect",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341422",
+    "name": "SignalForge",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341421",
+    "name": "conta 7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341420",
+    "name": "lukegar",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341419",
+    "name": "Multi6 [3]",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341418",
+    "name": "Multi6 [2]",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341417",
+    "name": "Multi6 [1]",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341415",
+    "name": "beiço",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341414",
+    "name": "PARS",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341413",
+    "name": "Blockgepg3w",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341412",
+    "name": "Multi5 [3]",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341411",
+    "name": "multi5 [2]",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341410",
+    "name": "Multi5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341406",
+    "name": "Multi3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341405",
+    "name": "Multi2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341404",
+    "name": "Axiomgen6jsm",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341403",
+    "name": "multi1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341399",
+    "name": "bot3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341398",
+    "name": "Bot2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341397",
+    "name": "Bot1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341395",
+    "name": "Aleeyouhyder4",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341393",
+    "name": "Zkgena3z3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341392",
+    "name": "Novagen91cu6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341391",
+    "name": "dimazub",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341390",
+    "name": "Mywallet2 [3]",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341389",
+    "name": "Mywallet2 [2]",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341388",
+    "name": "Mywallet2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341387",
+    "name": "crypto",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341386",
+    "name": "Nfthunter3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341385",
+    "name": "Nfthunter",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341383",
+    "name": "Nfthunter 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341381",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341380",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341379",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341378",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341377",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341376",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341375",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341374",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341373",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341372",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341371",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341370",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341369",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341368",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341367",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341366",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341365",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341364",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341363",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341362",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341361",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341360",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341359",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341358",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341357",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341356",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341355",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341354",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341353",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341352",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341351",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341350",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341349",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341348",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341347",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341346",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341345",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341344",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341343",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341342",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341341",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341340",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341339",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341338",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341337",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341336",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341335",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341334",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341333",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341332",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341331",
+    "name": "Arashnew",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341330",
+    "name": "Axiomgen8zixdy",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341328",
+    "name": "Novagen8zan64uwi",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341327",
+    "name": "SIGMA",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341326",
+    "name": "ChINA",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341325",
+    "name": "Zkg7tz9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341324",
+    "name": "Novagen8raf4t6nu",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341323",
+    "name": "SALI",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341322",
+    "name": "Ethgen8sed2qsodt",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341318",
+    "name": "radmehr",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341316",
+    "name": "Axiomge4vo4",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341315",
+    "name": "Blockgenoavq",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341314",
+    "name": "Blockgen7n",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341313",
+    "name": "Blockgen7jut0pzk",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341302",
+    "name": "Arez Assistant",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341300",
+    "name": "amoamin69",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341289",
+    "name": "j4milon",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341283",
+    "name": "Leminerale",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341281",
+    "name": "amanb",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341280",
+    "name": "Budii494",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341270",
+    "name": "Marvic",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341267",
+    "name": "gongoing",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341266",
+    "name": "lukasst1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341259",
+    "name": "Mr Iqbal",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341253",
+    "name": "Novagen4nas5yfnu",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341252",
+    "name": "manox",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341249",
+    "name": "Novagen2zo1jqo",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341248",
+    "name": "Novagen3kew0g90i",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341241",
+    "name": "babakbt",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341236",
+    "name": "Blockgen2mel0eyq",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341235",
+    "name": "Axiomgen2lulzsg",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341234",
+    "name": "TAHABAROOTI",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341232",
+    "name": "MUSTY)!",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341226",
+    "name": "tahabarooti",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341222",
+    "name": "vinod4999",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341217",
+    "name": "Ethgtf55",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341210",
+    "name": "Blockgen1qinv8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341209",
+    "name": "tahabarooti",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341204",
+    "name": "DigitalTribe",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341199",
+    "name": "Axiomgcf74.i",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341198",
+    "name": "final stage",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341195",
+    "name": "vip121",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341194",
+    "name": "Chaing9qq4",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341193",
+    "name": "Chaingenyd51",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341192",
+    "name": "Zkgen1xplzf",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341188",
+    "name": "Ethgenuzc5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341190",
+    "name": "Zkgen1xk1tr",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341191",
+    "name": "Axiomgeisr4",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341189",
+    "name": "Axiomgen1xi6bta",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341183",
+    "name": "Ethgen1xixngn",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341187",
+    "name": "Axiomgen1xzacg",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341185",
+    "name": "Blockgen21cq",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341186",
+    "name": "Novage6o90",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341184",
+    "name": "Chaingenb5zd",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341176",
+    "name": "JUSTME>io",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341166",
+    "name": "Chaing2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341162",
+    "name": "Akere",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341161",
+    "name": "stanelope",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341160",
+    "name": "Axiomgen0d8rog",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341155",
+    "name": "Moltafet",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341154",
+    "name": "hamed2004",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341152",
+    "name": "Axiomgen0rtl6a",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341151",
+    "name": "Zkgen0t5trl",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341149",
+    "name": "Axiomgen0p5y4y",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341147",
+    "name": "agent 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341146",
+    "name": "Agent 2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341145",
+    "name": "Agent 1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341144",
+    "name": "testing strings",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341141",
+    "name": "ali2885",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341140",
+    "name": "erfan",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341139",
+    "name": "Theflounder",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341137",
+    "name": "Just me",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341133",
+    "name": "Zkgendr6r",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341132",
+    "name": "Zkg40l9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341130",
+    "name": "Axiomgen9nui68s",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341128",
+    "name": "crypto Ai",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341125",
+    "name": "Axiomgi3xa",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341113",
+    "name": "Blockgenfob2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341111",
+    "name": "Chaingen8big6v7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341106",
+    "name": "Chaingen84iqd",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341105",
+    "name": "Zkgen8qiv90bx",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341104",
+    "name": "Chaingen8qc52v",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341102",
+    "name": "Rimon",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341101",
+    "name": "Novagecdjo",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341099",
+    "name": "Novagen8mal2pgui",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341096",
+    "name": "Novagen8lukcqo",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341095",
+    "name": "IYI",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341094",
+    "name": "Chaingen8kfrmd",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341093",
+    "name": "Zkgen8jumcdk3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341091",
+    "name": "Chuto",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341090",
+    "name": "Novagen7sewvzc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341089",
+    "name": "Sibila",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341088",
+    "name": "Zkgengdox",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341087",
+    "name": "Fredyy",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341086",
+    "name": "Axiomgen7muv00ea",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341085",
+    "name": "Sibila",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341084",
+    "name": "Chaingen7wx17",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341082",
+    "name": "Blockgl60e",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341080",
+    "name": "Blockgen7job1oq",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341074",
+    "name": "Ethgengzb5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341073",
+    "name": "Novagen7cms6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341072",
+    "name": "Ethgevv1b",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341068",
+    "name": "Zkgc86f",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341067",
+    "name": "Novagen7bokhu0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341066",
+    "name": "Crypto Ai",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341064",
+    "name": "Ethgenvtxh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341063",
+    "name": "Novagen7wanh5c",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341062",
+    "name": "Blockgen7tw04e",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341060",
+    "name": "Azrielmz",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341059",
+    "name": "Novagen7soc5frd6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341056",
+    "name": "sambuhendi",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341055",
+    "name": "Ethgmo15",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341054",
+    "name": "Funny",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341052",
+    "name": "Ethgenttfz",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341047",
+    "name": "Axiomgen6mhqma",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341046",
+    "name": "copy",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341045",
+    "name": "bidy",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341043",
+    "name": "Ethgen63wsb",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341041",
+    "name": "Zkgen6gdu8r",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341040",
+    "name": "sami96",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341037",
+    "name": "Chaingen6ywft7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341031",
+    "name": "Blockgbr6e",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341029",
+    "name": "Chaingen6rini617",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341027",
+    "name": "Blockgen6j9qk",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341026",
+    "name": "cryptopsycho",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341025",
+    "name": "amirexone",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341024",
+    "name": "Blockgen6luj9ok8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341023",
+    "name": "Novagen6jix8mvb6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341022",
+    "name": "Chaingen5vonwjn7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341020",
+    "name": "Blockgen5qortgd8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341019",
+    "name": "Ethgen5q5hn",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341017",
+    "name": "Ethgen5guc3at",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341015",
+    "name": "Novagen5xor8vyf6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341013",
+    "name": "Blockgen5zuw2h48",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341012",
+    "name": "Zkgen5yza7l",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341010",
+    "name": "Ethgen5xarbtz",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341008",
+    "name": "Novagen5p9pi",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341007",
+    "name": "Axiomgen5rtza",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341005",
+    "name": "Troymember x @ha5003",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341004",
+    "name": "Chaingen59d5p",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341003",
+    "name": "Troymember",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341001",
+    "name": "Axiomgen0b4g",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "341000",
+    "name": "Axiomgen5peklrys",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340999",
+    "name": "Troymember yt",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340998",
+    "name": "Novagen5mozqzc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340996",
+    "name": "Zkgen4vuk0rof",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340994",
+    "name": "Zkgen4sovl9p9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340993",
+    "name": "Zkgen4qev591r",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340992",
+    "name": "Blockgen4pilqqe",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340991",
+    "name": "Novagen4p8i6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340989",
+    "name": "Chaingeib7d",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340987",
+    "name": "Chaingen4gow8bcv",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340986",
+    "name": "Ethgtrz5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340985",
+    "name": "Blockgen4bitza1w",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340983",
+    "name": "Zkgen4xmgef",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340982",
+    "name": "Chaingen4vow9yj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340979",
+    "name": "Blockgen4s20hw",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340976",
+    "name": "Ethgen4rub949xn",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340974",
+    "name": "Alinel",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340973",
+    "name": "Axiomgh5hm",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340971",
+    "name": "Zkgen4jimxr3l",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340970",
+    "name": "Zkgen3voyjtrl",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340969",
+    "name": "Zkgen2ycf",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340968",
+    "name": "Axiomgen3vzum",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340965",
+    "name": "Chaingen376gj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340964",
+    "name": "Ethgekzhh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340963",
+    "name": "Ethgen3hav0tfdy5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340962",
+    "name": "Chaingen3femrilj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340961",
+    "name": "Axiomgenyk9y",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340960",
+    "name": "Zkgdi13",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340959",
+    "name": "Axiomgen3br9ts",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340958",
+    "name": "Chaingendk2j",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340957",
+    "name": "Chaingee47j",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340956",
+    "name": "Zkg4su9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340955",
+    "name": "Axiomgenfsas",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340954",
+    "name": "Novagen3si9my0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340953",
+    "name": "Ethgen3sse3n",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340951",
+    "name": "Blockgen3rajouk",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340950",
+    "name": "Axiomgen3q149a",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340949",
+    "name": "Zkgen3pet1waofl",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340947",
+    "name": "Chaingen3monv1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340946",
+    "name": "Ethgen3laxqal5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340944",
+    "name": "Axiomgen313za",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340943",
+    "name": "Blockgfp4e",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340941",
+    "name": "Blockgmgve",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340940",
+    "name": "Axiomge3wey",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340939",
+    "name": "Ethgen2sojoq4t",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340936",
+    "name": "Ethgen2y9lz",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340935",
+    "name": "Blockgen22kve",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340933",
+    "name": "Axiomgey4lm",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340932",
+    "name": "Ethgen2liq18sfh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340930",
+    "name": "LeonSmily",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340929",
+    "name": "Novagen2guoe1c",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340928",
+    "name": "Novagen2fen1fc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340927",
+    "name": "Ethgen21cxn",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340926",
+    "name": "Novagedu30",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340925",
+    "name": "Zkgenx7el",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340924",
+    "name": "provider_nansen_api",
+    "reason": "declares-no-callable-protocol",
+    "detail": "none"
+  },
+  {
+    "agentId": "340923",
+    "name": "Ethgen2zat3hbh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340922",
+    "name": "Chaingen270s7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340921",
+    "name": "Zkgen2f0l",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340920",
+    "name": "Blockgen2ognq",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340917",
+    "name": "Zkgen2telc8er",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340916",
+    "name": "Blockgf798",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340915",
+    "name": "Zkgen2t81ef",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340914",
+    "name": "Blockgen1cdk",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340913",
+    "name": "Chaingo2qp",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340912",
+    "name": "Axiomgenc6us",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340911",
+    "name": "Chaingen80tj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340910",
+    "name": "je",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340909",
+    "name": "Chaingen2nhzgj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340908",
+    "name": "ColdViperZee",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340906",
+    "name": "Chaingerl5p",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340905",
+    "name": "kbj_agent_01",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340903",
+    "name": "Chaingen1w6kl7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340902",
+    "name": "Chaingen312v",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340901",
+    "name": "Chaingen1tuvwcp",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340899",
+    "name": "Zkgen1pow6fqf",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340898",
+    "name": "Ethgen1r4uub",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340897",
+    "name": "Axiomg4gay",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340895",
+    "name": "Zkgen1m4jrx",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340880",
+    "name": "Tapondey1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340877",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340876",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340875",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340874",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340873",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340872",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340871",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340870",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340869",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340868",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340867",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340866",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340865",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340864",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340863",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340862",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340861",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340860",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340859",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340858",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340857",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340856",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340855",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340854",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340853",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340852",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340851",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340850",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340849",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340848",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340847",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340846",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340845",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340844",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340843",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340842",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340841",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340840",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340839",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340838",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340834",
+    "name": "JesseGhostKiller",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340825",
+    "name": "Zkgew7kknz9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340824",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340823",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340822",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340821",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340820",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340819",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340818",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340817",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340816",
+    "name": "My AI Agent",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340814",
+    "name": "Chaingem2zawwraj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340813",
+    "name": "tox23",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340811",
+    "name": "Rengginang",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340810",
+    "name": "Blockgen9luii4w",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340800",
+    "name": "actionfi",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340797",
+    "name": "toxix",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340796",
+    "name": "Andyhabu",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340795",
+    "name": "testagent2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340792",
+    "name": "toix14",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340789",
+    "name": "SankarG",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340787",
+    "name": "Zkgsjof",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340778",
+    "name": "Axiomgen7ngpg",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340776",
+    "name": "Axiomgen7sz53m",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340772",
+    "name": "Axiomgen7nel9gm",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340771",
+    "name": "Novagen7kul7bifu",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340770",
+    "name": "dorcileguy",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340769",
+    "name": "Chaingen7gaup4d",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340768",
+    "name": "Blockgen7ixse",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340761",
+    "name": "Rajaraman",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340750",
+    "name": "Axiomgeaofy",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340753",
+    "name": "Blockgen7ym98",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340752",
+    "name": "Axiomgeg7ka",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340754",
+    "name": "Blockgemsvw",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340751",
+    "name": "Blockgen7m3xw",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340744",
+    "name": "Zkgen7kuk6jl863",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340747",
+    "name": "Novage2m30",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340746",
+    "name": "Ethgen7kukvkdn",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340749",
+    "name": "Ethgenjd1h",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340745",
+    "name": "Blockgenreh2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340748",
+    "name": "Blockgxhae",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340743",
+    "name": "Ethgen7kurfz",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340742",
+    "name": "graciasbaby",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340732",
+    "name": "Chaingenq4bj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340739",
+    "name": "Ethgen7w9065",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340737",
+    "name": "Novagen7wis1go",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340738",
+    "name": "Blockge76aq",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340736",
+    "name": "Novagen735c6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340734",
+    "name": "Axiomgen7wipjq6y",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340740",
+    "name": "Axiomgen75ihg",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340731",
+    "name": "Blockgen1bfe",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340735",
+    "name": "Novage897o",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340729",
+    "name": "Chainge7ekv",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340733",
+    "name": "Novagen73kw6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340730",
+    "name": "Novagen7wiy3c0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340727",
+    "name": "Ethgengwc5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340720",
+    "name": "Zkgen7sej8wdjel",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340725",
+    "name": "Novagen7e8q6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340717",
+    "name": "Novagep1l0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340722",
+    "name": "Zkgen7srwk9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340721",
+    "name": "Chaingen7skmgj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340716",
+    "name": "Novageuph0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340719",
+    "name": "Zkgen5xr9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340726",
+    "name": "Chaingenvryv",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340718",
+    "name": "Axiomgen9d2y",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340715",
+    "name": "Chaingenvg37",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340723",
+    "name": "Zkgeneucf",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340724",
+    "name": "Axiomgen7shtl4",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340714",
+    "name": "Axiomgen7bcms",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340712",
+    "name": "Novagen7mus94uju",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340706",
+    "name": "Chaingen7g457",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340708",
+    "name": "Chaingkomj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340707",
+    "name": "Zkgen7hes0nasr3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340709",
+    "name": "Novagen7he97bc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340705",
+    "name": "Blockgen7hesj4s8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340710",
+    "name": "Novagen7heb4lc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340704",
+    "name": "Axiomgen7hezqks",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340702",
+    "name": "Zkgen7hes9ld6al",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340700",
+    "name": "Ethgen7he5hob",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340701",
+    "name": "Chaingen7hesl9ap",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340699",
+    "name": "Blockgen7hloek",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340703",
+    "name": "Zkgenqnw9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340698",
+    "name": "Axiomgrui4",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340697",
+    "name": "Zkgen7dhix3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340687",
+    "name": "Chaingen7dub992j",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340693",
+    "name": "Zkgen7d5lol",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340694",
+    "name": "Blockgen7dubl82w",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340686",
+    "name": "Novagen7fed5dc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340692",
+    "name": "Chaing6gfj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340691",
+    "name": "Axiomgengwbm",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340689",
+    "name": "Zkgen1scr",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340695",
+    "name": "Axiomgen0gmm",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340690",
+    "name": "Zkgi8rx",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340688",
+    "name": "Chaingen7dubo08j",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340696",
+    "name": "Novage0zwc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340685",
+    "name": "Novagen7fi99ao",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340684",
+    "name": "Zkgen4vkl",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340682",
+    "name": "Novagen7capnyo",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340671",
+    "name": "Zkg2pnr",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340675",
+    "name": "Zkgen7caxl6m9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340681",
+    "name": "Zkgen7ctfof",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340674",
+    "name": "Ethgjsvh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340672",
+    "name": "Blockgen7n5y8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340678",
+    "name": "Ethgen7cax5onb",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340679",
+    "name": "Chaingen7ca142p",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340676",
+    "name": "Chaingekejj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340677",
+    "name": "Chaingen7ca6tsd",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340673",
+    "name": "Zkgen7cf5kf",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340680",
+    "name": "Novagen7caohlc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340670",
+    "name": "Novagen7jn66",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340668",
+    "name": "Ethgen7bee25",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340666",
+    "name": "Zkgy523",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340665",
+    "name": "Zkgen7yvkv9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340664",
+    "name": "Chaingen7xo6rj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340662",
+    "name": "Chaingenx6od",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340660",
+    "name": "Ethgen7teghb",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340659",
+    "name": "Axiomgen7s4vca",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340658",
+    "name": "Blockgen7roh0upq",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340648",
+    "name": "Blockgen7qoxsexw",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340652",
+    "name": "Axiomgejhky",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340653",
+    "name": "Blockgen7qoxn49w",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340650",
+    "name": "Chaingewlk1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340649",
+    "name": "Ethgen725ut",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340655",
+    "name": "Blockgen7qobie",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340656",
+    "name": "Zkgenreo3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340651",
+    "name": "Zkgen7q00il",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340657",
+    "name": "Ethgen7qogz5h",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340647",
+    "name": "Novagej0x0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340646",
+    "name": "Zkgr49x",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340654",
+    "name": "Zkgenl9o9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340640",
+    "name": "Axiomgen7hhd4",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340642",
+    "name": "Zkgen7pin0wp73r",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340644",
+    "name": "Novagen7pin454du",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340638",
+    "name": "Blockgen7p6zf8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340635",
+    "name": "Novagen7r38u",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340637",
+    "name": "Blockgen0r0w",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340643",
+    "name": "Axiomgen7pin5shs",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340639",
+    "name": "Zkgen7pin2pwgwf",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340636",
+    "name": "Ethgen7pinqqeb",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340634",
+    "name": "Axiomgenk21m",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340645",
+    "name": "Novagen7piwce0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340641",
+    "name": "Chaingenelf7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340633",
+    "name": "Axiomgexwns",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340625",
+    "name": "Ethgen7zpjt",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340621",
+    "name": "Chaingej60j",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340628",
+    "name": "Chaingeut0d",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340624",
+    "name": "Axiomgen7jau4mg",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340630",
+    "name": "Zkgen7jajb9zr",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340627",
+    "name": "Novagen7uk0u",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340626",
+    "name": "Blockgelsxk",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340631",
+    "name": "Blockgen7jaj4nb8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340629",
+    "name": "Ethgewl6b",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340632",
+    "name": "Chaingcgjd",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340623",
+    "name": "Axiomgen7h9ga",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340622",
+    "name": "Ethgen7jaxtv5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340620",
+    "name": "Axiomgen6kda",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340619",
+    "name": "Zkgen6sus4fkutf",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340612",
+    "name": "Novageuguc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340613",
+    "name": "Axiomgen6neco7gm",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340616",
+    "name": "Ethgen6necd21t",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340617",
+    "name": "Axiomgen6nexk6m",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340614",
+    "name": "Ethgen6nm225",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340615",
+    "name": "Axiomgen6952a",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340611",
+    "name": "Chaingenssu7",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340607",
+    "name": "Axiomgen6letzum",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340605",
+    "name": "Novagen6e19i",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340608",
+    "name": "Ethgeupgn",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340606",
+    "name": "Novagen6ledpao",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340603",
+    "name": "Zkg7fs9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340604",
+    "name": "Axiomgs8hs",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340598",
+    "name": "Ethgen6kuv0nqnrh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340601",
+    "name": "Novagen66imu",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340599",
+    "name": "Novages530",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340600",
+    "name": "Axiomgen6kuw6ns",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340596",
+    "name": "Ethgen6jdj5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340597",
+    "name": "Axiomgevsgs",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340592",
+    "name": "Blockgen6bx4ve",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340593",
+    "name": "Blockgen6beqi0i8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340591",
+    "name": "Novagen6beq326r6",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340590",
+    "name": "Blockgaytk",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340588",
+    "name": "Novagen6hkyu",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340589",
+    "name": "Chaing1xbv",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340583",
+    "name": "Chaingewr9d",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340585",
+    "name": "Chaingrfdj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340584",
+    "name": "Novagen6uc9i",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340586",
+    "name": "Novagen6zul95mvu",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340582",
+    "name": "Novagevokc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340587",
+    "name": "Chaingen6zgovp",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340579",
+    "name": "Blockgaqo2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340575",
+    "name": "Chaingen6xolisxv",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340577",
+    "name": "Blockgen6xo5ide",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340576",
+    "name": "Novagen6qfdi",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340578",
+    "name": "Novageij8c",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340574",
+    "name": "Chaingen62dxv",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340571",
+    "name": "Zkgen6tzu1r",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340566",
+    "name": "Ethg6o7z",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340563",
+    "name": "Ethgendl0h",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340558",
+    "name": "Nasirummu33",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340552",
+    "name": "Ethgen5per5ufit",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340539",
+    "name": "Sakib",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340537",
+    "name": "Zkgenkip9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340534",
+    "name": "Novageo1gc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340520",
+    "name": "Blockgw7a8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340496",
+    "name": "Chaingn4jv",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340490",
+    "name": "Ethgen4kubn7h",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340464",
+    "name": "Ethgen3qilf7at",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340450",
+    "name": "Blockgen3nudqsaq",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340441",
+    "name": "Axiomgen3lorov7s",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340428",
+    "name": "Blockgenf7n2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340417",
+    "name": "Chaingen3fnpuj",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340398",
+    "name": "Novagen386xi",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340391",
+    "name": "Zkgen3vom3j9u8l",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340387",
+    "name": "Ethgen3szgeh",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340368",
+    "name": "Axiomgen001g",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340359",
+    "name": "Zkgen3met9k5o7l",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340354",
+    "name": "Chainge6tr1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340355",
+    "name": "Ethgen3q0nt",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340356",
+    "name": "Blockgennujw",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340357",
+    "name": "Ethgen3met8msscb",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340358",
+    "name": "Axiomgen3m19vg",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340348",
+    "name": "Zkgen3lebd5i9",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340347",
+    "name": "Ethge0w9h",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340352",
+    "name": "Novagen3legvy0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340349",
+    "name": "Novageehsc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340350",
+    "name": "Novagen3lev7dc",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340351",
+    "name": "Ethgen3leb9u2v5",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340341",
+    "name": "Chaingen3lilsmij",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340336",
+    "name": "Axiomgena7kg",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340335",
+    "name": "Axiomggwdm",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340333",
+    "name": "Blockgc98q",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340337",
+    "name": "Axiomgen3kiszn8y",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340332",
+    "name": "Axiomgezzum",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340334",
+    "name": "Ethgen3kis0h9xzb",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340319",
+    "name": "Novagen2taufgo",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340318",
+    "name": "Chaingen2tqw1",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340317",
+    "name": "Chaingejegp",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340321",
+    "name": "Blockgssn2",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340320",
+    "name": "Blockgen2tabp2e",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340316",
+    "name": "Zkgenu9jx",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340309",
+    "name": "Blockg82n8",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340307",
+    "name": "Axiomg386m",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340308",
+    "name": "Chaingen2rigkap",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340305",
+    "name": "Chaingen2ripbod",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340310",
+    "name": "Axiomgentr5g",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340306",
+    "name": "Zkg2bx3",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340294",
+    "name": "Axiomgevnh4",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340291",
+    "name": "Novagen2qoq7s0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340289",
+    "name": "Ethgen2qot2bi1b",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340292",
+    "name": "Ethgen2qot2r8rt",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340290",
+    "name": "Axiomgen2qotnt1a",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "340293",
+    "name": "Novagen2qo5wk0",
+    "reason": "declares-no-callable-protocol",
+    "detail": "Web"
+  },
+  {
+    "agentId": "204065",
+    "name": "404.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "297481",
+    "name": "khenzar.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "315920",
+    "name": "chunglethi.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "300438",
+    "name": "faltubd.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "202312",
+    "name": "agentboss.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "298917",
+    "name": "Masum.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "302376",
+    "name": "heocan.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "303445",
+    "name": "dsbihari.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "303646",
+    "name": "uxhena.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "298476",
+    "name": "Jeky.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "302756",
+    "name": "Nedved.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "301492",
+    "name": "yeahyah.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "308285",
+    "name": "putki.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "299130",
+    "name": "James.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "299058",
+    "name": "Mnixjmh.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "336251",
+    "name": "zohier.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "300973",
+    "name": "sui.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "330670",
+    "name": "rakibshakot.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "310355",
+    "name": "TopReturn.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "300957",
+    "name": "Cosmo-LendAI.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "339893",
+    "name": "KeenLend-AI.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341645",
+    "name": "lulucheng.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341642",
+    "name": "zhelaia.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341639",
+    "name": "jijidaderen.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341638",
+    "name": "zhelai.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341539",
+    "name": "BUILD.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341516",
+    "name": "vasvas.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341493",
+    "name": "studio-agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341464",
+    "name": "moka98.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341463",
+    "name": "moka98.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341462",
+    "name": "nomi.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341454",
+    "name": "nasir.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341442",
+    "name": "ashikur.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341409",
+    "name": "Rafi.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341400",
+    "name": "CipherHollow.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341384",
+    "name": "CryptoEarnHubX.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341321",
+    "name": "almkhn12.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341282",
+    "name": "Agent #341282",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341275",
+    "name": "Tig.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341242",
+    "name": "Taxi.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341240",
+    "name": "saber.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341174",
+    "name": "trololo.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341142",
+    "name": "ABBA.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341123",
+    "name": "zizi22.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341076",
+    "name": "sksohail3332.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341050",
+    "name": "newpeee-web3.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341039",
+    "name": "newpeee.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "341036",
+    "name": "sim.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340990",
+    "name": "ardan.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340978",
+    "name": "baoxbao.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340967",
+    "name": "FStock",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340893",
+    "name": "cyberpunk.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340889",
+    "name": "anhhoc.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340879",
+    "name": "ehiya.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340878",
+    "name": "CipherHollow999.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340829",
+    "name": "kashir16.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340826",
+    "name": "nishan.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340809",
+    "name": "thorstorm.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340788",
+    "name": "sorefa81.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340777",
+    "name": "manager3.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340773",
+    "name": "manager.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340767",
+    "name": "Rifat85.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340609",
+    "name": "Kanekix.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340594",
+    "name": "lucifero.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340557",
+    "name": "able__coins.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340536",
+    "name": "Emmycrrypt.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340531",
+    "name": "SyncMesh.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340530",
+    "name": "BitCore.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340529",
+    "name": "EagleDelta.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340528",
+    "name": "BoldTrace.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340526",
+    "name": "TurboX.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340525",
+    "name": "Shadow-Iron_mk2.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340524",
+    "name": "Titan_Cloud.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340522",
+    "name": "HashShift-9000.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340521",
+    "name": "Link-Lambda.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340519",
+    "name": "Omega-Coil-Chain.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340518",
+    "name": "OrionWave360.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340517",
+    "name": "Vest007.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340516",
+    "name": "Eagle_Hive.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340515",
+    "name": "NeoPhase-Mini.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340513",
+    "name": "Nexus_Ray.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340512",
+    "name": "OrionLens.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340511",
+    "name": "Beta_Find.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340510",
+    "name": "AxonBrain.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340508",
+    "name": "Pulse-Loop-Bot.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340507",
+    "name": "MintMini.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340506",
+    "name": "ApexTrack7777.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340505",
+    "name": "Meta-Gold.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340504",
+    "name": "SwiftLens-Swarm.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340503",
+    "name": "VortexJumpMax.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340501",
+    "name": "Alpha-Leapize.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340499",
+    "name": "Byte_ify.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340498",
+    "name": "Shadow_Loop.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340497",
+    "name": "Bright_FundOS.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340495",
+    "name": "ShieldBot.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340493",
+    "name": "Sharp404.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340492",
+    "name": "Chip_Sys.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340491",
+    "name": "Hash-SurgeOps.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340489",
+    "name": "AxonDev.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340488",
+    "name": "Echo-Surge-gen2.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340487",
+    "name": "SyncEdge.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340486",
+    "name": "Kilo-Dev.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340485",
+    "name": "MicroBrain.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340484",
+    "name": "Zeta_Gate.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340483",
+    "name": "Eagle_Phase.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340482",
+    "name": "EagleBrainOne.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340481",
+    "name": "FalconSolve.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340480",
+    "name": "SyncDriftTheta.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340479",
+    "name": "ShadowPhase.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340478",
+    "name": "WolfVest_Plus.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340477",
+    "name": "ZetaBoltCore.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340476",
+    "name": "Cap_X.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340475",
+    "name": "DarkPhi.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340474",
+    "name": "SyncTrace-7777.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340473",
+    "name": "Warp7777.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340472",
+    "name": "Star-Phi.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340470",
+    "name": "TokenThink-360.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340468",
+    "name": "CosmoThink.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340467",
+    "name": "Macro-BridgeSafe.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340466",
+    "name": "rahulonchain.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340465",
+    "name": "Helixv4.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340463",
+    "name": "LingoAI Personal Holon",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340462",
+    "name": "MorphWeb3.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340461",
+    "name": "LinkPhase-Pro.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340459",
+    "name": "Eagle_Dev.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340457",
+    "name": "Hub-Fi.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340454",
+    "name": "DeepLensMesh.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340453",
+    "name": "HawkOS.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340452",
+    "name": "Wise_Rush.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340451",
+    "name": "Lux_Ice.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340449",
+    "name": "Deep_Glidev4.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340447",
+    "name": "MintLens.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340446",
+    "name": "Bright_Gamma.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340443",
+    "name": "Flux-ify.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340439",
+    "name": "SolBridge-Sys.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340440",
+    "name": "Hunt_One.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340438",
+    "name": "QuarkShift_Beta.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340437",
+    "name": "MacroRock.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340436",
+    "name": "LogicMax.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340434",
+    "name": "StormJump.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340433",
+    "name": "Sky-Run.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340432",
+    "name": "AuraSea.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340431",
+    "name": "AlphaIceGo.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340430",
+    "name": "Orion_Delta.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340427",
+    "name": "Ion_Dev.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340426",
+    "name": "Zeta-gen2.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340425",
+    "name": "BrightDevAI.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340424",
+    "name": "Flow42.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340423",
+    "name": "Bond-Lambda.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340422",
+    "name": "HashMine.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340420",
+    "name": "Giga-Bit.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340421",
+    "name": "Dark_FundOS.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340419",
+    "name": "DarkRay.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340418",
+    "name": "Spark-Docklex.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340416",
+    "name": "Anvil_v3.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340414",
+    "name": "Turbo_LearnHive.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340413",
+    "name": "Matrix_ScanLite.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340412",
+    "name": "DevPro.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340411",
+    "name": "Vortex_Cash.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340410",
+    "name": "Meta_Sea.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340409",
+    "name": "LogicNet.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340408",
+    "name": "PulseGlide_Run.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340406",
+    "name": "Flash-3000.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340405",
+    "name": "Exa_Trackica.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340404",
+    "name": "SharpCore.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340402",
+    "name": "AuraRay.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340403",
+    "name": "FrostBeamCoin.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340401",
+    "name": "Stellar-Solve_7777.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340400",
+    "name": "SynthAgent.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340399",
+    "name": "DragonLendTheta.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340397",
+    "name": "PhaseTrust.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340396",
+    "name": "Luna_Stream.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340395",
+    "name": "Shield-mk2.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340394",
+    "name": "Zeta-Streamgen2.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340393",
+    "name": "TokenChain.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340392",
+    "name": "Edgev4.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340389",
+    "name": "MintSteel-Phi.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340388",
+    "name": "Sharp_Prime.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340386",
+    "name": "ByteSun-Run.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340385",
+    "name": "Tera-Rush-v2.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340384",
+    "name": "Cyber-WarpLambda.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340383",
+    "name": "DragonLab_AI.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340382",
+    "name": "AuraJump-Lambda.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340380",
+    "name": "Luxlex.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340379",
+    "name": "IonPrismLab.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340378",
+    "name": "PhoenixCap404.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340377",
+    "name": "FarmOne.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340376",
+    "name": "ScanPhi.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340375",
+    "name": "Orbit007.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340374",
+    "name": "AxonKnowHub.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340373",
+    "name": "Code_Web3.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340372",
+    "name": "CosmoSpinGo.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340371",
+    "name": "Edge_Algo-Mini.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340370",
+    "name": "Data-Bolt_Delta.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340369",
+    "name": "Mint_ChipAI.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340366",
+    "name": "Zeta_Warp.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340365",
+    "name": "VectorScan.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340364",
+    "name": "EchoSurgeIO.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340363",
+    "name": "Bolt-Port.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340362",
+    "name": "Wolf99.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340361",
+    "name": "PixelShield_AI.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340360",
+    "name": "Dark-TrackPro.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340353",
+    "name": "Skyv1.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340346",
+    "name": "MacroSun.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340345",
+    "name": "ArcGuard_7777.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340344",
+    "name": "Dark-Net.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340343",
+    "name": "Dragon-Gate_Hub.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340342",
+    "name": "Astro404.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340340",
+    "name": "KiloStar.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340338",
+    "name": "Dev-Mesh.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340331",
+    "name": "AuraGate.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340330",
+    "name": "TrueMax.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340329",
+    "name": "AtlasCash-101.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340328",
+    "name": "Drift_gen1.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340327",
+    "name": "Chip-Safe.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340326",
+    "name": "Peta-Brainster.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340325",
+    "name": "NodeStream.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340324",
+    "name": "DevOps.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340323",
+    "name": "Buildgen1.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340322",
+    "name": "Apex_SunZero.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340315",
+    "name": "HyperThinkCloud.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340314",
+    "name": "PulseRockCoin.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340313",
+    "name": "AnvilLoop-Zero.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340312",
+    "name": "Hub_Prime.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340311",
+    "name": "Vector_Sys.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340304",
+    "name": "MetaNeural.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340303",
+    "name": "AtlasMine_IO.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340302",
+    "name": "NodeGate.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340301",
+    "name": "Vector_Prism-Mu.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340300",
+    "name": "Cloud_ify.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340299",
+    "name": "UltraBrainNode.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340298",
+    "name": "Bright-EarnDAO.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340297",
+    "name": "Hash-Warp.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340295",
+    "name": "FrostMineMini.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340288",
+    "name": "Helix_7777.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "340287",
+    "name": "Titan_HuntCore.agent",
+    "reason": "not-financially-relevant"
+  },
+  {
+    "agentId": "45650",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "45564",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "43129",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341637",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341635",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341630",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341627",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341625",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341623",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341621",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341620",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341610",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341588",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341568",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341538",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341526",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341519",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341511",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341499",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341494",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341453",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341450",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341438",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341416",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341408",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341407",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341396",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341394",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341382",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341329",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341320",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341317",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341311",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341310",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341309",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341308",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341304",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341301",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341297",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341279",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341274",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341258",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341257",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341256",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341255",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341251",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341250",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341246",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341244",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341243",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341239",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341238",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341230",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341229",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341228",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341227",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341224",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341223",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341220",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341219",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341216",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341215",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341213",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341206",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341202",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341177",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341168",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341165",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341164",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341163",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341157",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341150",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341143",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341134",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341129",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341127",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341126",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341124",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341118",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341117",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341107",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341103",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341100",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341098",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341097",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341092",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341079",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341078",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341077",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341075",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341070",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341069",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341065",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341058",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341057",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341053",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341051",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341049",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341048",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341044",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341042",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341038",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341035",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341034",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341030",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341028",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341021",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341018",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341016",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341014",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341009",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341006",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "341002",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340997",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340995",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340988",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340984",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340981",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340980",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340977",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340975",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340972",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340966",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340952",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340948",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340945",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340938",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340937",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340934",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340919",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340918",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340904",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340900",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340896",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340894",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340892",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340890",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340891",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340888",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340887",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340886",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340884",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340883",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340881",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340836",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340833",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340832",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340831",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340828",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340827",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340815",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340812",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340808",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340807",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340805",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340804",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340803",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340802",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340801",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340798",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340794",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340793",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340791",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340790",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340785",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340784",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340783",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340782",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340781",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340780",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340774",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340766",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340763",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340762",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340760",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340759",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340758",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340757",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340756",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340755",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340741",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340728",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340713",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340711",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340683",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340667",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340661",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340618",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340610",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340602",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340580",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340581",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340573",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340570",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340569",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340568",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340565",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340564",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340562",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340560",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340559",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340555",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340554",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340553",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340551",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340550",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340549",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340546",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340545",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340544",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340542",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340541",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340540",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340538",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340535",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340509",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340445",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340444",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340415",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340407",
+    "name": null,
+    "reason": "registration-unresolved"
+  },
+  {
+    "agentId": "340548",
+    "name": "Lending Agent 3 by 4LPHA",
+    "reason": "operator-cap-reached",
+    "detail": "0x273987e9d86d5231b0be928aba88129ac479ca9d"
   }
 ]
