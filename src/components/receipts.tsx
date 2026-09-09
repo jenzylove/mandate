@@ -35,6 +35,12 @@ export interface ReceiptRecord {
   delivery: { kind: string; label: string; content: string; hash: string };
   chain: { steps: ReceiptStep[]; settleAvailableAt: string | null; disputeWindowSeconds: number } | null;
   caveats: string[];
+  audit?: {
+    status: "passed" | "failed" | "inconclusive";
+    auditor: string;
+    auditedAt: string;
+    checks: { name: string; status: string; detail: string }[];
+  };
 }
 
 export function useReceipts(address?: string) {
@@ -142,7 +148,7 @@ export function ReceiptDetail({ receiptId }: { receiptId: string }) {
       </div>
     );
 
-  const canSettle = receipt.status === "SUBMITTED";
+  const canSettle = receipt.status === "SUBMITTED" && receipt.audit?.status === "passed";
 
   return (
     <section className="panel">
@@ -159,6 +165,15 @@ export function ReceiptDetail({ receiptId }: { receiptId: string }) {
 
       <p>{receipt.delivery.label}</p>
       <pre className="deliverable">{receipt.delivery.content.slice(0, 8000)}</pre>
+
+      {receipt.audit && (
+        <div className="role-row">
+          <p>Mandate audit · {receipt.audit.status.toUpperCase()}</p>
+          {receipt.audit.checks.map((check) => (
+            <p key={check.name}>{check.status.toUpperCase()} · {check.name} · {check.detail}</p>
+          ))}
+        </div>
+      )}
 
       {receipt.chain && (
       <div className="role-row">

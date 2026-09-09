@@ -3,6 +3,7 @@ import { liveAgent } from "@/lib/live/snapshot";
 import { quote, callTool, notifyFunded } from "@/lib/live/agent-adapter";
 import { settlementFor, escrowAddress, type OpenResult, type StepRecord } from "@/lib/settlement/erc8183";
 import { rosterEntry } from "@/lib/live/roster";
+import { auditSubmission, type AuditRecord } from "@/lib/audit/mandate-audit";
 import { NETWORKS, type NetworkName } from "@/lib/live/chain";
 import {
   writeToStore,
@@ -47,6 +48,7 @@ export interface Receipt {
   delivery: { kind: DeliveryKind; label: string; content: string; hash: string };
   chain: OpenResult | null;
   caveats: string[];
+  audit?: AuditRecord;
 }
 
 export const saveReceipt = writeToStore;
@@ -247,6 +249,16 @@ async function hirePaid(
     );
   }
 
+  const audit = delivered.delivered
+    ? auditSubmission({ category: agent.category, request, content, submittedHash: finalChain.deliverable })
+    : undefined;
+  if (audit?.status === "failed") {
+    await settlement.dispute(BigInt(chain.jobId)).catch(() => undefined);
+    caveats.push("Mandate audit failed; the existing ERC-8183 dispute path was invoked and escrow was not released.");
+  } else if (audit?.status === "inconclusive") {
+    caveats.push("Mandate could not independently verify this delivery; escrow remains unresolved until review.");
+  }
+
   const receipt: Receipt = {
     id: `job-${network}-${chain.jobId}`,
     jobId: chain.jobId,
@@ -280,6 +292,7 @@ async function hirePaid(
     },
     chain: finalChain,
     caveats,
+    audit,
   };
   await saveReceipt(receipt);
   return receipt;
@@ -331,6 +344,7 @@ export async function hire(input: HireInput): Promise<Receipt> {
 export async function trySettle(id: string): Promise<Receipt | null> {
   const receipt = await readReceipt(id);
   if (!receipt || !receipt.jobId || !receipt.settlementNetwork) return receipt;
+  if (receipt.audit?.status !== "passed") return receipt;
   const settlement = settlementFor(receipt.settlementNetwork);
   const res = await settlement.settle(BigInt(receipt.jobId));
   receipt.status = res.status;

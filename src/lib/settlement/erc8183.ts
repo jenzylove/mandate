@@ -488,6 +488,13 @@ export class Erc8183Settlement {
     const after = await this.jobState(jobId);
     return { settled: after.status === "COMPLETED", step: steps[0], status: after.status };
   }
+
+  /** Use the deployed policy's dispute path when Mandate rejects a delivery. */
+  async dispute(jobId: bigint): Promise<{ disputed: boolean; step?: StepRecord }> {
+    const steps: StepRecord[] = [];
+    await this.send(clientAccount(), this.n.policy, encodeFunctionData({ abi: policyAbi, functionName: "dispute", args: [jobId] }), "dispute", steps);
+    return { disputed: true, step: steps[0] };
+  }
 }
 
 const cache = new Map<NetworkName, Erc8183Settlement>();
