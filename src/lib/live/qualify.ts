@@ -1,4 +1,4 @@
-import type { Agent, AgentStatus, Evidence, Metric, Provenance } from "@/lib/domain/types";
+import type { Agent, AgentStatus, Evidence, Metric, Provenance, VerificationLevel } from "@/lib/domain/types";
 import { discover, type DiscoveredAgent, type Route } from "@/lib/live/discover";
 import { probe, quote, type ProbeResult, type Quote } from "@/lib/live/agent-adapter";
 import { ROSTER, rosterFor, type RosterEntry } from "@/lib/live/roster";
@@ -62,6 +62,12 @@ function statusFrom(p: ProbeResult): AgentStatus {
   // A card that resolves but whose endpoint refuses is limited, not gone; an
   // endpoint that never connects is offline.
   return /HTTP 4|JSON-RPC|names no skills/.test(p.detail) ? "limited" : "offline";
+}
+
+function verificationFrom(p: ProbeResult, q?: Quote): VerificationLevel {
+  if (q?.accepted && q.provider && BigInt(q.priceRaw ?? "0") > 0n) return "verified-hireable";
+  if (q?.accepted && q.priceRaw === "0" && q.deliverables) return "verified-hireable";
+  return p.ok ? "live" : "registered";
 }
 
 function evidenceFrom(d: DiscoveredAgent, p: ProbeResult, q?: Quote): Evidence {
@@ -173,6 +179,8 @@ async function buildOne(entry: RosterEntry): Promise<LiveAgent | null> {
     ],
     status: statusFrom(p),
     pricing,
+    verification: verificationFrom(p, q),
+    hireable: verificationFrom(p, q) === "verified-hireable",
     endpoint: route.endpoint ?? undefined,
     source: discovered ? "erc8004+8004scan" : "erc8004",
     supportedControlModes:

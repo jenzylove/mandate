@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import type { Agent, Outcome } from "@/lib/domain/types";
+import type { Agent, Outcome, VerificationLevel } from "@/lib/domain/types";
 import { AgentCard, OutcomeCard, goals, categoryNames } from "./market-ui";
 export function Catalog({
   outcomes = [],
@@ -17,10 +17,11 @@ export function Catalog({
 }) {
   const [query, setQuery] = useState(initialQuery);
   const [filter, setFilter] = useState(initialFilter);
+  const verificationOf = (a: Agent): VerificationLevel => a.verification ?? (a.hireable ? "verified-hireable" : a.status === "available" || a.status === "limited" ? "live" : "registered");
   const options =
     kind === "outcomes"
       ? goals.map((g) => [g.id, g.label])
-      : Object.entries(categoryNames);
+      : [["all", "All agents"], ["verified-hireable", "Verified hireable"], ["live", "Live"], ["registered", "Registered"], ...Object.entries(categoryNames)] as [string, string][];
   const q = query.trim().toLowerCase();
   const matches = (text: string) => text.toLowerCase().includes(q);
   const os = outcomes.filter(
@@ -39,7 +40,7 @@ export function Catalog({
   );
   const as = agents.filter(
     (a) =>
-      (filter === "all" || a.category === filter) &&
+      (filter === "all" || a.category === filter || verificationOf(a) === filter) &&
       matches(
         [
           a.name,
@@ -52,8 +53,9 @@ export function Catalog({
   );
   const count = kind === "outcomes" ? os.length : as.length;
   // Say how much of this is real rather than labelling the whole collection a demo.
-  const liveCount = kind === "agents" ? as.filter((a) => a.source !== "seed").length : 0;
-  const seededCount = kind === "agents" ? as.length - liveCount : 0;
+  const liveCount = kind === "agents" ? as.filter((a) => verificationOf(a) === "live").length : 0;
+  const verifiedCount = kind === "agents" ? as.filter((a) => verificationOf(a) === "verified-hireable").length : 0;
+  const registeredCount = kind === "agents" ? as.filter((a) => verificationOf(a) === "registered").length : 0;
 
   return (
     <div className="catalog">
@@ -86,7 +88,7 @@ export function Catalog({
         />
       </div>
       <p className="catalog-count" aria-live="polite">
-        {count} {kind} to explore{liveCount > 0 ? ` · ${liveCount} live onchain` : ""}{seededCount > 0 ? ` · ${seededCount} seeded` : ""}
+        {count} {kind} to explore{kind === "agents" ? ` · ${verifiedCount} verified hireable · ${liveCount} live · ${registeredCount} registered` : ""}
       </p>
       {count ? (
         <div className={kind === "agents" ? "agent-grid-dense" : "cards-grid"}>

@@ -61,6 +61,7 @@ function previewSelection(agents: Agent[], size: number): Agent[] {
 }
 
 export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agents: Agent[] }) {
+  // Curate from the whole real catalogue; verification controls hiring, not visibility.
   const liveAgents = agents.filter((agent) => agent.source !== "seed");
   // A preview of the market, not the first ten rows of it. Taking the head of
   // the list showed whichever operator ranked highest five times over; this
@@ -105,7 +106,7 @@ export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agen
       </section>
 
       <section className="mh-section mh-agent-section" id="agents">
-        <div className="mh-section-title"><div><small>LIVE ON BNB CHAIN</small><h2>Find your kind of agent.</h2><p>Real roles. Clear costs. Room to choose.</p></div><Link href="/agents">View all agents ↗</Link></div>
+        <div className="mh-section-title"><div><small>LIVE ON BNB CHAIN</small><h2>Find your kind of agent.</h2><p>Real roles. Clear costs. Room to choose.</p></div><Link href="/agents">View all {agents.length} agents ↗</Link></div>
         <div className="agent-grid-dense mh-agent-preview" aria-label="Live agent marketplace preview">{previewAgents.map((agent) => <AgentCard key={agent.id} agent={agent} />)}</div>
       </section>
 

@@ -20,6 +20,7 @@ export type RecommendationMode = "safe" | "balanced" | "aggressive";
 export type Provenance = "live" | "historical" | "demo" | "unavailable";
 
 export type AgentStatus = "available" | "limited" | "offline";
+export type VerificationLevel = "verified-hireable" | "live" | "registered" | "rejected";
 
 export interface Metric {
   label: string;
@@ -51,6 +52,9 @@ export interface Agent {
   metrics: Metric[];
   status: AgentStatus;
   pricing: string;
+  /** Marketplace visibility and trust are separate from whether hiring is enabled. */
+  verification?: VerificationLevel;
+  hireable?: boolean;
   endpoint?: string;
   source: string; // e.g. "8004scan" | "seed"
   supportedControlModes: ControlMode[];

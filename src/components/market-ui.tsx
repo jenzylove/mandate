@@ -148,6 +148,8 @@ export function AgentCard({ agent: a }: { agent: Agent }) {
   // "grid_viability". Shown as written words; never rewritten into something
   // the agent did not say.
   const capability = (a.capabilities[0] ?? a.category).replace(/[-_]+/g, " ").trim();
+  const verification = a.verification ?? (a.hireable ? "verified-hireable" : a.status === "available" || a.status === "limited" ? "live" : "registered");
+  const verificationLabel = verification === "verified-hireable" ? "Verified hireable" : verification === "live" ? "Live / callable" : "Registered";
   return (
     <Link className="agent-card" href={`/agents/${a.id}`}>
       <div className="agent-card-top">
@@ -159,8 +161,8 @@ export function AgentCard({ agent: a }: { agent: Agent }) {
       </div>
       <p className="agent-card-line">{capability}</p>
       <div className="agent-card-foot">
-        <span className="agent-fee">{a.pricing}</span>
-        <span className={`agent-dot ${a.status}`}>{a.status}</span>
+        <span className="agent-fee">{a.pricing === "No price quoted" ? "Price not verified" : a.pricing}</span>
+        <span className={`agent-dot ${a.status}`}>{verificationLabel}</span>
       </div>
     </Link>
   );

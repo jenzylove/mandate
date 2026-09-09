@@ -25,7 +25,6 @@ export type RejectReason =
   | "registration-unresolved"
   | "no-callable-route"
   | "endpoint-not-answering"
-  | "no-quote-and-no-free-output"
   | "operator-cap-reached";
 
 export interface Funnel {
@@ -224,11 +223,10 @@ export async function runMarketSweep({
     if (i + concurrency < queue.length) await new Promise((r) => setTimeout(r, pauseMs));
   }
 
-  const answering = built.filter((a) => {
-    if (a.status !== "offline") return true;
-    reject(a.live.agentId, a.name, "endpoint-not-answering", a.live.probe.detail);
-    return false;
-  });
+  // A resolved registration remains marketplace supply even when its endpoint
+  // is temporarily unavailable. Offline is a verification state, not a listing
+  // rejection; hire-time preflight remains the strict gate.
+  const answering = built;
 
   // The gate that matters: a proven paid quote, or a tool we actually ran.
   //
@@ -297,13 +295,13 @@ export async function runMarketSweep({
         hireable.push(r.a);
         proof.set(r.a.live.agentId, r.note);
       } else {
-        // It answered and it is real, but Mandate could not obtain a price or
-        // run anything on it. That is not primary inventory and is not deleted
-        // either: it is listed as unproven, ranked last, and says so.
+        // It is real supply, but Mandate could not obtain a price or run a tool.
+        // Keep it in the catalogue as LIVE or REGISTERED; it is not hireable.
         r.a.live.hireability = "unproven";
-        r.a.pricing = "No price quoted";
+        r.a.verification = r.a.status === "available" || r.a.status === "limited" ? "live" : "registered";
+        r.a.hireable = false;
+        r.a.pricing = r.a.status === "offline" ? "Price not verified" : "Price not verified";
         listedOnly.push(r.a);
-        reject(r.a.live.agentId, r.a.name, "no-quote-and-no-free-output", r.why);
       }
     }
     onProgress(`proved ${hireable.length}/${Math.min(i + concurrency, answering.length)}`);
@@ -326,7 +324,7 @@ export async function runMarketSweep({
   }
 
   const perCategory: Record<string, number> = {};
-  for (const a of qualified) perCategory[a.category] = (perCategory[a.category] ?? 0) + 1;
+  for (const a of [...qualified, ...listedOnly]) perCategory[a.category] = (perCategory[a.category] ?? 0) + 1;
 
   return {
     // Proven inventory leads; everything that merely answered follows it.
