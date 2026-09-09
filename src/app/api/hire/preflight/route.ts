@@ -65,7 +65,7 @@ async function run(agentId: string, context: HireContext) {
     return { ...response, status: "unavailable" as const, reason: "The live quote is incomplete." };
 
   try {
-    const settlement = settlementFor(result.network);
+    const settlement = result.rail?.settlement ?? settlementFor(result.network);
     const [balance, window] = await Promise.all([
       settlement.escrowBalance(),
       settlement.disputeWindow(),
@@ -137,7 +137,7 @@ export async function POST(req: Request) {
     .slice(0, 6);
   let last = await run(candidates[0]!, negotiationContext);
   for (const candidate of candidates.slice(1)) {
-    if (last.status !== "unavailable") break;
+    if (last.status !== "unavailable" && last.status !== "settlement-incompatible") break;
     last = await run(candidate, negotiationContext);
   }
   return NextResponse.json(last);

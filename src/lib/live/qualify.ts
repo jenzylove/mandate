@@ -32,6 +32,10 @@ export interface LiveAgent extends Agent {
       verifyingContract?: string;
       paymentToken?: string;
       estimatedSeconds?: number;
+      expiresAt?: number;
+      negotiationHash?: string;
+      responseHash?: string;
+      providerSig?: string;
     };
     refreshedAt: string;
   };
@@ -208,6 +212,10 @@ async function buildOne(entry: RosterEntry): Promise<LiveAgent | null> {
             verifyingContract: q.verifyingContract,
             paymentToken: q.paymentToken,
             estimatedSeconds: q.estimatedSeconds,
+            expiresAt: q.expiresAt,
+            negotiationHash: q.negotiationHash,
+            responseHash: q.responseHash,
+            providerSig: q.providerSig,
           }
         : undefined,
       refreshedAt: new Date().toISOString(),

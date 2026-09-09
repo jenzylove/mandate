@@ -10,6 +10,7 @@ import {
 } from "@/lib/commerce/negotiate";
 import type { HireContext } from "@/lib/domain/types";
 import { settlementFor, escrowAddress, type OpenResult, type StepRecord } from "@/lib/settlement/erc8183";
+import { settlementForTerms } from "@/lib/settlement/rails";
 import { rosterEntry } from "@/lib/live/roster";
 import { auditSubmission, type AuditRecord } from "@/lib/audit/mandate-audit";
 import { NETWORKS, type NetworkName } from "@/lib/live/chain";
@@ -195,7 +196,14 @@ async function hirePaid(
   const q = negotiation.quote!;
   const network = negotiation.network ?? networkForChainId(q.chainId) ?? (agent.live.network as NetworkName);
   const provider = negotiation.provider ?? q.provider!;
-  const settlement = settlementFor(network);
+  // The canonical negotiation has already verified the fresh quote against
+  // an allowlisted rail. Keep a defensive terms-aware fallback for callers or
+  // tests that provide a result without the internal rail object.
+  const settlement = negotiation.rail?.settlement ?? (await settlementForTerms({
+    chainId: q.chainId,
+    verifyingContract: q.verifyingContract,
+    paymentToken: q.paymentToken ?? (/^0x[a-fA-F0-9]{40}$/.test(q.currency ?? "") ? q.currency : undefined),
+  }, network)).settlement;
   const budgetRaw = BigInt(q.priceRaw ?? "0");
 
   const description = JSON.stringify({

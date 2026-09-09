@@ -96,6 +96,37 @@ describe("canonical live negotiation", () => {
     );
   });
 
+  it("passes a requested settlement rail as an optional negotiation preference", async () => {
+    quoteMock.mockResolvedValue({
+      accepted: true,
+      priceRaw: "100",
+      provider: "0x6D19d43fC2cd226B135ED5f9F82b366AC864b703",
+      chainId: 56,
+      paymentToken: "0xcE24439F2D9C6a2289F741120FE202248B666666",
+      raw: {},
+    });
+    await negotiateHire("live-341628", {
+      request: "Rebalance BNB/USDC",
+      settlementPreferences: {
+        chainId: 56,
+        verifyingContract: "0xea4daa3100a767e86fded867729ae7446476eba6",
+        paymentToken: "0xcE24439F2D9C6a2289F741120FE202248B666666",
+      },
+    }, { checkSettlement: false, resolveProvider: async (_agent, q) => q.provider });
+    expect(quoteMock).toHaveBeenCalledWith(
+      expect.anything(),
+      "Rebalance BNB/USDC",
+      undefined,
+      expect.objectContaining({
+        settlement_preferences: {
+          chain_id: 56,
+          verifying_contract: "0xea4daa3100a767e86fded867729ae7446476eba6",
+          payment_token: "0xcE24439F2D9C6a2289F741120FE202248B666666",
+        },
+      }),
+    );
+  });
+
   it("auto-fills known needs and returns only genuinely missing fields", async () => {
     quoteMock.mockResolvedValueOnce({
       accepted: false,
@@ -161,7 +192,7 @@ describe("canonical live negotiation", () => {
       raw: {},
     });
     const result = await negotiateHire("live-341628", {}, { checkSettlement: true });
-    expect(result.status).toBe("unavailable");
+    expect(result.status).toBe("settlement-incompatible");
     expect(result.reason).toMatch(/verifying contract/);
   });
 

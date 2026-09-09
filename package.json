@@ -11,6 +11,7 @@
     "test": "vitest run",
     "e2e": "playwright test",
     "audit:negotiation": "tsx --tsconfig tsconfig.json scripts/audit-negotiation.ts",
+    "audit:settlement": "tsx --tsconfig tsconfig.json scripts/audit-settlement-rails.ts",
     "refresh:live": "curl -s -X POST http://localhost:3002/api/live/refresh",
     "refresh:market": "tsx --tsconfig tsconfig.json scripts/refresh-market.ts"
   },

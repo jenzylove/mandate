@@ -13,7 +13,10 @@ import {
   publicClientFor,
   type NetworkName,
 } from "@/lib/live/chain";
-import { settlementFor } from "@/lib/settlement/erc8183";
+import {
+  settlementForTerms,
+  type VerifiedSettlementRail,
+} from "@/lib/settlement/rails";
 import type { Route } from "@/lib/live/discover";
 
 export type MissingFieldType = "text" | "number" | "wallet";
@@ -24,13 +27,14 @@ export interface MissingField {
   type: MissingFieldType;
 }
 
-export type NegotiationStatus = "ready" | "needs-input" | "unavailable";
+export type NegotiationStatus = "ready" | "needs-input" | "settlement-incompatible" | "unavailable";
 
 export interface SettlementCheck {
   compatible: boolean;
   network: NetworkName;
   expectedToken?: string;
   quotedToken?: string;
+  quotedVerifyingContract?: string;
   reason?: string;
 }
 
@@ -46,6 +50,8 @@ export interface NegotiationResult {
   checkedAt: string;
   reason?: string;
   settlement?: SettlementCheck;
+  /** The verified rail selected from the fresh quote; internal, never serialized. */
+  rail?: VerifiedSettlementRail;
 }
 
 export interface NegotiationOptions {
@@ -149,6 +155,7 @@ function missingFields(needs: Record<string, string> | undefined, context: HireC
 function negotiationParams(context: HireContext, request: string): Record<string, unknown> {
   const params: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(context)) {
+    if (key === "settlementPreferences") continue;
     if (value !== undefined && value !== null && value !== "") params[key] = value;
   }
   const buyer = nonEmpty(context.buyer);
@@ -167,6 +174,16 @@ function negotiationParams(context: HireContext, request: string): Record<string
     params.wallet = buyer;
     params.address = buyer;
     params.account = buyer;
+  }
+  if (context.settlementPreferences) {
+    // This is an optional protocol hint, never a claim that the seller
+    // supports it. The seller must echo an accepted quote for the requested
+    // rail; otherwise the normal strict allowlist rejects the terms.
+    params.settlement_preferences = {
+      chain_id: context.settlementPreferences.chainId,
+      verifying_contract: context.settlementPreferences.verifyingContract,
+      payment_token: context.settlementPreferences.paymentToken,
+    };
   }
   return params;
 }
@@ -207,40 +224,52 @@ async function validateSettlement(
   network: NetworkName,
   q: Quote,
   checkSettlement: boolean,
-): Promise<SettlementCheck> {
+): Promise<{ check: SettlementCheck; rail?: VerifiedSettlementRail }> {
   const quotedToken = quoteToken(q);
-  if (!checkSettlement) return { compatible: true, network, quotedToken };
+  if (!checkSettlement) return { check: { compatible: true, network, quotedToken } };
 
-  const expectedContract = net(network).commerce.toLowerCase();
-  if (q.verifyingContract && q.verifyingContract.toLowerCase() !== expectedContract) {
+  // Reject an explicit foreign verifier before any RPC validation. This keeps
+  // the error precise and prevents an untrusted address from influencing a
+  // contract read.
+  if (q.verifyingContract && q.verifyingContract.toLowerCase() !== net(network).commerce.toLowerCase()) {
     return {
-      compatible: false,
-      network,
-      quotedToken,
-      reason: `agent quoted verifying contract ${q.verifyingContract}, but Mandate settles on ${net(network).commerce}`,
+      check: {
+        compatible: false,
+        network,
+        expectedToken: net(network).paymentToken,
+        quotedToken,
+        quotedVerifyingContract: q.verifyingContract,
+        reason: `live quote cannot use a verified ERC-8183 rail: agent quoted verifying contract ${q.verifyingContract}, but Mandate only executes ${net(network).commerce}`,
+      },
     };
   }
 
-  if (!quotedToken) return { compatible: true, network };
   try {
-    const token = await settlementFor(network).token();
-    const expectedToken = token.address.toLowerCase();
-    if (expectedToken !== quotedToken.toLowerCase()) {
-      return {
-        compatible: false,
+    const rail = await settlementForTerms({
+      chainId: q.chainId,
+      verifyingContract: q.verifyingContract,
+      paymentToken: quotedToken,
+    }, network);
+    return {
+      check: {
+        compatible: true,
         network,
-        expectedToken: token.address,
+        expectedToken: rail.paymentToken,
         quotedToken,
-        reason: `agent quoted payment token ${quotedToken}, but Mandate's ERC-8183 contract accepts ${token.address}`,
-      };
-    }
-    return { compatible: true, network, expectedToken: token.address, quotedToken };
+        quotedVerifyingContract: q.verifyingContract,
+      },
+      rail,
+    };
   } catch (error) {
     return {
-      compatible: false,
-      network,
-      quotedToken,
-      reason: `could not validate the ERC-8183 payment token: ${(error as Error).message}`,
+      check: {
+        compatible: false,
+        network,
+        expectedToken: net(network).paymentToken,
+        quotedToken,
+        quotedVerifyingContract: q.verifyingContract,
+        reason: `live quote cannot use a verified ERC-8183 rail: ${(error as Error).message}`,
+      },
     };
   }
 }
@@ -363,20 +392,22 @@ export async function negotiateHire(
   }
 
   const network = networkForChainId(q.chainId) ?? (agent.live.network as NetworkName);
-  const settlement = await validateSettlement(network, q, options.checkSettlement !== false);
-  if (!settlement.compatible) {
+  const validated = await validateSettlement(network, q, options.checkSettlement !== false);
+  if (!validated.check.compatible) {
     return {
-      status: "unavailable",
+      // The agent did answer and did quote; this is a settlement-rail
+      // incompatibility, not evidence that the agent is dead or unavailable.
+      status: "settlement-incompatible",
       mode: "paid",
       agent,
       route,
       quote: { ...q, provider },
       provider,
       network,
-      settlement,
+      settlement: validated.check,
       missingFields: [],
       checkedAt,
-      reason: settlement.reason,
+      reason: validated.check.reason,
     };
   }
 
@@ -388,7 +419,8 @@ export async function negotiateHire(
     quote: { ...q, provider },
     provider,
     network,
-    settlement,
+    settlement: validated.check,
+    rail: validated.rail,
     missingFields: [],
     checkedAt,
     reason: "The agent returned a fresh executable quote.",
@@ -397,5 +429,15 @@ export async function negotiateHire(
 
 export function quoteFingerprint(q: Quote | undefined): string {
   if (!q) return "";
-  return [q.priceRaw ?? "", q.provider ?? "", q.chainId ?? "", q.paymentToken ?? q.currency ?? "", q.verifyingContract ?? ""].join("|").toLowerCase();
+  return [
+    q.priceRaw ?? "",
+    q.provider ?? "",
+    q.chainId ?? "",
+    q.paymentToken ?? q.currency ?? "",
+    q.verifyingContract ?? "",
+    q.expiresAt ?? "",
+    q.negotiationHash ?? "",
+    q.responseHash ?? "",
+    q.providerSig ?? "",
+  ].join("|").toLowerCase();
 }

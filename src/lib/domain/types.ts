@@ -134,6 +134,12 @@ export interface HireContext {
   risk?: RiskLevel;
   control?: ControlMode;
   requestedDeliverable?: string;
+  /** Optional protocol-level preference used when a provider supports rail negotiation. */
+  settlementPreferences?: {
+    chainId?: number;
+    verifyingContract?: string;
+    paymentToken?: string;
+  };
   [key: string]: unknown;
 }
 
