@@ -106,7 +106,7 @@ export function HomeExperience({ outcomes, agents }: { outcomes: Outcome[]; agen
       </section>
 
       <section className="mh-section mh-agent-section" id="agents">
-        <div className="mh-section-title"><div><small>LIVE ON BNB CHAIN</small><h2>Find your kind of agent.</h2><p>Real roles. Clear costs. Room to choose.</p></div><Link href="/agents">View all {agents.length} agents ↗</Link></div>
+        <div className="mh-section-title"><div><small>LIVE ON BNB CHAIN</small><h2>Find your kind of agent.</h2><p>Real roles. Clear costs. Room to choose.</p></div><Link href="/agents" aria-label={`View all agents · ${agents.length} total`}>View all agents <span aria-hidden="true">↗</span></Link></div>
         <div className="agent-grid-dense mh-agent-preview" aria-label="Live agent marketplace preview">{previewAgents.map((agent) => <AgentCard key={agent.id} agent={agent} />)}</div>
       </section>
 
